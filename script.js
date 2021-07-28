@@ -1,0 +1,3 @@
+window.onload=()=>{
+	AOS.init();
+}
