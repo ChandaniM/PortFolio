@@ -1,19 +1,19 @@
 @font-face{
-    src: url("./Fonts/Frank Ruhi Libre/FrankRuhiLibre.ttf");
-    font-family: Frank Ruhi Libre;
+    src: url('../Fonts/FrankRuhiLibre/FrankRuhiLibre-Regular.ttf');
+    font-family: Frank;
 }
 @font-face{
-    src: url("./Fonts/GowunBatang/GowunBatang-Bold.ttf");
-    font-family:chand;
+    src: url("../Fonts/StyleScript/StyleScript-Regular.ttf");
+     font-family:Style;
 }
 @font-face{
-    src: url("./Fonts/StyleScript/StyleScript-Regular.ttf");
-     font-family: rouge;
+	src: url('../Fonts/Pacifico/Pacifico-Regular.ttf');
+	font-family: paci;
 }
-
-
 *{
 	box-sizing: border-box;
+	font-family:Frank; 
+	/*font-size:1.3rem;*/
 }
 *::-webkit-scrollbar {
   display: none;
@@ -22,7 +22,7 @@ body{
 	height: 100vh;
 	margin:0;
 	padding: 0;
-font-family:chand;
+	font-size: 1.3rem;
 } 
 .card-img-top {
     width: 100%;
@@ -48,29 +48,12 @@ font-family:chand;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-/*.intro{
-	border: 0.1em solid  red;
-	flex-direction: column;
-	padding: 1em;
-	
-}*/
+} 
 
-/*.about-info-page-subset{
-	background-color: white;
-}*/
-/*.edu-container{
-	padding: 2em;
-	flex-direction: column;
-}*/
-/*.text-input{*/
-	/*font-family:Frank Ruhi Libre;*/
-	/*font-size: 5em;*/
-/*font-family:chand;*/
-/*}*/
 .intro-text, .text-input{
 	padding-top:0.5em;
 	font-size:3rem;
+	font-family: paci;
 }
 .intro-text::before{
 	content:'Web Developer';
@@ -171,23 +154,9 @@ font-family:chand;
 	margin-left:7em;
 	/*border: 0.1em solid blue;*/
 }
-.subset-box{
-	width:9em;
-	height:9em;
-	/*border: 0.1em solid black;*/
-	box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12)
-;
-/*min-height: 200px;*/
-/*width: 50vw;*/
-/*margin: 100px auto;*/
-background:white;
-border-radius: 5px;
+
+.subset-box:hover{
+ transform: scale(1.2);	
 }
 
 .certificate-subset-container{
@@ -208,6 +177,21 @@ height: 5em;
 	padding: 0.2em;
 	/*border: 0.1em solid brown;*/
 }
+.subset-box{
+	width:4em;
+	height:4em;
+	/*border: 0.1em solid black;*/
+	box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+;
+background:white;
+border-radius: 5px;
+}
 .intern-subset-2{
 	width: 75%;
 	/*border: 0.1em solid blue;*/
@@ -217,14 +201,7 @@ height: 5em;
 	width:5em;
 	height:5em;
 }
-.con-sub{
-	/*width: 25%;
-	margin: 0 auto;*/
-	/*border: 0.1em solid red;*/
-}
-.contact-container{
-	/*margin: 0 auto;*/
-}
+
 .head-title{
 		margin: 0 auto;
 		padding: 1em;
@@ -238,6 +215,9 @@ height: 5em;
 .icon-box{
 	width:2.5em;
 	height:2.5em;
+}
+.card + .card{
+	margin-top: 1em;
 }
 a{
 	color:#000;
@@ -260,6 +240,24 @@ i:hover{
 	}
 	.image-container img{
 		width: 15em;
+	}
+	.subset-box{
+		width:9em;
+		height:9em;
+		/*border: 0.1em solid black;*/
+		box-shadow:
+	  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+	  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+	  0 12.5px 10px rgba(0, 0, 0, 0.06),
+	  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+	  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+	  0 100px 80px rgba(0, 0, 0, 0.12)
+	;
+	/*min-height: 200px;*/
+	/*width: 50vw;*/
+	/*margin: 100px auto;*/
+	background:white;
+	border-radius: 5px;
 	}
 
 }
