@@ -12,8 +12,6 @@
 }
 *{
 	box-sizing: border-box;
-	font-family:Frank; 
-	/*font-size:1.3rem;*/
 }
 *::-webkit-scrollbar {
   display: none;
@@ -49,7 +47,21 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 } 
-
+.cursive{
+	font-family:paci;
+	font-size: 2rem;
+	/*font-weight: bold;*/
+}
+/*.cursive:hover{
+	transform: scale(1.5);
+}*/
+.text-font{
+	font-family:Frank;
+}
+.info-text{
+	font-family:Frank; 
+	font-size:1.3rem;
+}
 .intro-text, .text-input{
 	padding-top:0.5em;
 	font-size:3rem;
@@ -258,6 +270,17 @@ i:hover{
 	/*margin: 100px auto;*/
 	background:white;
 	border-radius: 5px;
+	}
+	.subset-box:hover{
+		 transform: scale(1.2);	
+	}
+
+	.icon-image:hover{
+	     transform: scale(1.5);
+	  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+	}
+	i:hover{
+		transform: scale(1.5);
 	}
 
 }
