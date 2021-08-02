@@ -10,10 +10,6 @@
 	src: url('../Fonts/Pacifico/Pacifico-Regular.ttf');
 	font-family: paci;
 }
-*{
-	/*box-sizing: border-box;*/
-	outline: none;
-}
 *::-webkit-scrollbar {
   display: none;
 }
@@ -23,16 +19,6 @@ body{
 	padding: 0;
 	font-size: 1.3rem;
 } 
-
-.card-img-top {
-    width: 100%;
-    /*height: 20vh;*/
-    object-fit: cover;
-}
-.card:hover{
-	transform: scale(1.05);
-  	box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-}
 .background-image{
 	width:100%;
 	height:100vh;
@@ -45,13 +31,30 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+.card:hover{
+	transform: scale(1.05);
+  	box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+ .text-input{
+	padding-top:0.5em;
+	font-size:2.5rem;
+	font-family:paci;
+	color: #fff;
 } 
+.intro-name{
+	padding-bottom:0.1em;
+	border-bottom:0.1px solid #fff; 
+	width:100%;
+}
 .cursive{
 	font-family:paci;
 	font-size: 1.5rem;
-	/*font-weight: bold;*/
 }
-
 .big-font{
 font-family:Frank;
 }
@@ -69,17 +72,10 @@ font-size:1rem;
 }
 .extra-small-font{
 	font-family: Frank;
-	/*font-size: 1rem;*/
-}
- .text-input{
-	padding-top:0.5em;
-	font-size:3rem;
-	font-family:paci;
-	color: #fff;
 }
 .intro-text{
 	padding-top:0.5em;
-	font-size:3rem;
+	font-size:2.5rem;
 	font-family:Frank;
 	color: #fff;
 }
@@ -95,52 +91,50 @@ font-size:1rem;
 		content: 'Self Learner';
 	}
 	60%{
-			content:'React Developer';
+		content:'React Developer';
 	}	
 	100%{
 		content:'Web Developer';
 	}
 }
-	.about-info-page,.skill-div{
+.about-info-page,.skill-div{
 		background-color: #fdfcfa;
-	}
-.intro-name{
-	padding-bottom:0.1em;
-	border-bottom:0.1px solid #fff; 
-	width:100%;
 }
 .image-container img{
 	width: 13em;
+}
+.card + .card{
+	margin-top: 1em;
+}
+.card-title{
+	height: 25%;
+}
+.card-text{
+	height: 45%;
 }
 .image{
 	width: 100%;
 	height:100%;
 }
-.subset-box:hover{
- 	transform: scale(1.2);	
-}
 .subset-box{
 	width:4.2em;
 	height:4.2em;
 	box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12)
-;
-background:white;
-border-radius: 5px;
+	  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+	  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+	  0 12.5px 10px rgba(0, 0, 0, 0.06),
+	  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+	  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+	  0 100px 80px rgba(0, 0, 0, 0.12);
+	background:white;
+	border-radius: 5px;
 }
-
+.subset-box:hover{
+ 	transform: scale(1.2);	
+}
 .icon-box{
 	width:2.5em;
 	height:2.5em;
-}
-
-.card + .card{
-	margin-top: 1em;
 }
 a{
 	color:#000;
@@ -153,28 +147,19 @@ a{
 i:hover{
 	transform: scale(1.5);
 }
-.card-title{
-	/*border: 1px solid green;*/
-	height: 25%;
+#footer{
+	background-color: #f6f1f4;
 }
-.card-text{
-	height: 45%;
-	/*border: 1px solid red;*/
+.con-sub{
+	width:85%;
 }
+
 .career-div{
 	height: 100%;
 	background-color: #f6f1f4;
 }
 .project-div{
 	background-color: #fdfcfa;
-	}
-#footer{
-	background-color: #f6f1f4;
-}
-.icon-image{
-	/*background: transparent;*/
-	/*mix-blend-mode: multiply;*/
-	/*outline: none;*/
 }
 @media only screen and (min-width: 768px){
 
@@ -186,7 +171,12 @@ i:hover{
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-
+	 .text-input{
+	 	font-size: 3rem;
+	 }
+	.intro-text{
+		font-size: 3rem;
+	}
 	.con-sub{
 		width: 25%;
 	}
@@ -211,7 +201,6 @@ i:hover{
 	.subset-box{
 		width:9em;
 		height:9em;
-		/*border: 0.1em solid black;*/
 		
 	}
 	.icon-image:hover{
