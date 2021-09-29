@@ -1,0 +1,52 @@
+
+*{
+	scroll-behavior: smooth;
+	scrollbar-width:none; /*Mozilla*/
+	-ms-overflow-style: none; /*IE and EDGE*/
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+body{
+	background-color: #FFF0E5 !important;
+}
+
+.image-container{
+	width:9em;
+	height:9em;
+	border-radius: 50%; 
+}
+.Image{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.image-container-sub{
+	width:4em;
+	height:4em;
+}
+.sub_Image{
+	width: 100%;
+	height: 100%;
+}
+
+.sub_link{
+	border-radius: 0.5em;
+	width:80%;
+	margin: 0 auto;
+	background-color: #F4F4F1;
+}
+
+.sub_link:hover{
+	background-color: lightblue;
+}
+span{
+	font-size:1.5rem;
+	color: #000;
+
+}
+@media only screen and (max-width: 600px) {
+  .sub_link{
+	width:100%;
+	}
+}

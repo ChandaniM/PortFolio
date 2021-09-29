@@ -109,7 +109,7 @@ body{
 	width:100%;
 }
 .about-info-page,.skill-div{
-		background-color: #fdfcfa;
+	background-color: #fdfcfa;
 }
 .image-container img{
 	width: 13em;
@@ -172,8 +172,10 @@ i:hover{
 .project-div{
 	background-color: #fdfcfa;
 }
+
 /*Desktop Code*/
 @media only screen and (min-width: 768px){
+
 
 	.background-image{
 
@@ -221,5 +223,15 @@ i:hover{
 	     transform: scale(1.5);
 	  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 	}
+
+}
+@media only screen and (orientation: landscape) {
+
+     .about-info-page{
+     	height: auto;
+     }
+     .career-div{
+     	height: auto;
+     }
 
 }
