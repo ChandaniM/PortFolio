@@ -38,7 +38,7 @@ let proj={
 		'project_Description':'A TODO List Using React',
 		'project_Image_alt':'This is a TODO List project',
 		'project_tag':'Working',
-		'project_Image':'./Images/ToDo_List.png',
+		'project_Image':'./Images/TODO_List.png',
 		'project_Url':'https://github.com/ChandaniM/ToDo_List',
 		'project_Message':'TODO List'
 	},
