@@ -103,7 +103,6 @@ body{
 }
 /*career*/
 .career-div{
-	height: 100%;
 	background-color: #f6f1f4;
 }
 /*career*/
@@ -166,7 +165,6 @@ body{
 	/*border: 1px solid red;*/
 	margin-top: 2em;
 	display: grid;
-	padding-right: 0;
 	grid-row-gap:1em;
 	grid-template-columns: auto auto auto;
 }

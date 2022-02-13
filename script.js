@@ -41,31 +41,36 @@
 // 		}
 // 	}
 // }
-//  const age=()=>{
-// 	// Get Current Date
-// 	let date=new Date();
-// 	let today_date=date.getDate();
-// 	let month=date.getMonth()+1;
-// 	let year=date.getFullYear();
-// 	//Check if birthdate has already passed 
-// 	if(today_date>=12 && month>=12){
-// 		// Today's date>12
-// 			//month after october(so age= year-born year)
-// 		document.getElementsByClassName('age')[0].innerText=`${year-2000} Years`;
+const age=()=>{
+	// Get Current Date
+	let date=new Date();
+	let today_date=date.getDate();
+	let month=date.getMonth()+1;
+	let year=date.getFullYear();
+	//Check if birthdate has already passed 
+	let ageDiv=document.getElementsByClassName('age');
+	console.log(ageDiv)
+	if(today_date>=12 && month>=12){
+		// Today's date>12
+			//month after october(so age= year-born year)
+		ageDiv[0].innerText=`${year-2000} Years`;
+		ageDiv[1].innerText=`${year-2000} Years`;
 
-// 	}
-// 	else{
-// 		if(month>12){
-// 			document.getElementsByClassName('age')[0].innerText=`${year-2000} Years`;
-// 		}
-// 		else{
-// 			document.getElementsByClassName('age')[0].innerText=`${year-2000-1} Years`;
-// 		}
-// 	}
-// }
+	}
+	else{
+		if(month>12){
+			ageDiv[0].innerText=`${year-2000} Years`;
+			ageDiv[1].innerText=`${year-2000} Years`;
+		}
+		else{
+			ageDiv[0].innerText=`${year-2000-1} Years`;
+			ageDiv[1].innerText=`${year-2000-1} Years`;
+		}
+	}
+}
 window.onload=()=>{
 	AOS.init();
-	// age();
+	age();
 }
 
 // Add Skills
