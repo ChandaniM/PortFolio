@@ -104,7 +104,7 @@ body{
 	grid-gap:2em;
 	margin-top:1.5em;
 	padding:1em;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto;
 	/*border: 1px solid green;*/	
 }
 .card-body{
@@ -190,10 +190,10 @@ i:hover{
 	display: grid;
 	padding-right: 0;
 	grid-row-gap:1em;
-	grid-template-columns: auto auto auto auto;
+	grid-template-columns: auto auto auto;
 }
 .skill_card{
-	width:8em;
+	width:5em;
 	display:inline-flex;
 	justify-content: space-between;
 	box-shadow: 5px 5px 5px 0 #cdcd;
@@ -213,8 +213,8 @@ i:hover{
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	.box_card:hover{
-	transform: scale(1.05);
+	.about-info-page{
+		min-height: 100%;
 	}
 	 .text-input{
 	 	font-size: 3rem;
@@ -224,11 +224,23 @@ i:hover{
 		display: inline-block;
 		margin-top: 0;
 	}
+	/*skill parts*/
+	.skill_container{
+	grid-row-gap: 1.5em;
+	grid-template-columns: auto auto auto auto;
+	}
+	.skill_card{
+	width:8em;
+	}
+	/*skill parts*/
+	/*Project Cards*/
+	.project_container{
+	grid-template-columns: auto auto auto;
+	/*border: 1px solid green;*/	
+	}
+	/*Project Cards*/
 	.con-sub{
 		width: 25%;
-	}
-	.about-info-page{
-		height: 100%;
 	}
 	.image-container img{
 		width: 15em;
@@ -245,11 +257,6 @@ i:hover{
 		padding:0;
 		padding-right:0.3em;
 	}
-	.subset-box{
-		width:9em;
-		height:9em;
-		
-	}
 	.icon-image:hover{
 	     transform: scale(1.5);
 	  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
@@ -260,9 +267,13 @@ i:hover{
 
      .about-info-page{
      	height: auto;
+     	margin-bottom: 0.5em;
      }
      .career-div{
      	height: auto;
      }
 
+     .skill_container{
+		grid-template-columns: auto auto auto auto;
+	}
 }

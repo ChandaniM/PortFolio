@@ -65,7 +65,7 @@
 // }
 window.onload=()=>{
 	AOS.init();
-	age();
+	// age();
 }
 
 // Add Skills
