@@ -1,46 +1,3 @@
-
-//  var a="Chandani Mourya";
-// var i=0;
-// function type()
-// {
-// 	// for(int d=0; d<=Infinity;d++){
-// document.getElementById("cursive").innerHTML
-// +=a.charAt(i);
-//     i++;
-//     setTimeout(type,150)
-// }
-// // }
-// type();
-// Sets age automatically
-
-// const age=()=>{
-	// Get Current Date
-// 	let date=new Date();
-// 	let today_date=date.getDate();
-// 	let month=date.getMonth()+1;
-// 	let year=date.getFullYear();
-// 	//Check if birthdate has already passed 
-// 	if(today_date>=12 && month>=12){
-// 		// Today's date>15 
-// 			//month after october(so age= year-born year)
-			
-// 			document.getElementsByClassName('age')[0].innerText=`${year-2000} Years`;	
-// 			// document.getElementsByClassName('age')[1].innerText=`${year-2000} Years`;
-
-// 	}else{
-// 		if(month>12){
-// 			document.getElementsByClassName('age')[0].innerText=`${year-2000} Years`;
-// 			// document.getElementsByClassName('age')[1].innerText=`${year-2000} Years`;		
-
-
-// 		}else{
-// 			document.getElementsByClassName('age')[0].innerText=`${year-2000-1} Years`;
-// 			// document.getElementsByClassName('age')[1].innerText=`${year-2000-1} Years`;
-			
-
-// 		}
-// 	}
-// }
 const age=()=>{
 	// Get Current Date
 	let date=new Date();
@@ -68,10 +25,7 @@ const age=()=>{
 		}
 	}
 }
-window.onload=()=>{
-	AOS.init();
-	age();
-}
+
 
 // Add Skills
 const skill=[
@@ -114,8 +68,8 @@ const skill=[
 		{
 		'id':'6',
 		'image_url':"./logo/mongodb-alt.svg",
-		'alt':'Mango DB',
-		'title':'Mango DB'
+		'alt':'Mongo DB',
+		'title':'Mongo DB'
 		},
 		{
 		'id':'7',
@@ -177,21 +131,32 @@ const skill=[
 		'title':'Figma'
 		}
 ];
-	for(let i of skill){
-		let skill_container = document.getElementsByClassName("skill_container");
-		let skill_card= document.createElement('div');
-		skill_card.classList.add( 'card','skill_card');
-		skill_card.setAttribute('data-toggle','tooltip');
-		skill_card.setAttribute('data-placement','bottom');
-		skill_card.setAttribute('title',i.title);
-		let skill_image= document.createElement('img');
-		skill_image.classList.add('skill_image','image');
-		skill_image.setAttribute('src',i.image_url);
-		skill_image.setAttribute('alt',i.alt);
-		// 'data-toggle':"tooltip",
-		// 'data-placement':"bottom"
+// const display_skill=()=>{
+		for(let i of skill){
+			let skill_container = document.getElementsByClassName("skill_container");
+			let skill_card= document.createElement('div');
+			skill_card.classList.add( 'card','skill_card');
+			skill_card.setAttribute('data-toggle','tooltip');
+			skill_card.setAttribute('data-placement','right');
+			skill_card.setAttribute('title',i.title);
+			let skill_image= document.createElement('img');
+			skill_image.classList.add('skill_image','image');
+			skill_image.setAttribute('src',i.image_url);
+			skill_image.setAttribute('alt',i.alt);
+			// 'data-toggle':"tooltip",
+			// 'data-placement':"bottom"
 
-		// i.image_url 
-		skill_card.appendChild(skill_image);
-		skill_container[0].appendChild(skill_card);
-	}
+			// i.image_url 
+			skill_card.appendChild(skill_image);
+			skill_container[0].appendChild(skill_card);
+		}
+// }
+
+window.onload=()=>{
+	AOS.init();
+	age();
+	// display_skill();
+}
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+})

@@ -50,7 +50,8 @@ body{
 .background-image{
 	width:100%;
 	height:100vh;
-	background-image: url("https://images.unsplash.com/photo-1591091276770-c430bd287ff1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNzY2MDY5Mg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");
+	background: url("../Images/Phone_background.jpg");
+	/*background-image: url("https://images.unsplash.com/photo-1591091276770-c430bd287ff1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNzY2MDY5Mg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");*/
 	/* Set a specific height */
 	min-height: 500px;
 	/* Create the parallax scrolling effect */
@@ -103,6 +104,7 @@ body{
 }
 /*career*/
 .career-div{
+	min-height: 100%;
 	background-color: #f6f1f4;
 }
 /*career*/
@@ -142,7 +144,7 @@ body{
 	font-weight: bolder;
 	padding: 0.2em;
 	border-radius: 0 5px  5px 0;
-	background-color:#228B22;
+	background-color:#32CD32;
 	z-index: 1;
 	position: absolute;
 	margin-top: 0;
@@ -163,9 +165,11 @@ body{
 /*skill parts*/
 .skill_container{
 	/*border: 1px solid red;*/
+	justify-content: center;
 	margin-top: 2em;
 	display: grid;
 	grid-row-gap:1em;
+	grid-column-gap:2em;
 	grid-template-columns: auto auto auto;
 }
 .skill_card{
@@ -204,8 +208,8 @@ i:hover{
 
 
 	.background-image{
-		/*background: url("./Images/desktop_img.jpg");*/
-		background: url("https://images.unsplash.com/photo-1554424507-7a3958d9d6ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNzY2MDQ2OQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");
+		background: url("../Images/desktop_img.jpg");
+		/*background: url("https://images.unsplash.com/photo-1554424507-7a3958d9d6ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNzY2MDQ2OQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");*/
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -239,11 +243,12 @@ i:hover{
 	}
 	/*skill parts*/
 	.skill_container{
-	grid-row-gap: 1.5em;
+	grid-row-gap:2em;
+	grid-column-gap:7em;
 	grid-template-columns: auto auto auto auto;
 	}
 	.skill_card{
-	width:8em;
+	width:8.5em;
 	}
 	/*skill parts*/
 	/*Project Cards*/
@@ -265,7 +270,7 @@ i:hover{
 
      .about-info-page{
      	height: auto;
-     	margin-bottom: 0.5em;
+     	padding-bottom: 0.5em;
      }
      .career-div{
      	height: auto;

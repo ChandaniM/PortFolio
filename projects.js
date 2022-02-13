@@ -1,17 +1,3 @@
-	// {
-	// 	'id':'',
-	// 	'Project_Title':'',
-	// 	'Project_Description':'',
-	// 	'Project_Image':'',
-	// 	'Project_Url':''
-	//  }//,
-	// {
-	// 	'id':'',
-	// 	'Project_Title':'',
-	// 	'Project_Description':'',
-	// 	'Project_Image':'',
-	// 	'Project_Url':''
-	// }
 let proj={
 	row1:[
 		{
@@ -21,7 +7,9 @@ let proj={
 		'project_Image_alt':'This is a ChatBot project & here is the ChatBot Images.',
 		'project_tag':'Completed',
 		'project_Image':'./Images/Chat-bot.png',
-		'project_Url':'https://github.com/ChandaniM/ChatBot'
+		'project_Url':'https://github.com/ChandaniM/ChatBot',
+		'project_Message':'Chat-Bot'
+
 	},
 	{
 		'id':'1',
@@ -30,7 +18,8 @@ let proj={
 		'project_Image_alt':'This is a Restaurant Management System project & here is the Restaurant Management System Images.',
 		'project_tag':'Completed',
 		'project_Image':'./Images/intpproect.png',
-		'project_Url':'https://github.com/ChandaniM/INTP_PROJECT_17'
+		'project_Url':'https://github.com/ChandaniM/INTP_PROJECT_17',
+		'project_Message':'Restaurant Management System'
 	},
 	{
 		'id':'2',
@@ -39,7 +28,8 @@ let proj={
 		'project_Image_alt':'This is a React-gallery project.',
 		'project_tag':'Working',
 		'project_Image':'./Images/ReactGallery.png',
-		'project_Url':'https://github.com/ChandaniM/React-Gallery'
+		'project_Url':'https://github.com/ChandaniM/React-Gallery',
+		'project_Message':'React Gallery'
 	}],
 	row2:[
 		{
@@ -50,6 +40,7 @@ let proj={
 		'project_tag':'Working',
 		'project_Image':'./Images/ToDo_List.png',
 		'project_Url':'https://github.com/ChandaniM/ToDo_List',
+		'project_Message':'TODO List'
 	},
 		{
 		'id':'1',
@@ -58,7 +49,8 @@ let proj={
 		'project_Image_alt':'This is a Instagram Clone project & here is the Instagram Clone Images.',
 		'project_tag':'Halted',
 		'project_Image':'./Images/insta-colne.png',
-		'project_Url':'https://github.com/ChandaniM/Instagram-Clone'
+		'project_Url':'https://github.com/ChandaniM/Instagram-Clone',
+		'project_Message':'Instagram Clone'
 	}
 	]
 }
@@ -67,13 +59,15 @@ let proj={
 let index=0;
 for(let i in proj){
 	// console.log(proj[i][index])
-	for(let j=0;j<3;j++){
+	for(let j=0;j<proj[i].length;j++){
 		let project_card = document.getElementsByClassName("project_container");
 		let div=document.createElement('div');
 		div.classList.add('card','box_card');
 		div.setAttribute('data-aos','fade-down');
 		div.setAttribute('data-aos-duration','2000');
-
+		// div.setAttribute('data-toggle','tooltip')
+		// div.setAttribute('data-placement','right');
+		div.setAttribute('title',proj[i][j].project_Message);
 		let image_container=document.createElement('div');
 		image_container.setAttribute('class','image_container');
 
