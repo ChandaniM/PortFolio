@@ -119,12 +119,3 @@ for(let i in proj){
 		// console.log(proj[i][j].Project_Title)
 	}
 }
-
-// for(let i in proj){
-// 	// console.log(proj[i][index])
-// 	for(let j=0;j<3;j++){
-// 		if(proj[i][j].project_tag=="Halted"){
-// 			document.getElementsByClassName('tags').style.backgroundColor = "red";
-// 		}
-// 	}
-// }
