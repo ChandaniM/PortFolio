@@ -14,7 +14,7 @@ let proj={
 	{
 		'id':'1',
 		'project_Title':'E-Commerce Web application',
-		'project_Description':'A full-stack E-Commerce web application that has both the customer and seller sides where customer can buy products and seller can sell their products on the website. The project also supports search, cart, order. Skills: HTML,JS, Bootstrap, PHP, SQL. ',
+		'project_Description':'A full-stack E-Commerce web application that has both the customer and seller sides where customer can buy products and seller can sell their products on the website.',
 		'project_Image_alt':'This is a E-Commerce Website.',
 		'project_tag':'Completed',
 		'project_Image':'./Images/Ecommerce.png',
