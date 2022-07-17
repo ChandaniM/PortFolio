@@ -18,7 +18,7 @@ let proj={
 		'project_Image_alt':'This is a E-Commerce Website.',
 		'project_tag':'Completed',
 		'project_Image':'./Images/Ecommerce.png',
-		'project_Url':'https://github.com/ChandaniM/E-commerce-Application`',
+		'project_Url':'https://github.com/ChandaniM/E-commerce-Application',
 		'project_Message':'E-Commerce Website'
 	},
 	{
