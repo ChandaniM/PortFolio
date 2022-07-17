@@ -13,6 +13,16 @@ let proj={
 	},
 	{
 		'id':'1',
+		'project_Title':'E-Commerce Web application',
+		'project_Description':'A full-stack E-Commerce web application that has both the customer and seller sides where customer can buy products and seller can sell their products on the website. The project also supports search, cart, order. Skills: HTML,JS, Bootstrap, PHP, SQL. ',
+		'project_Image_alt':'This is a E-Commerce Website.',
+		'project_tag':'Completed',
+		'project_Image':'./Images/Ecommerce.png',
+		'project_Url':'https://github.com/ChandaniM/E-commerce-Application`',
+		'project_Message':'E-Commerce Website'
+	},
+	{
+		'id':'2',
 		'project_Title':'Restaurant Management System',
 		'project_Description':'A full-fledged website developed using HTML,CSS,JS  for front-end and PHP for backend with MYSQL database',
 		'project_Image_alt':'This is a Restaurant Management System project & here is the Restaurant Management System Images.',
@@ -20,9 +30,10 @@ let proj={
 		'project_Image':'./Images/intpproect.png',
 		'project_Url':'https://github.com/ChandaniM/INTP_PROJECT_17',
 		'project_Message':'Restaurant Management System'
-	},
+	}],
+	row2:[
 	{
-		'id':'2',
+		'id':'0',
 		'project_Title':'React Gallery',
 		'project_Description':'A React-gallery website developed using React. ',
 		'project_Image_alt':'This is a React-gallery project.',
@@ -30,10 +41,9 @@ let proj={
 		'project_Image':'./Images/ReactGallery.png',
 		'project_Url':'https://github.com/ChandaniM/React-Gallery',
 		'project_Message':'React Gallery'
-	}],
-	row2:[
+	},
 		{
-		'id':'0',
+		'id':'1',
 		'project_Title':'TODO List',
 		'project_Description':'A TODO List Using React',
 		'project_Image_alt':'This is a TODO List project',
@@ -43,7 +53,7 @@ let proj={
 		'project_Message':'TODO List'
 	},
 		{
-		'id':'1',
+		'id':'2',
 		'project_Title':'Instagram Clone',
 		'project_Description':'UI clone of the social media app Instagram developed using HTML, CSS, Javascript. Currently supported for phones.',
 		'project_Image_alt':'This is a Instagram Clone project & here is the Instagram Clone Images.',
