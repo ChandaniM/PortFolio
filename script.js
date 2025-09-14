@@ -1,6 +1,6 @@
 let totalYearOfExperience = document.getElementById("total-year-of-experience");
 let experience = document.getElementById("experience");
-
+let calculateExperienceShow = document.getElementById("calcuate-year");
 // const age = () => {
 //   const today = new Date();
 //   const birthYear = 2000;
@@ -216,6 +216,7 @@ skillSets.forEach((skillSet) => {
 window.onload = () => {
   totalYearOfExperience.innerText = calculateExperience("22-August-2022");
   experience.innerText = calculateExperience("22-August-2022");
+  calculateExperienceShow.innerText = calculateExperience("20-April-2024");
   // age();
   AOS.init();
 };

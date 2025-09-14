@@ -94,20 +94,13 @@ body {
   45% {
     content: "MERN Stack Developer";
   }
-
-  50%,
-  65% {
-    content: "Self Learner";
-  }
-
   70%,
   85% {
-    content: "Creative Coder";
+    content: "Frontend Developer";
   }
-
   90%,
   100% {
-    content: "Frontend / Backend Developer";
+    content: "Aspiring Backend Developer";
   }
 }
 /*name displayed for front page*/
@@ -304,7 +297,7 @@ a {
   display: none;
 }
 .flex-gap {
-  gap: 1em;
+  gap: 2em;
   align-items: center;
 }
 /*footer*/
