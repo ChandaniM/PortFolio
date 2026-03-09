@@ -735,6 +735,10 @@ skillCategories.forEach((category, index) => {
 //  INIT
 // ══════════════════════════════════════
 (function init() {
+  const totalSkills =
+    skillCategories.reduce((t, c) => t + c.chips.length, 0) + "+";
+  console.log(totalSkills, "skills");
+  document.getElementById("total-skill-count").textContent = totalSkills;
   document.getElementById("total-experience-full-value").textContent =
     calculateExperience("2022-11-22", "full");
   document.getElementById("se-duration").textContent = calculateExperience(
