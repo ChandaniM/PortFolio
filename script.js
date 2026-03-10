@@ -637,7 +637,7 @@ function calculateExperience(dateString, format = "short") {
 
 const skillCategories = [
   {
-    icon: "🖥️",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-icon lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>`,
     name: "Frontend",
     chips: [
       "Angular",
@@ -658,7 +658,7 @@ const skillCategories = [
     ],
   },
   {
-    icon: "⚙️",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.5 16h-8.5a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v8" /><path d="M7 20h4" /><path d="M9 16v4" /><path d="M20 21l2 -2l-2 -2" /><path d="M17 17l-2 2l2 2" /></svg>`,
     name: "Backend",
     chips: [
       "Node.JS",
@@ -670,12 +670,12 @@ const skillCategories = [
     ],
   },
   {
-    icon: "🗄️",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database-icon lucide-database"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>`,
     name: "Databases",
     chips: ["MySQL", "MongoDB"],
   },
   {
-    icon: "☁️",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml-icon lucide-code-xml"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>`,
     name: "Cloud",
     chips: ["Firebase", "AWS S3", "AWS EC2"],
   },
@@ -707,7 +707,7 @@ skillCategories.forEach((category, index) => {
   // Icon
   const icon = document.createElement("span");
   icon.className = "r-skill-ico";
-  icon.textContent = category.icon;
+  icon.innerHTML = category.icon;
 
   // Category name
   const name = document.createElement("div");
