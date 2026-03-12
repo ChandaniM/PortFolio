@@ -703,16 +703,16 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
 }
 
 .r-avatar {
-  width: 80px;
+  width: 90px;
   height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  /* border-radius: 50%; */
+  /* background: linear-gradient(135deg, var(--accent2), var(--accent)); */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.2rem;
   margin-bottom: 16px;
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+  /* box-shadow: 0 0 30px rgba(0, 229, 255, 0.2); */
   animation: float 4s ease infinite;
 }
 @keyframes float {
@@ -724,9 +724,9 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
     transform: translateY(-8px);
   }
 }
-[data-theme="light"] .r-avatar {
+/* [data-theme="light"] .r-avatar {
   box-shadow: 0 4px 20px rgba(0, 112, 204, 0.2);
-}
+} */
 
 .r-profile-name {
   font-family: var(--font-head);
