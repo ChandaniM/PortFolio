@@ -207,37 +207,90 @@ datasets with Grafana for real-time monitoring.\`</span><span class="pun">,</spa
 <span class="pun">}</span>
 <span class="cblink"></span>`,
   skills: `<span class="cmt">// skills.component.ts — the full stack</span>
-<span class="kw">import</span> <span class="pun">{</span> <span class="fn">Component</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
+<span class="kw">import</span> <span class="pun">{</span>
+  <span class="fn">Component</span><span class="pun">,</span>
+  <span class="fn">ChangeDetectionStrategy</span><span class="pun">,</span>
+<span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
 
-<span class="kw">interface</span> <span class="cls">Skill</span> <span class="pun">{</span>
-<span class="prp">name</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">level</span><span class="pun">:</span> <span class="str">'expert'</span> <span class="op">|</span> <span class="str">'advanced'</span> <span class="op">|</span> <span class="str">'proficient'</span><span class="pun">;</span>
-<span class="prp">years</span><span class="pun">:</span> <span class="typ">number</span><span class="pun">;</span>
-<span class="pun">}</span>
+<span class="cmt">// ─── Type Aliases ───</span>
 
-<span class="dec">@Component</span><span class="pun">({</span> <span class="prp">selector</span><span class="pun">:</span> <span class="str">'app-skills'</span><span class="pun">,</span> <span class="prp">standalone</span><span class="pun">:</span> <span class="kw">true</span> <span class="pun">})</span>
+<span class="kw">type</span> <span class="cls">SkillCategory</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="kw">readonly</span> <span class="prp">name</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  <span class="kw">readonly</span> <span class="prp">skills</span><span class="pun">:</span> <span class="kw">readonly</span> <span class="typ">string</span><span class="pun">[];</span>
+<span class="pun">};</span>
+
+<span class="cmt">// ─── Module-Level Constants ───</span>
+
+<span class="kw">const</span> <span class="prp">SKILL_CATEGORIES</span><span class="pun">:</span> <span class="kw">readonly</span> <span class="cls">SkillCategory</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Frontend'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span>
+      <span class="str">'Angular'</span><span class="pun">,</span> <span class="str">'React'</span><span class="pun">,</span> <span class="str">'TypeScript'</span><span class="pun">,</span> <span class="str">'JavaScript'</span><span class="pun">,</span>
+      <span class="str">'HTML'</span><span class="pun">,</span> <span class="str">'CSS'</span><span class="pun">,</span> <span class="str">'SCSS'</span><span class="pun">,</span> <span class="str">'LESS'</span><span class="pun">,</span>
+      <span class="str">'Bootstrap'</span><span class="pun">,</span> <span class="str">'Tailwind CSS'</span><span class="pun">,</span> <span class="str">'RxJS'</span><span class="pun">,</span> <span class="str">'NgRx'</span><span class="pun">,</span>
+      <span class="str">'Responsive Design'</span><span class="pun">,</span> <span class="str">'Web Performance'</span><span class="pun">,</span>
+      <span class="str">'Core Web Vitals'</span><span class="pun">,</span> <span class="str">'Storybook'</span><span class="pun">,</span> <span class="str">'Flutter'</span><span class="pun">,</span>
+    <span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Backend'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span>
+      <span class="str">'Node.js'</span><span class="pun">,</span> <span class="str">'Express.js'</span><span class="pun">,</span>
+      <span class="str">'REST APIs'</span><span class="pun">,</span> <span class="str">'API Integration'</span><span class="pun">,</span> <span class="str">'JWT Auth'</span><span class="pun">,</span>
+    <span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Databases'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'MySQL'</span><span class="pun">,</span> <span class="str">'MongoDB'</span><span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Cloud'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Firebase'</span><span class="pun">,</span> <span class="str">'AWS S3'</span><span class="pun">,</span> <span class="str">'AWS EC2'</span><span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Tools & DevOps'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'M-Files'</span><span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'No-Code & Monitoring'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'FlutterFlow'</span><span class="pun">,</span> <span class="str">'Grafana'</span><span class="pun">],</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Testing'</span><span class="pun">,</span>
+    <span class="prp">skills</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Jest'</span><span class="pun">,</span> <span class="str">'Jasmine'</span><span class="pun">,</span> <span class="str">'Vitest'</span><span class="pun">,</span> <span class="str">'React Testing Library'</span><span class="pun">],</span>
+  <span class="pun">},</span>
+<span class="pun">]</span> <span class="kw">as const</span><span class="pun">;</span>
+
+<span class="cmt">// ─── Derived Constants (computed once at module level) ───</span>
+
+<span class="kw">const</span> <span class="prp">TOTAL_SKILLS</span><span class="pun">:</span> <span class="typ">number</span> <span class="op">=</span> <span class="prp">SKILL_CATEGORIES</span>
+  <span class="pun">.</span><span class="fn">reduce</span><span class="pun">((</span><span class="prp">sum</span><span class="pun">,</span> <span class="prp">cat</span><span class="pun">) =&gt;</span> <span class="prp">sum</span> <span class="op">+</span> <span class="prp">cat</span><span class="pun">.</span><span class="prp">skills</span><span class="pun">.</span><span class="prp">length</span><span class="pun">,</span> <span class="num">0</span><span class="pun">);</span>
+
+<span class="cmt">// ─── Component ───</span>
+
+<span class="dec">@Component</span><span class="pun">({</span>
+  <span class="prp">selector</span><span class="pun">:</span>        <span class="str">'app-skills'</span><span class="pun">,</span>
+  <span class="prp">standalone</span><span class="pun">:</span>      <span class="kw">true</span><span class="pun">,</span>
+  <span class="prp">templateUrl</span><span class="pun">:</span>     <span class="str">'./skills.component.html'</span><span class="pun">,</span>
+  <span class="prp">styleUrl</span><span class="pun">:</span>        <span class="str">'./skills.component.scss'</span><span class="pun">,</span>
+  <span class="prp">changeDetection</span><span class="pun">:</span> <span class="fn">ChangeDetectionStrategy</span><span class="pun">.</span><span class="prp">OnPush</span><span class="pun">,</span>
+<span class="pun">})</span>
 <span class="kw">export class</span> <span class="cls">SkillsComponent</span> <span class="pun">{</span>
 
-<span class="prp">frontend</span><span class="pun">:</span> <span class="cls">Skill</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'Angular'</span><span class="pun">,</span>    <span class="prp">level</span><span class="pun">:</span><span class="str">'expert'</span><span class="pun">,</span>     <span class="prp">years</span><span class="pun">:</span><span class="num">3.5</span> <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'React'</span><span class="pun">,</span>      <span class="prp">level</span><span class="pun">:</span><span class="str">'advanced'</span><span class="pun">,</span>   <span class="prp">years</span><span class="pun">:</span><span class="num">2</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'TypeScript'</span><span class="pun">,</span> <span class="prp">level</span><span class="pun">:</span><span class="str">'expert'</span><span class="pun">,</span>     <span class="prp">years</span><span class="pun">:</span><span class="num">3</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'SCSS/LESS'</span><span class="pun">,</span>  <span class="prp">level</span><span class="pun">:</span><span class="str">'expert'</span><span class="pun">,</span>     <span class="prp">years</span><span class="pun">:</span><span class="num">3.5</span> <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'Bootstrap'</span><span class="pun">,</span>  <span class="prp">level</span><span class="pun">:</span><span class="str">'expert'</span><span class="pun">,</span>     <span class="prp">years</span><span class="pun">:</span><span class="num">3</span>   <span class="pun">},</span>
-<span class="pun">];</span>
+  <span class="cmt">// ─── Static Data ───</span>
+  <span class="kw">protected readonly</span> <span class="prp">categories</span><span class="pun">:</span>  <span class="kw">readonly</span> <span class="cls">SkillCategory</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">SKILL_CATEGORIES</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">totalSkills</span><span class="pun">:</span> <span class="typ">number</span>                   <span class="op">=</span> <span class="prp">TOTAL_SKILLS</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">hasSkills</span><span class="pun">:</span>   <span class="typ">boolean</span>                  <span class="op">=</span> <span class="prp">SKILL_CATEGORIES</span><span class="pun">.</span><span class="prp">length</span> <span class="op">&gt;</span> <span class="num">0</span><span class="pun">;</span>
 
-<span class="prp">backend</span><span class="pun">:</span> <span class="cls">Skill</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'Node.JS'</span><span class="pun">,</span>    <span class="prp">level</span><span class="pun">:</span><span class="str">'advanced'</span><span class="pun">,</span>   <span class="prp">years</span><span class="pun">:</span><span class="num">3</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'Express.JS'</span><span class="pun">,</span> <span class="prp">level</span><span class="pun">:</span><span class="str">'advanced'</span><span class="pun">,</span>   <span class="prp">years</span><span class="pun">:</span><span class="num">3</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'MongoDB'</span><span class="pun">,</span>    <span class="prp">level</span><span class="pun">:</span><span class="str">'advanced'</span><span class="pun">,</span>   <span class="prp">years</span><span class="pun">:</span><span class="num">3</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'MySQL'</span><span class="pun">,</span>      <span class="prp">level</span><span class="pun">:</span><span class="str">'proficient'</span><span class="pun">,</span> <span class="prp">years</span><span class="pun">:</span><span class="num">2</span>   <span class="pun">},</span>
-<span class="pun">{</span> <span class="prp">name</span><span class="pun">:</span><span class="str">'Firebase'</span><span class="pun">,</span>   <span class="prp">level</span><span class="pun">:</span><span class="str">'advanced'</span><span class="pun">,</span>   <span class="prp">years</span><span class="pun">:</span><span class="num">2</span>   <span class="pun">},</span>
-<span class="pun">];</span>
+  <span class="cmt">// ─── Template Helpers: TrackBy for @for / *ngFor ───</span>
 
-<span class="prp">tools</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'Grafana'</span><span class="pun">,</span>
-<span class="str">'FlutterFlow'</span><span class="pun">,</span> <span class="str">'Flutter'</span><span class="pun">,</span> <span class="str">'M-files'</span><span class="pun">,</span>
-<span class="pun">];</span>
+  <span class="kw">protected</span> <span class="fn">trackByName</span><span class="pun">(</span><span class="prp">_index</span><span class="pun">:</span> <span class="typ">number</span><span class="pun">,</span> <span class="prp">cat</span><span class="pun">:</span> <span class="cls">SkillCategory</span><span class="pun">):</span> <span class="typ">string</span> <span class="pun">{</span>
+    <span class="kw">return</span> <span class="prp">cat</span><span class="pun">.</span><span class="prp">name</span><span class="pun">;</span>
+  <span class="pun">}</span>
+
+  <span class="kw">protected</span> <span class="fn">trackBySkill</span><span class="pun">(</span><span class="prp">_index</span><span class="pun">:</span> <span class="typ">number</span><span class="pun">,</span> <span class="prp">skill</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">):</span> <span class="typ">string</span> <span class="pun">{</span>
+    <span class="kw">return</span> <span class="prp">skill</span><span class="pun">;</span>
+  <span class="pun">}</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
   experience: `<span class="cmt">// experience.component.ts — work history</span>
