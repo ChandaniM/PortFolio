@@ -44,29 +44,50 @@ function setTheme(t) {
 function toggleMode() {
   currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
   document.documentElement.setAttribute("data-mode", currentMode);
-  // Icon shows what you'll SWITCH TO
-  document.getElementById("modeIco").textContent =
-    currentMode === "dev" ? "👔" : "💻";
+
+  const iconContainer = document.getElementById("modeIco");
+
+  // Define the SVG paths (Minified for performance)
+  const devIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>`;
+  
+  const recruiterIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" /><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>`;
+  // Swap icons based on what the user will switch TO
+  iconContainer.innerHTML = currentMode === "dev" ? recruiterIcon : devIcon;
 
   if (currentMode === "dev") {
     setTheme("dark");
-    notify(
-      "💻",
-      "Dev Mode Active",
-      "VS Code view · Press Ctrl+P for command palette"
-    );
+    notify("💻", "Dev Mode Active", "VS Code view · Press Ctrl+P for command palette");
   } else {
     notify("👔", "Recruiter Mode", "Cyberpunk portfolio view restored");
-    setTimeout(() => {
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => revealObs.observe(el));
-      document
-        .querySelectorAll(".r-prog-bar")
-        .forEach((b) => progObs.observe(b));
-    }, 200);
+    // ... existing reveal logic
   }
 }
+// function toggleMode() {
+//   currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
+//   document.documentElement.setAttribute("data-mode", currentMode);
+//   // Icon shows what you'll SWITCH TO
+//   document.getElementById("modeIco").textContent =
+//     currentMode === "dev" ? "👔" : "💻";
+
+//   if (currentMode === "dev") {
+//     setTheme("dark");
+//     notify(
+//       "💻",
+//       "Dev Mode Active",
+//       "VS Code view · Press Ctrl+P for command palette"
+//     );
+//   } else {
+//     notify("👔", "Recruiter Mode", "Cyberpunk portfolio view restored");
+//     setTimeout(() => {
+//       document
+//         .querySelectorAll(".reveal")
+//         .forEach((el) => revealObs.observe(el));
+//       document
+//         .querySelectorAll(".r-prog-bar")
+//         .forEach((b) => progObs.observe(b));
+//     }, 200);
+//   }
+// }
 
 // ══════════════════════════════════════
 //  MOBILE NAV
@@ -103,37 +124,86 @@ if (badge) {
 // ══════════════════════════════════════
 const devFiles = {
   about: `<span class="cmt">// about.component.ts — who I am</span>
-<span class="kw">import</span> <span class="pun">{</span> <span class="fn">Component</span><span class="pun">,</span> <span class="fn">OnInit</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
+<span class="kw">import</span> <span class="pun">{</span>
+  <span class="fn">Component</span><span class="pun">,</span>
+  <span class="fn">ChangeDetectionStrategy</span><span class="pun">,</span>
+  <span class="fn">signal</span><span class="pun">,</span>
+  <span class="fn">computed</span><span class="pun">,</span>
+  <span class="fn">isDevMode</span><span class="pun">,</span>
+<span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
 
-<span class="dec">@Component</span><span class="pun">({</span>
-<span class="prp">selector</span><span class="pun">:</span>    <span class="str">'app-about'</span><span class="pun">,</span>
-<span class="prp">standalone</span><span class="pun">:</span>  <span class="kw">true</span><span class="pun">,</span>
-<span class="prp">templateUrl</span><span class="pun">:</span> <span class="str">'./about.component.html'</span><span class="pun">,</span>
-<span class="pun">})</span>
-<span class="kw">export class</span> <span class="cls">AboutComponent</span> <span class="kw">implements</span> <span class="typ">OnInit</span> <span class="pun">{</span>
+<span class="cmt">// ─── Type Aliases (not interfaces — single-use flat data shapes) ───</span>
 
-<span class="kw">readonly</span> <span class="prp">name</span><span class="pun">:</span>        <span class="typ">string</span>  <span class="op">=</span> <span class="str">'Frontend Engineer'</span><span class="pun">;</span>
-<span class="kw">readonly</span> <span class="prp">stack</span><span class="pun">:</span>       <span class="typ">string</span>  <span class="op">=</span> <span class="str">'MEAN Stack · React · Angular'</span><span class="pun">;</span>
-<span class="kw">readonly</span> <span class="prp">experience</span><span class="pun">:</span>  <span class="typ">string</span>  <span class="op">=</span> <span class="str">'3 years 5 months'</span><span class="pun">;</span>
-<span class="kw">readonly</span> <span class="prp">available</span><span class="pun">:</span>   <span class="typ">boolean</span> <span class="op">=</span> <span class="kw">true</span><span class="pun">;</span>
-<span class="kw">readonly</span> <span class="prp">location</span><span class="pun">:</span>    <span class="typ">string</span>  <span class="op">=</span> <span class="str">'India 🇮🇳'</span><span class="pun">;</span>
-
-<span class="prp">specializations</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="str">'Angular Architecture'</span><span class="pun">,</span>    <span class="str">'React Ecosystem'</span><span class="pun">,</span>
-<span class="str">'MEAN Stack Development'</span><span class="pun">,</span>  <span class="str">'System Design'</span><span class="pun">,</span>
-<span class="str">'Performance Optimization'</span><span class="pun">,</span><span class="str">'Responsive UI Engineering'</span><span class="pun">,</span>
-<span class="pun">];</span>
-
-<span class="prp">achievement</span> <span class="op">=</span> <span class="pun">{</span>
-<span class="prp">title</span><span class="pun">:</span> <span class="str">'Winner — Flair Labs Hackathon 2023'</span><span class="pun">,</span>
-<span class="prp">team</span><span class="pun">:</span>  <span class="str">'Team Clippers'</span><span class="pun">,</span>
-<span class="prp">award</span><span class="pun">:</span> <span class="kw">true</span><span class="pun">,</span>
+<span class="kw">type</span> <span class="cls">Specialization</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="kw">readonly</span> <span class="prp">label</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  <span class="kw">readonly</span> <span class="prp">percent</span><span class="pun">:</span> <span class="typ">number</span><span class="pun">;</span>
 <span class="pun">};</span>
 
-<span class="fn">ngOnInit</span><span class="pun">():</span> <span class="typ">void</span> <span class="pun">{</span>
-<span class="fn">console</span><span class="pun">.</span><span class="fn">log</span><span class="pun">(</span><span class="str">'👋 Hey! Open console for easter eggs.'</span><span class="pun">);</span>
-<span class="fn">console</span><span class="pun">.</span><span class="fn">log</span><span class="pun">(</span><span class="str">'📧 chandanimourya5@gmail.com'</span><span class="pun">);</span>
-<span class="pun">}</span>
+<span class="kw">type</span> <span class="cls">Achievement</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="kw">readonly</span> <span class="prp">title</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">;</span>
+  <span class="kw">readonly</span> <span class="prp">sub</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  <span class="kw">readonly</span> <span class="prp">desc</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
+  <span class="kw">readonly</span> <span class="prp">award</span><span class="pun">:</span> <span class="typ">boolean</span><span class="pun">;</span>
+<span class="pun">};</span>
+
+<span class="cmt">// ─── Module-Level Constants (static data — zero per-instance overhead) ───</span>
+
+<span class="kw">const</span> <span class="prp">SPECIALIZATIONS</span><span class="pun">:</span> <span class="kw">readonly</span> <span class="cls">Specialization</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
+  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'Frontend Development'</span><span class="pun">,</span> <span class="prp">percent</span><span class="pun">:</span> <span class="num">95</span> <span class="pun">},</span>
+  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'MEAN Stack'</span><span class="pun">,</span>           <span class="prp">percent</span><span class="pun">:</span> <span class="num">88</span> <span class="pun">},</span>
+  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'React Ecosystem'</span><span class="pun">,</span>      <span class="prp">percent</span><span class="pun">:</span> <span class="num">82</span> <span class="pun">},</span>
+  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'System Design'</span><span class="pun">,</span>        <span class="prp">percent</span><span class="pun">:</span> <span class="num">40</span> <span class="pun">},</span>
+<span class="pun">]</span> <span class="kw">as const</span><span class="pun">;</span>
+
+<span class="kw">const</span> <span class="prp">ACHIEVEMENT</span><span class="pun">:</span> <span class="cls">Achievement</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="prp">title</span><span class="pun">:</span> <span class="str">'Hackathon Winner'</span><span class="pun">,</span>
+  <span class="prp">sub</span><span class="pun">:</span>   <span class="str">'Flair Labs Hackathon 2023 - Team Clippers'</span><span class="pun">,</span>
+  <span class="prp">desc</span><span class="pun">:</span>  <span class="str">\`Contributed as the Front-End Developer for Team Clippers,
+delivering an award-winning solution under tight deadlines.
+Built production-ready UIs with high code quality standards.
+Developed data-driven dashboards integrating query-based
+datasets with Grafana for real-time monitoring.\`</span><span class="pun">,</span>
+  <span class="prp">award</span><span class="pun">:</span> <span class="kw">true</span><span class="pun">,</span>
+<span class="pun">}</span> <span class="kw">as const</span><span class="pun">;</span>
+
+<span class="cmt">// ─── Component ───</span>
+
+<span class="dec">@Component</span><span class="pun">({</span>
+  <span class="prp">selector</span><span class="pun">:</span>        <span class="str">'app-about'</span><span class="pun">,</span>
+  <span class="prp">standalone</span><span class="pun">:</span>      <span class="kw">true</span><span class="pun">,</span>
+  <span class="prp">templateUrl</span><span class="pun">:</span>     <span class="str">'./about.component.html'</span><span class="pun">,</span>
+  <span class="prp">styleUrl</span><span class="pun">:</span>        <span class="str">'./about.component.scss'</span><span class="pun">,</span>
+  <span class="prp">changeDetection</span><span class="pun">:</span> <span class="fn">ChangeDetectionStrategy</span><span class="pun">.</span><span class="prp">OnPush</span><span class="pun">,</span>
+<span class="pun">})</span>
+<span class="kw">export class</span> <span class="cls">AboutComponent</span> <span class="pun">{</span>
+
+  <span class="cmt">// ─── Static Data (bound from module-level constants) ───</span>
+  <span class="kw">protected readonly</span> <span class="prp">specializations</span> <span class="op">=</span> <span class="prp">SPECIALIZATIONS</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">achievement</span>     <span class="op">=</span> <span class="prp">ACHIEVEMENT</span><span class="pun">;</span>
+
+  <span class="cmt">// ─── Profile Signals ───</span>
+  <span class="kw">protected readonly</span> <span class="prp">name</span>      <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">string</span><span class="pun">&gt;(</span><span class="str">'Software Engineer'</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">stack</span>     <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">string</span><span class="pun">&gt;(</span><span class="str">'MEAN Stack · Angular · React'</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">available</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">boolean</span><span class="pun">&gt;(</span><span class="kw">true</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">location</span>  <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">string</span><span class="pun">&gt;(</span><span class="str">'India 🇮🇳'</span><span class="pun">);</span>
+
+  <span class="cmt">// ─── Experience (computed from static join date) ───</span>
+  <span class="kw">private static readonly</span> <span class="prp">JOIN_DATE</span> <span class="op">=</span> <span class="kw">new</span> <span class="fn">Date</span><span class="pun">(</span><span class="str">'2022-08-22'</span><span class="pun">);</span>
+
+  <span class="kw">protected readonly</span> <span class="prp">experience</span> <span class="op">=</span> <span class="fn">computed</span><span class="pun">&lt;</span><span class="typ">string</span><span class="pun">&gt;(() =&gt; {</span>
+    <span class="kw">const</span> <span class="prp">now</span>    <span class="op">=</span> <span class="kw">new</span> <span class="fn">Date</span><span class="pun">();</span>
+    <span class="kw">let</span> <span class="prp">years</span>    <span class="op">=</span> <span class="prp">now</span><span class="pun">.</span><span class="fn">getFullYear</span><span class="pun">()</span> <span class="op">-</span> <span class="cls">AboutComponent</span><span class="pun">.</span><span class="prp">JOIN_DATE</span><span class="pun">.</span><span class="fn">getFullYear</span><span class="pun">();</span>
+    <span class="kw">let</span> <span class="prp">months</span>   <span class="op">=</span> <span class="prp">now</span><span class="pun">.</span><span class="fn">getMonth</span><span class="pun">()</span>    <span class="op">-</span> <span class="cls">AboutComponent</span><span class="pun">.</span><span class="prp">JOIN_DATE</span><span class="pun">.</span><span class="fn">getMonth</span><span class="pun">();</span>
+    <span class="kw">if</span> <span class="pun">(</span><span class="prp">months</span> <span class="op">&lt;</span> <span class="num">0</span><span class="pun">) {</span> <span class="prp">years</span><span class="op">--</span><span class="pun">;</span> <span class="prp">months</span> <span class="op">+=</span> <span class="num">12</span><span class="pun">; }</span>
+    <span class="kw">return</span> <span class="str">\`\${years} years \${months} months\`</span><span class="pun">;</span>
+  <span class="pun">});</span>
+
+  <span class="cmt">// ─── Dev-only Easter Egg ───</span>
+  <span class="kw">constructor</span><span class="pun">() {</span>
+    <span class="kw">if</span> <span class="pun">(</span><span class="fn">isDevMode</span><span class="pun">()) {</span>
+      <span class="fn">console</span><span class="pun">.</span><span class="fn">log</span><span class="pun">(</span><span class="str">'👋 Hey! Open console for easter eggs.'</span><span class="pun">);</span>
+    <span class="pun">}</span>
+  <span class="pun">}</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
   skills: `<span class="cmt">// skills.component.ts — the full stack</span>
