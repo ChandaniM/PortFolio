@@ -316,114 +316,217 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">}</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  experience: `<span class="cmt">// experience.component.ts — work history</span>
-<span class="kw">import</span> <span class="pun">{</span> <span class="fn">Component</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
+  experience: `<span class="cmt">// experience.component.ts </span>
+<span class="kw">import</span> <span class="pun">{</span>
+  <span class="fn">Component</span><span class="pun">,</span>
+  <span class="fn">ChangeDetectionStrategy</span>
+<span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
 
-<span class="kw">interface</span> <span class="cls">Job</span> <span class="pun">{</span>
-<span class="prp">role</span><span class="pun">:</span>        <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">company</span><span class="pun">:</span>    <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">period</span><span class="pun">:</span>     <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">highlights</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">[];</span>
-<span class="prp">award</span><span class="op">?</span><span class="pun">:</span>     <span class="typ">string</span><span class="pun">;</span>
-<span class="pun">}</span>
+<span class="kw">type</span> <span class="cls">ExperienceEntry</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="prp">role</span><span class="pun">:</span>      <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">company</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">period</span><span class="pun">:</span>    <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">location</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">summary</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">tags</span><span class="pun">:</span>      <span class="typ">string</span><span class="pun">[];</span>
+<span class="pun">};</span>
 
-<span class="dec">@Component</span><span class="pun">({</span> <span class="prp">selector</span><span class="pun">:</span> <span class="str">'app-experience'</span><span class="pun">,</span> <span class="prp">standalone</span><span class="pun">:</span> <span class="kw">true</span> <span class="pun">})</span>
+<span class="kw">const</span> <span class="prp">EXPERIENCE_TIMELINE</span><span class="pun">:</span> <span class="cls">ExperienceEntry</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
+  <span class="pun">{</span>
+    <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Software Engineer'</span><span class="pun">,</span>
+    <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Full-time'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'May 2024 – Present'</span><span class="pun">,</span>
+    <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Designed, developed, and delivered scalable front-end solutions within Agile environments,<br/> focusing on modular and maintainable Angular-based UI architectures. Built responsive and <br/> performance-optimized interfaces with strong emphasis on user experience and full-stack <br/>feature development across the MEAN stack.\`</span><span class="pun">,</span>
+    <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
+      <span class="str">'Angular'</span><span class="pun">,</span>
+      <span class="str">'TypeScript'</span><span class="pun">,</span>
+      <span class="str">'Node.js'</span><span class="pun">,</span>
+      <span class="str">'MongoDB'</span><span class="pun">,</span>
+      <span class="str">'React'</span><span class="pun">,</span>
+      <span class="str">'Docker'</span><span class="pun">,</span>
+      <span class="str">'Agile'</span>
+    <span class="pun">]</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Associate Software Engineer'</span><span class="pun">,</span>
+    <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Full-time'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Nov 2022 – May 2024 (1 yr 7 mos)'</span><span class="pun">,</span>
+    <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Contributed to full-stack feature development and UI implementation across multiple
+product lines. Built strong fundamentals in Angular component lifecycle, state management,
+and responsive UI while collaborating closely with senior engineers.\`</span><span class="pun">,</span>
+    <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
+      <span class="str">'Elixir'</span><span class="pun">,</span>
+      <span class="str">'Angular CLI'</span><span class="pun">,</span>
+      <span class="str">'TypeScript'</span><span class="pun">,</span>
+      <span class="str">'AngularJS'</span><span class="pun">,</span>
+      <span class="str">'REST APIs'</span><span class="pun">,</span>
+      <span class="str">'Spring Boot'</span>
+    <span class="pun">]</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Software Engineer Intern'</span><span class="pun">,</span>
+    <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Internship'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Aug 2022 – Nov 2022 (4 mos)'</span><span class="pun">,</span>
+    <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Kickstarted professional journey contributing to frontend and backend tasks while
+learning production engineering practices and shipping features with the core team.\`</span><span class="pun">,</span>
+    <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
+      <span class="str">'SDLC'</span><span class="pun">,</span>
+      <span class="str">'Elixir'</span><span class="pun">,</span>
+      <span class="str">'Spring Boot'</span><span class="pun">,</span>
+      <span class="str">'Phoenix Framework'</span>
+    <span class="pun">]</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Web Development Intern'</span><span class="pun">,</span>
+    <span class="prp">company</span><span class="pun">:</span> <span class="str">'Cloud Counselage Pvt. Ltd. · Internship'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Mar 2020 – Jul 2020 (5 mos)'</span><span class="pun">,</span>
+    <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Built and maintained web application features, implemented backend integrations
+with Node.js, and created a chatbot system that acted as an automated FAQ assistant.\`</span><span class="pun">,</span>
+    <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
+      <span class="str">'HTML / CSS'</span><span class="pun">,</span>
+      <span class="str">'Node.js'</span><span class="pun">,</span>
+      <span class="str">'JavaScript'</span><span class="pun">,</span>
+      <span class="str">'Web Development'</span>
+    <span class="pun">]</span>
+  <span class="pun">}</span>
+<span class="pun">];</span>
+
+<span class="dec">@Component</span><span class="pun">({</span>
+  <span class="prp">selector</span><span class="pun">:</span>        <span class="str">'app-experience'</span><span class="pun">,</span>
+  <span class="prp">standalone</span><span class="pun">:</span>      <span class="kw">true</span><span class="pun">,</span>
+  <span class="prp">templateUrl</span><span class="pun">:</span>     <span class="str">'./experience.component.html'</span><span class="pun">,</span>
+  <span class="prp">styleUrl</span><span class="pun">:</span>        <span class="str">'./experience.component.scss'</span><span class="pun">,</span>
+  <span class="prp">changeDetection</span><span class="pun">:</span> <span class="fn">ChangeDetectionStrategy</span><span class="pun">.</span><span class="prp">OnPush</span><span class="pun">,</span>
+<span class="pun">})</span>
 <span class="kw">export class</span> <span class="cls">ExperienceComponent</span> <span class="pun">{</span>
+  <span class="kw">protected readonly</span> <span class="prp">timeline</span><span class="pun">:</span> <span class="cls">ExperienceEntry</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">EXPERIENCE_TIMELINE</span><span class="pun">;</span>
+<span class="pun">}</span>
+<span class="cblink"></span>`,
+  //   projects: `<span class="cmt">// projects.component.ts — what I've shipped</span>
+  // <span class="kw">import</span> <span class="pun">{</span> <span class="fn">Component</span><span class="pun">,</span> <span class="fn">signal</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
 
-<span class="prp">timeline</span><span class="pun">:</span> <span class="cls">Job</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="pun">{</span>
-<span class="prp">role</span><span class="pun">:</span>     <span class="str">'Software Engineer — Frontend'</span><span class="pun">,</span>
-<span class="prp">company</span><span class="pun">:</span> <span class="str">'Current Employer'</span><span class="pun">,</span>
-<span class="prp">period</span><span class="pun">:</span>  <span class="str">'2021 → Present (3 yrs 5 mos)'</span><span class="pun">,</span>
-<span class="prp">highlights</span><span class="pun">:</span> <span class="pun">[</span>
-  <span class="str">'Built modular Angular component libraries'</span><span class="pun">,</span>
-  <span class="str">'Improved Lighthouse scores by 40%'</span><span class="pun">,</span>
-  <span class="str">'Led responsive design system adoption'</span><span class="pun">,</span>
-<span class="pun">],</span>
-<span class="pun">},</span>
-<span class="pun">{</span>
-<span class="prp">role</span><span class="pun">:</span>     <span class="str">'Frontend Lead — Team Clippers'</span><span class="pun">,</span>
-<span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs Hackathon'</span><span class="pun">,</span>
-<span class="prp">period</span><span class="pun">:</span>  <span class="str">'2023 (48 hour sprint)'</span><span class="pun">,</span>
-<span class="prp">highlights</span><span class="pun">:</span> <span class="pun">[</span>
-  <span class="str">'Sole frontend dev — full UI in 48 hrs'</span><span class="pun">,</span>
-  <span class="str">'Production-ready code under pressure'</span><span class="pun">,</span>
-<span class="pun">],</span>
-<span class="prp">award</span><span class="pun">:</span> <span class="str">'🏆 1st Place Winner'</span><span class="pun">,</span>
-<span class="pun">},</span>
+  // <span class="kw">interface</span> <span class="cls">Project</span> <span class="pun">{</span>
+  // <span class="prp">name</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  // <span class="prp">desc</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
+  // <span class="prp">stack</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">[];</span>
+  // <span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span> <span class="op">|</span> <span class="str">'wip'</span> <span class="op">|</span> <span class="str">'archived'</span><span class="pun">;</span>
+  // <span class="pun">}</span>
+
+  // <span class="dec">@Component</span><span class="pun">({</span> <span class="prp">selector</span><span class="pun">:</span> <span class="str">'app-projects'</span><span class="pun">,</span> <span class="prp">standalone</span><span class="pun">:</span> <span class="kw">true</span> <span class="pun">})</span>
+  // <span class="kw">export class</span> <span class="cls">ProjectsComponent</span> <span class="pun">{</span>
+
+  // <span class="prp">selected</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">number</span><span class="pun">&gt;(</span><span class="num">0</span><span class="pun">);</span>
+
+  // <span class="prp">projects</span><span class="pun">:</span> <span class="cls">Project</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
+  // <span class="pun">{</span>
+  // <span class="prp">name</span><span class="pun">:</span>   <span class="str">'Flair Labs Hackathon App'</span><span class="pun">,</span>
+  // <span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Award-winning app — 48 hr sprint'</span><span class="pun">,</span>
+  // <span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'React'</span><span class="pun">,</span><span class="str">'Node.js'</span><span class="pun">,</span><span class="str">'Firebase'</span><span class="pun">],</span>
+  // <span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span><span class="pun">,</span>
+  // <span class="pun">},</span>
+  // <span class="pun">{</span>
+  // <span class="prp">name</span><span class="pun">:</span>   <span class="str">'Angular Component Library'</span><span class="pun">,</span>
+  // <span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Accessible reusable UI — Angular 17'</span><span class="pun">,</span>
+  // <span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'Angular'</span><span class="pun">,</span><span class="str">'TypeScript'</span><span class="pun">,</span><span class="str">'SCSS'</span><span class="pun">],</span>
+  // <span class="prp">status</span><span class="pun">:</span> <span class="str">'wip'</span><span class="pun">,</span>
+  // <span class="pun">},</span>
+  // <span class="pun">{</span>
+  // <span class="prp">name</span><span class="pun">:</span>   <span class="str">'MEAN Stack Dashboard'</span><span class="pun">,</span>
+  // <span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Analytics + Grafana integration'</span><span class="pun">,</span>
+  // <span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'Angular'</span><span class="pun">,</span><span class="str">'Node.js'</span><span class="pun">,</span><span class="str">'MongoDB'</span><span class="pun">,</span><span class="str">'Grafana'</span><span class="pun">],</span>
+  // <span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span><span class="pun">,</span>
+  // <span class="pun">},</span>
+  // <span class="pun">];</span>
+  // <span class="pun">}</span>
+  // <span class="cblink"></span>`,
+  contact: `<span class="cmt">// contact.component.ts — Angular-style contact section (no raw email)</span>
+<span class="kw">import</span> <span class="pun">{</span>
+  <span class="fn">Component</span><span class="pun">,</span>
+  <span class="fn">ChangeDetectionStrategy</span>
+<span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
+
+<span class="kw">type</span> <span class="cls">ContactLink</span> <span class="op">=</span> <span class="pun">{</span>
+  <span class="prp">label</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">;</span>
+  <span class="prp">href</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
+<span class="pun">};</span>
+
+<span class="kw">const</span> <span class="prp">CONTACT_HEADLINE</span> <span class="op">=</span> <span class="str">"Let's build something great."</span><span class="pun">;</span>
+
+<span class="kw">const</span> <span class="prp">CONTACT_BODY</span> <span class="op">=</span> <span class="str">'Open to full-time opportunities, freelance projects, and interesting collaborations.<br/>Let\'s talk about how I can help bring your ideas to life.'</span><span class="pun">;</span>
+
+<span class="kw">const</span> <span class="prp">CONTACT_LINKS</span><span class="pun">:</span> <span class="cls">ContactLink</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
+  <span class="pun">{</span>
+    <span class="prp">label</span><span class="pun">:</span> <span class="str">'LinkedIn'</span><span class="pun">,</span>
+    <span class="prp">href</span><span class="pun">:</span>  <span class="str">'https://www.linkedin.com/in/chandani-mourya-dev/'</span>
+  <span class="pun">},</span>
+  <span class="pun">{</span>
+    <span class="prp">label</span><span class="pun">:</span> <span class="str">'GitHub'</span><span class="pun">,</span>
+    <span class="prp">href</span><span class="pun">:</span>  <span class="str">'https://github.com/ChandaniM'</span>
+  <span class="pun">}</span>
 <span class="pun">];</span>
+
+<span class="dec">@Component</span><span class="pun">({</span>
+  <span class="prp">selector</span><span class="pun">:</span>        <span class="str">'app-contact'</span><span class="pun">,</span>
+  <span class="prp">standalone</span><span class="pun">:</span>      <span class="kw">true</span><span class="pun">,</span>
+  <span class="prp">templateUrl</span><span class="pun">:</span>     <span class="str">'./contact.component.html'</span><span class="pun">,</span>
+  <span class="prp">styleUrl</span><span class="pun">:</span>        <span class="str">'./contact.component.scss'</span><span class="pun">,</span>
+  <span class="prp">changeDetection</span><span class="pun">:</span> <span class="fn">ChangeDetectionStrategy</span><span class="pun">.</span><span class="prp">OnPush</span><span class="pun">,</span>
+<span class="pun">})</span>
+<span class="kw">export class</span> <span class="cls">ContactComponent</span> <span class="pun">{</span>
+  <span class="cmt">// Static portfolio copy — easy to scan and edit in one place</span>
+  <span class="kw">protected readonly</span> <span class="prp">headline</span> <span class="op">=</span> <span class="prp">CONTACT_HEADLINE</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">body</span>     <span class="op">=</span> <span class="prp">CONTACT_BODY</span><span class="pun">;</span>
+
+  <span class="cmt">// Public links only — email stays in Recruiter view mail link</span>
+  <span class="kw">protected readonly</span> <span class="prp">links</span><span class="pun">:</span> <span class="cls">ContactLink</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">CONTACT_LINKS</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  projects: `<span class="cmt">// projects.component.ts — what I've shipped</span>
-<span class="kw">import</span> <span class="pun">{</span> <span class="fn">Component</span><span class="pun">,</span> <span class="fn">signal</span> <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
+  readme: `
+  <span class="cmt"># Chandani Mourya — Frontend Engineer</span>
+<span class="cmt">## Angular 21 · SSR · Signals · SCSS</span>
 
-<span class="kw">interface</span> <span class="cls">Project</span> <span class="pun">{</span>
-<span class="prp">name</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">desc</span><span class="pun">:</span>   <span class="typ">string</span><span class="pun">;</span>
-<span class="prp">stack</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">[];</span>
-<span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span> <span class="op">|</span> <span class="str">'wip'</span> <span class="op">|</span> <span class="str">'archived'</span><span class="pun">;</span>
-<span class="pun">}</span>
+<span class="str">## Live Demo</span>
+<span class="kw">https://chandanimourya.web.app</span>
 
-<span class="dec">@Component</span><span class="pun">({</span> <span class="prp">selector</span><span class="pun">:</span> <span class="str">'app-projects'</span><span class="pun">,</span> <span class="prp">standalone</span><span class="pun">:</span> <span class="kw">true</span> <span class="pun">})</span>
-<span class="kw">export class</span> <span class="cls">ProjectsComponent</span> <span class="pun">{</span>
-
-<span class="prp">selected</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">&lt;</span><span class="typ">number</span><span class="pun">&gt;(</span><span class="num">0</span><span class="pun">);</span>
-
-<span class="prp">projects</span><span class="pun">:</span> <span class="cls">Project</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-<span class="pun">{</span>
-<span class="prp">name</span><span class="pun">:</span>   <span class="str">'Flair Labs Hackathon App'</span><span class="pun">,</span>
-<span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Award-winning app — 48 hr sprint'</span><span class="pun">,</span>
-<span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'React'</span><span class="pun">,</span><span class="str">'Node.js'</span><span class="pun">,</span><span class="str">'Firebase'</span><span class="pun">],</span>
-<span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span><span class="pun">,</span>
-<span class="pun">},</span>
-<span class="pun">{</span>
-<span class="prp">name</span><span class="pun">:</span>   <span class="str">'Angular Component Library'</span><span class="pun">,</span>
-<span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Accessible reusable UI — Angular 17'</span><span class="pun">,</span>
-<span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'Angular'</span><span class="pun">,</span><span class="str">'TypeScript'</span><span class="pun">,</span><span class="str">'SCSS'</span><span class="pun">],</span>
-<span class="prp">status</span><span class="pun">:</span> <span class="str">'wip'</span><span class="pun">,</span>
-<span class="pun">},</span>
-<span class="pun">{</span>
-<span class="prp">name</span><span class="pun">:</span>   <span class="str">'MEAN Stack Dashboard'</span><span class="pun">,</span>
-<span class="prp">desc</span><span class="pun">:</span>   <span class="str">'Analytics + Grafana integration'</span><span class="pun">,</span>
-<span class="prp">stack</span><span class="pun">:</span>  <span class="pun">[</span><span class="str">'Angular'</span><span class="pun">,</span><span class="str">'Node.js'</span><span class="pun">,</span><span class="str">'MongoDB'</span><span class="pun">,</span><span class="str">'Grafana'</span><span class="pun">],</span>
-<span class="prp">status</span><span class="pun">:</span> <span class="str">'live'</span><span class="pun">,</span>
-<span class="pun">},</span>
-<span class="pun">];</span>
-<span class="pun">}</span>
-<span class="cblink"></span>`,
-  contact: `<span class="cmt">// contact.component.ts — reach out!</span>
-
-<span class="cmt">/*
-*    chandanimourya5@gmail.com
-*    https://www.linkedin.com/in/chandani-mourya-dev/
-*    https://github.com/ChandaniM
-*
-*  Open to: full-time · freelance · consulting
-*  Response: within 24 hours · IST (UTC +5:30)
-*/</span>
-
-<span class="prp">$availability</span><span class="pun">:</span>   <span class="grn">open</span><span class="pun">;</span>
-<span class="prp">$response-time</span><span class="pun">:</span> <span class="str">'24 hours'</span><span class="pun">;</span>
-<span class="prp">$open-to</span><span class="pun">:</span>       <span class="str">'full-time, freelance, consulting'</span><span class="pun">;</span>
-<span class="prp">$preferred</span><span class="pun">:</span>     <span class="str">'Angular, React, MEAN Stack'</span><span class="pun">;</span>
-
-<span class="fn">.contact-me</span> <span class="pun">{</span>
-<span class="prp">display</span><span class="pun">:</span>        <span class="imp">flex</span><span class="pun">;</span>
-<span class="prp">flex-direction</span><span class="pun">:</span> <span class="imp">column</span><span class="pun">;</span>
-<span class="prp">gap</span><span class="pun">:</span>            <span class="num">16px</span><span class="pun">;</span>
-<span class="pun">}</span>
-<span class="cblink"></span>`,
-  readme: `<span class="cmt"># 👋 Chandani Mourya — Frontend Engineer</span>
-
-<span class="str">## 🚀 Overview</span>
+<span class="str">## Overview</span>
 Angular · React · TypeScript · MEAN Stack Developer  
 3+ years building scalable, performant web applications.
 
-<span class="str">## 🧠 Philosophy</span>
-- Clean architecture over quick hacks  
-- Reusable component-driven systems  
-- Performance-first mindset  
-- Developer experience matters  
+<span class="str">## Dev Mode Tip</span>
+<span class="cmt">> Press Ctrl + P (or Cmd + P on Mac) to open the</span>
+<span class="cmt">> Command Palette — switch files, toggle themes,</span>
+<span class="cmt">> and navigate sections instantly.</span>
+Switch modes → Recruiter / Dev  
+Toggle theme → Light / Dark
+
+<span class="str">## Features</span>
+- Dual mode — Recruiter &amp; VS Code Dev view  
+- Light &amp; Dark theme toggle  
+- Command Palette — Ctrl+P / Cmd+P  
+- SSR enabled — fast load + SEO ready  
+- Angular 21 Signals for state management  
+- Fully responsive on all screen sizes  
+
+<span class="str">## Tech Stack</span>
+Frontend  → Angular, React, TypeScript, SCSS, RxJS  
+Backend   → Node.js, Express.js, MongoDB, MySQL  
+Cloud     → Firebase, AWS S3, AWS EC2  
+DevOps    → Docker, Git, Grafana  
+Testing   → Jest, Jasmine, Vitest, React Testing Library  
+Tools     → VS Code, Postman, M-files, FlutterFlow  
+
+<span class="str">## 📂 Folder Structure for dev mode</span>
+src/
+├──src/
+|   ├── About/ 
+|   ├── Skills/
+|   ├── Experience/
+|   └── Contact/
+├── README.md
 
 <span class="str">## 🏆 Highlights</span>
 • 🥇 Winner — Flair Labs Hackathon 2023  
@@ -431,41 +534,20 @@ Angular · React · TypeScript · MEAN Stack Developer
 • 🧩 Built modular Angular component libraries  
 • ⚡ Production-ready apps under tight deadlines  
 
-<span class="str">## 🛠 Tech Stack</span>
-Frontend  → Angular, React, TypeScript, SCSS  
-Backend   → Node.js, Express, MongoDB  
-DevOps    → Docker, Firebase, Grafana  
-Tools     → Git, VS Code, Postman  
-
-<span class="str">## 📂 Workspace Commands</span>
-Press <span class="kw">Ctrl + P</span> → Open Command Palette  
-Switch modes → 👔 Recruiter / 💻 Dev  
-Toggle theme → ☀️ / 🌙  
+<span class="str">## 🧠 Philosophy</span>
+- Clean architecture over quick hacks  
+- Reusable component-driven systems  
+- Performance-first mindset  
+- Developer experience matters  
 
 <span class="str">## 📬 Contact</span>
- chandanimourya5@gmail.com  
- LinkedIn  
- GitHub  
+📧 <span class="str">chandanimourya5@gmail.com</span>  
+💼 <span class="str">linkedin.com/in/chandani-mourya-dev</span>  
+🐙 <span class="str">github.com/ChandaniM</span>  
 
 <span class="cmt">// Thanks for exploring the workspace 👋</span>
 <span class="cblink"></span>`,
-  //   readme: `<span class="cmt"># 👋 Frontend Engineer Portfolio</span>
-
-  // <span class="str">## Stack</span>
-  // Angular · React · TypeScript · Node.js
-  // MongoDB · MySQL · Firebase · Docker · Grafana
-
-  // <span class="str">## Experience</span>
-  // <span class="num">3</span> years <span class="num">5</span> months — MEAN Stack & React Developer
-  // 🏆 Winner — Flair Labs Hackathon <span class="num">2023</span>
-
-  // <span class="str">## Quick Start</span>
-  // git clone https://github.com/ChandaniM/portfolio
-  // npm install && ng serve
-
-  // <span class="str">## Contact</span>
-  // 📧 chandanimourya5@gmail.com
-  // <span class="cblink"></span>`,
+  //   readme: `<span class="cmt"># 👋 Chandani Mourya — Frontend Engineer</span>`,
 };
 
 // PANELS
@@ -486,38 +568,32 @@ const devPanels = {
 // CMD PALETTE
 const cpCmds = [
   {
-    ic: "📄",
+    ic: "TS",
     lb: "about.component.ts",
     kb: "",
     fn: () => devTab("about"),
   },
   {
-    ic: "🛠️",
+    ic: "TS",
     lb: "skills.component.ts",
     kb: "",
     fn: () => devTab("skills"),
   },
   {
-    ic: "💼",
+    ic: "TS",
     lb: "experience.component.ts",
     kb: "",
     fn: () => devTab("experience"),
   },
   {
-    ic: "🚀",
-    lb: "projects.component.ts",
-    kb: "",
-    fn: () => devTab("projects"),
-  },
-  {
-    ic: "📬",
+    ic: "TS",
     lb: "contact.component.ts",
     kb: "",
     fn: () => devTab("contact"),
   },
-  { ic: "📖", lb: "README.md", kb: "", fn: () => devTab("readme") },
+  { ic: "MD", lb: "README.md", kb: "", fn: () => devTab("readme") },
   {
-    ic: "👔",
+    ic: "RM",
     lb: "Switch to Recruiter Mode",
     kb: "⌘⇧R",
     fn: () => {
@@ -525,16 +601,16 @@ const cpCmds = [
       closeCp();
     },
   },
-  { ic: "☀️", lb: "Light Theme", kb: "", fn: () => setTheme("light") },
-  { ic: "🌙", lb: "Dark Theme", kb: "", fn: () => setTheme("dark") },
+  { ic: "LT", lb: "Light Theme", kb: "", fn: () => setTheme("light") },
+  { ic: "DT", lb: "Dark Theme", kb: "", fn: () => setTheme("dark") },
   {
-    ic: "📧",
+    ic: "@",
     lb: "Copy Email",
     kb: "",
     fn: () => notify("email", "Copied!", "chandanimourya5@gmail.com"),
   },
   {
-    ic: "🏆",
+    ic: "HK",
     lb: "Hackathon Achievement",
     kb: "",
     fn: () => notify("trophy", "Winner!", "Flair Labs 2023 — Team Clippers"),
@@ -545,7 +621,7 @@ const tabNames = {
   about: "about.component.ts",
   skills: "skills.component.ts",
   experience: "experience.component.ts",
-  projects: "projects.component.ts",
+  // projects: "projects.component.ts",
   contact: "contact.component.ts",
   readme: "README.md",
 };
