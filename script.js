@@ -222,14 +222,12 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
 <span class="pun">}</span> <span class="kw">from</span> <span class="str">'@angular/core'</span><span class="pun">;</span>
 
 <span class="kw">type</span> <span class="cls">SkillCategory</span> <span class="op">=</span> <span class="pun">{</span>
-  <span class="prp">icon</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
   <span class="prp">name</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
   <span class="prp">chips</span><span class="pun">:</span> <span class="typ">string</span><span class="pun">[];</span>
 <span class="pun">};</span>
 
 <span class="kw">const</span> <span class="prp">SKILL_CATEGORIES</span><span class="pun">:</span> <span class="cls">SkillCategory</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'monitor'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Frontend'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span>
       <span class="str">'Angular'</span><span class="pun">,</span>
@@ -250,7 +248,6 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
     <span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'device-desktop-code'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Backend'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span>
       <span class="str">'Node.JS'</span><span class="pun">,</span>
@@ -262,27 +259,22 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
     <span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'database'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Databases'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'MySQL'</span><span class="pun">,</span> <span class="str">'MongoDB'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'code-xml'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Cloud'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Firebase'</span><span class="pun">,</span> <span class="str">'AWS S3'</span><span class="pun">,</span> <span class="str">'AWS EC2'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'wrench'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Tools & DevOps'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'M-files'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'chart-area'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'No-Code & Monitoring'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'FlutterFlow'</span><span class="pun">,</span> <span class="str">'Flutter'</span><span class="pun">,</span> <span class="str">'Grafana'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">icon</span><span class="pun">:</span> <span class="str">'test-tube-diagonal'</span><span class="pun">,</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Testing'</span><span class="pun">,</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span>
       <span class="str">'Jest'</span><span class="pun">,</span>
@@ -485,9 +477,7 @@ with Node.js, and created a chatbot system that acted as an automated FAQ assist
   <span class="kw">protected readonly</span> <span class="prp">links</span><span class="pun">:</span> <span class="cls">ContactLink</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">CONTACT_LINKS</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  readme: `
-  <span class="cmt"># Chandani Mourya — Frontend Engineer</span>
-<span class="cmt">## Angular 21 · SSR · Signals · SCSS</span>
+  readme: `<span class="cmt"># Chandani Mourya — Frontend Engineer</span>
 
 <span class="str">## Live Demo</span>
 <span class="kw">https://chandanimourya.web.app</span>
@@ -498,8 +488,9 @@ Angular · React · TypeScript · MEAN Stack Developer
 
 <span class="str">## Dev Mode Tip</span>
 <span class="cmt">> Press Ctrl + P (or Cmd + P on Mac) to open the</span>
-<span class="cmt">> Command Palette — switch files, toggle themes,</span>
-<span class="cmt">> and navigate sections instantly.</span>
+<span class="cmt">> Command Palette — switch files</span>
+<br/>
+<span class="cmt">> You can Toggle themes accordingly  and navigate sections instantly. Switch in both </span>
 Switch modes → Recruiter / Dev  
 Toggle theme → Light / Dark
 
@@ -609,12 +600,12 @@ const cpCmds = [
     kb: "",
     fn: () => notify("email", "Copied!", "chandanimourya5@gmail.com"),
   },
-  {
-    ic: "HK",
-    lb: "Hackathon Achievement",
-    kb: "",
-    fn: () => notify("trophy", "Winner!", "Flair Labs 2023 — Team Clippers"),
-  },
+  // {
+  //   ic: "HK",
+  //   lb: "Hackathon Achievement",
+  //   kb: "",
+  //   fn: () => notify("trophy", "Winner!", "Flair Labs 2023 — Team Clippers"),
+  // },
 ];
 
 const tabNames = {
@@ -712,6 +703,7 @@ document.getElementById("devCode").addEventListener("click", (e) => {
 let cpOpen = false,
   cpSel = 0;
 function openCmd() {
+  if (currentMode !== "dev") return;
   cpOpen = true;
   cpSel = 0;
   document.getElementById("cmdPalette").classList.add("open");
