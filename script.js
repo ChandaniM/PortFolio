@@ -477,68 +477,146 @@ with Node.js, and created a chatbot system that acted as an automated FAQ assist
   <span class="kw">protected readonly</span> <span class="prp">links</span><span class="pun">:</span> <span class="cls">ContactLink</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">CONTACT_LINKS</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  readme: `<span class="cmt"># Chandani Mourya — Frontend Engineer</span>
+  readme: `<span class="cmt"># Chandani Mourya — Software Engineer · Frontend Engineer · MEAN Stack Developer</span>
 
-<span class="str">## Live Demo</span>
-<span class="kw">https://chandanimourya.web.app</span>
+<span class="str">## Who am I</span>
+Hey <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-icon"><path d="M8 13V4a2 2 0 1 1 4 0v6"/><path d="M12 5a2 2 0 1 1 4 0v6"/><path d="M16 7a2 2 0 1 1 4 0v5a7 7 0 0 1-7 7h-1.5a6.5 6.5 0 0 1-6.41-5.18L4 11"/><path d="M4 8a2 2 0 0 1 4 0v5"/></svg> I'm Chandani — a Software Engineer at Flair Labs Pvt. Ltd. based in <span class="kw">Mumbai, India</span>  
+with <span class="kw">3+ years</span> of experience building scalable, performant web applications Mobile Applications.  
+I specialize in <span class="kw">Angular</span> and the <span class="kw">MEAN stack</span>, with a strong eye for  
+clean UI, responsive design, and developer-friendly architecture.
 
-<span class="str">## Overview</span>
-Angular · React · TypeScript · MEAN Stack Developer  
-3+ years building scalable, performant web applications.
+<span class="str">## Areas I Love Working In</span>
+<span class="cmt">// This is where I thrive <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket-icon lucide-rocket"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg></span>
 
-<span class="str">## Dev Mode Tip</span>
-<span class="cmt">> Press Ctrl + P (or Cmd + P on Mac) to open the</span>
-<span class="cmt">> Command Palette — switch files</span>
-<br/>
-<span class="cmt">> You can Toggle themes accordingly  and navigate sections instantly. Switch in both </span>
-Switch modes → Recruiter / Dev  
-Toggle theme → Light / Dark
+- <span class="kw">Frontend Engineering</span>     → Angular, React, TypeScript, SCSS  
+- <span class="kw">Full Stack Development</span>   → MEAN Stack (MongoDB, Express, Angular, Node.js)  
+- <span class="kw">UI Architecture</span>          → Modular components, design systems, reusability  
+- <span class="kw">Performance Optimization</span> → Lighthouse scores, lazy loading, SSR  
+- <span class="kw">Agile Teams</span>              → Scrum, cross-functional collaboration  
+- <span class="kw">Cloud & DevOps</span>           → Firebase, AWS, Docker  
 
-<span class="str">## Features</span>
-- Dual mode — Recruiter &amp; VS Code Dev view  
-- Light &amp; Dark theme toggle  
-- Command Palette — Ctrl+P / Cmd+P  
-- SSR enabled — fast load + SEO ready  
-- Angular 21 Signals for state management  
-- Fully responsive on all screen sizes  
+<span class="str">## Experience</span>
+<span class="cmt">// Currently at →</span>
+<span class="kw">Flair Labs Pvt. Ltd.</span> — Software Engineer  
+<span class="num">August 2022 – Present</span>
+
+  ▸ Led complete UI redesign of a large-scale multinational compliance web app  
+  ▸ Built full applications from scratch based on client business requirements  
+  ▸ Integrated frontend with backend APIs for dynamic, data-driven features  
+  ▸ Worked in Agile/Scrum with UX designers, PMs, and QA engineers  
+  ▸ Built multiple DMS for clients using M-Files
+  ▸ Certified <span class="kw">M-Files Solution Architect</span> + <span class="kw">M-Files Developer</span>
+
+<span class="str">## Education</span>
+<span class="kw">B.E in Information Technology</span> — Saraswati College of Engineering  
+<span class="num">2019–2022 · 8.66 CGPA</span>
+
+<span class="kw">Diploma in Information Technology</span> — Vidyalankar Polytechnic  
+<span class="num">2016–2019 · 85%</span>
 
 <span class="str">## Tech Stack</span>
-Frontend  → Angular, React, TypeScript, SCSS, RxJS  
-Backend   → Node.js, Express.js, MongoDB, MySQL  
-Cloud     → Firebase, AWS S3, AWS EC2  
-DevOps    → Docker, Git, Grafana  
-Testing   → Jest, Jasmine, Vitest, React Testing Library  
-Tools     → VS Code, Postman, M-files, FlutterFlow  
+Frontend   → Angular, React, TypeScript, SCSS, LESS, RxJS, Bootstrap  
+Backend    → Node.js, Express.js, MongoDB, MySQL  
+Cloud      → Firebase, AWS S3, AWS EC2  
+DevOps     → Docker, Git, Grafana  
+Testing    → Jest, Jasmine, Vitest, React Testing Library  
+No-Code    → FlutterFlow, Flutter  
+Tools      → VS Code, Postman, M-Files  
 
-<span class="str">## 📂 Folder Structure for dev mode</span>
+<span class="str">## Certifications</span>
+<span class="cmt">// Verified credentials</span>
+▸ Server-side Development with NodeJS, Express &amp; MongoDB  
+▸ Front-End Web UI Frameworks and Tools  
+▸ M-Files Certified Solution Architect  
+▸ M-Files Certified Developer  
+
+<span class="str">## Highlights</span>
+▸ Winner — Flair Labs Hackathon 2023 (Team Clippers)
+
+<span class="str">## Navigating This Portfolio</span>
+<span class="cmt">// <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb-icon lucide-lightbulb"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>Tips to explore this workspace</span>
+
+  Press <span class="kw">Ctrl+P</span> (or <span class="kw">Cmd+P</span> on Mac) → Open Command Palette  
+  Switch between <span class="kw">About</span> / <span class="kw">Skills</span> / <span class="kw">Experience</span> / <span class="kw">Contact</span> instantly  
+  Toggle <span class="kw">Recruiter Mode</span> ↔ <span class="kw">Dev Mode</span> from the top bar  
+  Switch <span class="kw">Light</span> ↔ <span class="kw">Dark</span> theme from the toggle  
+
+<span class="str flex-center">## Folder Structure</span>
 src/
-├──src/
-|   ├── About/ 
-|   ├── Skills/
-|   ├── Experience/
-|   └── Contact/
+├── About/
+├── Skills/
+├── Experience/
+└── Contact/
 ├── README.md
 
-<span class="str">## 🏆 Highlights</span>
-• 🥇 Winner — Flair Labs Hackathon 2023  
-• 📈 Improved Lighthouse scores by 40%  
-• 🧩 Built modular Angular component libraries  
-• ⚡ Production-ready apps under tight deadlines  
+<span class="str">## Contact</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> <span class="str">linkedin.com/in/chandani-mourya-dev</span>  
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> <span class="str">github.com/ChandaniM</span>  
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span class="str">chandanimourya5@gmail.com</span>  
 
-<span class="str">## 🧠 Philosophy</span>
-- Clean architecture over quick hacks  
-- Reusable component-driven systems  
-- Performance-first mindset  
-- Developer experience matters  
-
-<span class="str">## 📬 Contact</span>
-📧 <span class="str">chandanimourya5@gmail.com</span>  
-💼 <span class="str">linkedin.com/in/chandani-mourya-dev</span>  
-🐙 <span class="str">github.com/ChandaniM</span>  
-
-<span class="cmt">// Thanks for exploring the workspace 👋</span>
+<span class="cmt">// Thanks for exploring the workspace — feel free to reach out!</span>
 <span class="cblink"></span>`,
-  //   readme: `<span class="cmt"># 👋 Chandani Mourya — Frontend Engineer</span>`,
+  //   readme: `<span class="cmt"># Chandani Mourya — Frontend Engineer</span>
+
+  // <span class="str">## Live Demo</span>
+  // <span class="kw">https://chandanimourya.web.app</span>
+
+  // <span class="str">## Overview</span>
+  // Angular · React · TypeScript · MEAN Stack Developer
+  // 3+ years building scalable, performant web applications.
+
+  // <span class="str">## Dev Mode Tip</span>
+  // <span class="cmt">> Press Ctrl + P (or Cmd + P on Mac) to open the</span>
+  // <span class="cmt">> Command Palette — switch files</span>
+  // <br/>
+  // <span class="cmt">> You can Toggle themes accordingly  and navigate sections instantly. Switch in both </span>
+  // Switch modes → Recruiter / Dev
+  // Toggle theme → Light / Dark
+
+  // <span class="str">## Features</span>
+  // - Dual mode — Recruiter &amp; VS Code Dev view
+  // - Light &amp; Dark theme toggle
+  // - Command Palette — Ctrl+P / Cmd+P
+  // - SSR enabled — fast load + SEO ready
+  // - Angular 21 Signals for state management
+  // - Fully responsive on all screen sizes
+
+  // <span class="str">## Tech Stack</span>
+  // Frontend  → Angular, React, TypeScript, SCSS, RxJS
+  // Backend   → Node.js, Express.js, MongoDB, MySQL
+  // Cloud     → Firebase, AWS S3, AWS EC2
+  // DevOps    → Docker, Git, Grafana
+  // Testing   → Jest, Jasmine, Vitest, React Testing Library
+  // Tools     → VS Code, Postman, M-files, FlutterFlow
+
+  // <span class="str">## 📂 Folder Structure for dev mode</span>
+  // src/
+  // ├──src/
+  // |   ├── About/
+  // |   ├── Skills/
+  // |   ├── Experience/
+  // |   └── Contact/
+  // ├── README.md
+
+  // <span class="str">## 🏆 Highlights</span>
+  // • 🥇 Winner — Flair Labs Hackathon 2023
+  // • 📈 Improved Lighthouse scores by 40%
+  // • 🧩 Built modular Angular component libraries
+  // • ⚡ Production-ready apps under tight deadlines
+
+  // <span class="str">## 🧠 Philosophy</span>
+  // - Clean architecture over quick hacks
+  // - Reusable component-driven systems
+  // - Performance-first mindset
+  // - Developer experience matters
+
+  // <span class="str">## 📬 Contact</span>
+  // 📧 <span class="str">chandanimourya5@gmail.com</span>
+  // 💼 <span class="str">linkedin.com/in/chandani-mourya-dev</span>
+  // 🐙 <span class="str">github.com/ChandaniM</span>
+
+  // <span class="cmt">// Thanks for exploring the workspace 👋</span>
+  // <span class="cblink"></span>`,
 };
 
 // PANELS
