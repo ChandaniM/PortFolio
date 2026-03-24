@@ -713,9 +713,9 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   font-size: 2.2rem;
   margin-bottom: 16px;
   /* box-shadow: 0 0 30px rgba(0, 229, 255, 0.2); */
-  animation: float 4s ease infinite;
+  /* animation: float 4s ease infinite; */
 }
-@keyframes float {
+/* @keyframes float {
   0%,
   100% {
     transform: translateY(0);
@@ -723,7 +723,7 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   50% {
     transform: translateY(-8px);
   }
-}
+} */
 /* [data-theme="light"] .r-avatar {
   box-shadow: 0 4px 20px rgba(0, 112, 204, 0.2);
 } */
@@ -1237,9 +1237,9 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
 }
 
 /* CONTACT */
-.r-contact-inner {
+/* .r-contact-inner {
   max-width: 800px;
-}
+} */
 .r-contact-headline {
   font-family: var(--font-head);
   font-size: clamp(2.5rem, 5vw, 5rem);
@@ -2228,3 +2228,206 @@ DEV MODE — VS CODE
   border-radius: 4px;
 }
 
+/* contact css */
+/* ═══════════════════════════════════════════════════
+   CONTACT FORM CSS
+   Paste at the bottom of your style.css
+═══════════════════════════════════════════════════ */
+
+/* ── 2-column layout for contact inner ── */
+.r-contact-inner {
+  display: grid;
+  grid-template-columns: 50% auto;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .r-contact-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ── Form fields wrapper ── */
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+/* ── Label ── */
+.cf-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent, #00f0ff);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cf-required {
+  color: #f38ba8;
+  font-size: 13px;
+  line-height: 1;
+}
+.cf-optional {
+  font-size: 10px;
+  color: var(--fg-muted, #555);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── All inputs, select, textarea ── */
+.cf-input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 240, 255, 0.12);
+  color: var(--fg, #e0e0e0);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+.cf-input::placeholder {
+  color: rgba(180, 180, 180, 0.3);
+}
+.cf-input:focus {
+  border-color: var(--accent, #00f0ff);
+  background: rgba(0, 240, 255, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08);
+}
+.cf-input.cf-error {
+  border-color: #f38ba8;
+  box-shadow: 0 0 0 3px rgba(243, 139, 168, 0.08);
+}
+
+/* ── Select ── */
+.cf-select-wrap {
+  position: relative;
+}
+.cf-select {
+  cursor: pointer;
+  padding-right: 36px;
+}
+.cf-select option {
+  background: #0d0d14;
+  color: #e0e0e0;
+}
+.cf-select-ico {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--accent, #00f0ff);
+  opacity: 0.6;
+}
+
+/* ── Textarea ── */
+.cf-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+/* ── Inline error text ── */
+.cf-err {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #f38ba8;
+  min-height: 14px;
+  display: block;
+}
+
+/* ── Submit button ── */
+
+.cf-submit {
+  width: fit-content;
+  min-width: 200px;
+  align-self: flex-start; /* left align */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent, #00f0ff);
+  color: #050510;
+  border: none;
+  padding: 14px 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 8px;
+}
+.cf-submit:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.2);
+}
+.cf-submit:active {
+  transform: translateY(0);
+}
+.cf-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Spinner animation ── */
+.cf-spin {
+  animation: cfSpin 0.8s linear infinite;
+}
+@keyframes cfSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Toast ── */
+.cf-toast {
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-top: 12px;
+  animation: cfFadeIn 0.3s ease;
+}
+.cf-toast.success {
+  background: rgba(166, 227, 161, 0.1);
+  border: 1px solid rgba(166, 227, 161, 0.3);
+  color: #a6e3a1;
+}
+.cf-toast.error {
+  background: rgba(243, 139, 168, 0.1);
+  border: 1px solid rgba(243, 139, 168, 0.3);
+  color: #f38ba8;
+}
+@keyframes cfFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Light theme overrides ── */
+[data-theme="light"] .cf-input {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #111;
+}
+[data-theme="light"] .cf-input:focus {
+  background: rgba(0, 180, 200, 0.04);
+  border-color: var(--accent, #0099aa);
+}
+[data-theme="light"] .cf-select option {
+  background: #fff;
+  color: #111;
+}

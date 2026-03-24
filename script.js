@@ -919,8 +919,9 @@ function calculateExperience(dateString, format = "short") {
     years--;
     months += 12;
   }
+  console.log(years, months);
 
-  const decimal = (years + months / 12).toFixed(1);
+  const decimal = parseFloat(`${years}.${months}`);
 
   switch (format) {
     case "full":
@@ -1045,17 +1046,17 @@ skillCategories.forEach((category, index) => {
   console.log(totalSkills, "skills");
   document.getElementById("total-skill-count").textContent = totalSkills;
   document.getElementById("total-experience-full-value").textContent =
-    calculateExperience("2022-11-22", "full");
+    calculateExperience("22 August 2022", "full");
   document.getElementById("se-duration").textContent = calculateExperience(
     "2024-06-20",
     "short"
   );
   document.getElementById("total-experience").textContent = calculateExperience(
-    "2022-11-22",
-    "decimal"
+    "22 August 2022",
+    "decimalPlus"
   );
   document.getElementById("total-year-experience").textContent =
-    calculateExperience("2022-11-22", "decimalPlus");
+    calculateExperience("22 August 2022", "decimalPlus");
   let savedTheme = "dark";
   try {
     savedTheme = localStorage.getItem("pf-theme") || "dark";
