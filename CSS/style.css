@@ -947,7 +947,6 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent3), var(--accent));
 }
 .r-award-icon {
   font-size: 2rem;
