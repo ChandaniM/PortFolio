@@ -1172,13 +1172,126 @@ function setContactSubmitBusy(busy) {
   if (spin) spin.style.display = busy ? "inline-flex" : "none";
 }
 
+/** Digits only (no letters). +91 + 10 digits (max 13), or 12 digits starting with 91, or 10 digits. */
+function sanitizePhoneValue(raw) {
+  let s = String(raw).replace(/[^\d+]/g, "");
+  const leadPlus = s.startsWith("+");
+  s = s.replace(/\+/g, "").replace(/\D/g, "");
+  let v = leadPlus ? "+" + s : s;
+  if (v.startsWith("+")) {
+    if (v.startsWith("+91")) {
+      return v.slice(0, 13);
+    }
+    return v.slice(0, 3);
+  }
+  if (v.startsWith("91")) {
+    return v.slice(0, 12);
+  }
+  return v.slice(0, 10);
+}
+
+function setupPhoneField() {
+  const phoneEl = document.getElementById("cf-phone");
+  if (!phoneEl) return;
+
+  const apply = () => {
+    const next = sanitizePhoneValue(phoneEl.value);
+    if (phoneEl.value !== next) phoneEl.value = next;
+  };
+
+  phoneEl.addEventListener("input", apply);
+  phoneEl.addEventListener("paste", (e) => {
+    e.preventDefault();
+    const t = e.clipboardData?.getData("text") || "";
+    const start = phoneEl.selectionStart ?? 0;
+    const end = phoneEl.selectionEnd ?? 0;
+    const merged =
+      phoneEl.value.slice(0, start) + t + phoneEl.value.slice(end);
+    phoneEl.value = sanitizePhoneValue(merged);
+    const pos = phoneEl.value.length;
+    requestAnimationFrame(() => phoneEl.setSelectionRange(pos, pos));
+  });
+}
+
+function validateContactFormFields(form) {
+  const nameEl = document.getElementById("cf-name");
+  const emailEl = document.getElementById("cf-email");
+  const intentEl = document.getElementById("cf-intent");
+  if (!nameEl || !emailEl || !intentEl) return false;
+
+  [nameEl, emailEl, intentEl].forEach((el) => el.setCustomValidity(""));
+
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
+  const intent = intentEl.value;
+
+  if (!name) {
+    nameEl.setCustomValidity("Please enter your name.");
+    nameEl.reportValidity();
+    return false;
+  }
+  if (!email) {
+    emailEl.setCustomValidity("Please enter your email.");
+    emailEl.reportValidity();
+    return false;
+  }
+  if (!intent) {
+    intentEl.setCustomValidity("Please select an intent.");
+    intentEl.reportValidity();
+    return false;
+  }
+
+  nameEl.value = name;
+  emailEl.value = email;
+
+  const phoneEl = document.getElementById("cf-phone");
+  if (phoneEl) {
+    phoneEl.setCustomValidity("");
+    const p = phoneEl.value.trim();
+    if (p) {
+      const ok =
+        /^\+91[6-9]\d{9}$/.test(p) ||
+        /^91[6-9]\d{9}$/.test(p) ||
+        /^[6-9]\d{9}$/.test(p);
+      if (!ok) {
+        phoneEl.setCustomValidity(
+          "Use 10 digits, or 91 + 10 digits, or +91 + 10 digits (Indian mobile)."
+        );
+        phoneEl.reportValidity();
+        return false;
+      }
+    }
+  }
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return false;
+  }
+  return true;
+}
+
 function setupContactForm() {
   const form = document.getElementById("r-contact-form");
   if (!form) return;
 
+  setupPhoneField();
+
+  document.getElementById("cf-name")?.addEventListener("input", (ev) => {
+    ev.target.setCustomValidity("");
+  });
+  document.getElementById("cf-email")?.addEventListener("input", (ev) => {
+    ev.target.setCustomValidity("");
+  });
+  document.getElementById("cf-intent")?.addEventListener("change", (ev) => {
+    ev.target.setCustomValidity("");
+  });
+  document.getElementById("cf-phone")?.addEventListener("input", (ev) => {
+    ev.target.setCustomValidity("");
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!form.reportValidity()) return;
+    if (!validateContactFormFields(form)) return;
 
     const intentLabel = getContactIntentLabel();
     const formValues = {
@@ -1188,6 +1301,11 @@ function setupContactForm() {
       intentLabel,
       message: document.getElementById("cf-message")?.value?.trim() || "",
     };
+
+    if (!formValues.name || !formValues.email || !intentLabel) {
+      notify("info", "Missing information", "Please fill in name, email, and intent.");
+      return;
+    }
 
     const subject = `New Inquiry - ${intentLabel} from ${formValues.name}`;
     const body = buildContactInquiryEmail(formValues);
