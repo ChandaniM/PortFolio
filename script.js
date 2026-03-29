@@ -13,7 +13,9 @@ function initEmailJsIfNeeded() {
   const key = EMAILJS_PUBLIC_KEY;
   if (!key || emailJsInitialized) return;
   if (typeof emailjs === "undefined") {
-    throw new Error("EmailJS did not load. Ensure the EmailJS script runs before script.js.");
+    throw new Error(
+      "EmailJS did not load. Ensure the EmailJS script runs before script.js."
+    );
   }
   emailjs.init({ publicKey: key });
   emailJsInitialized = true;
@@ -181,22 +183,14 @@ const devFiles = {
   <span class="prp">desc</span><span class="pun">:</span>  <span class="typ">string</span><span class="pun">;</span>
 <span class="pun">};</span>
 
-<span class="kw">const</span> <span class="prp">PROGRESS_ITEMS</span><span class="pun">:</span> <span class="cls">ProgressItem</span><span class="pun">[]</span> <span class="op">=</span> <span class="pun">[</span>
-  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'Frontend Development'</span><span class="pun">,</span> <span class="prp">percent</span><span class="pun">:</span> <span class="num">95</span> <span class="pun">},</span>
-  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'MEAN Stack'</span><span class="pun">,</span>           <span class="prp">percent</span><span class="pun">:</span> <span class="num">88</span> <span class="pun">},</span>
-  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'React Ecosystem'</span><span class="pun">,</span>      <span class="prp">percent</span><span class="pun">:</span> <span class="num">82</span> <span class="pun">},</span>
-  <span class="pun">{</span> <span class="prp">label</span><span class="pun">:</span> <span class="str">'System Design'</span><span class="pun">,</span>        <span class="prp">percent</span><span class="pun">:</span> <span class="num">40</span> <span class="pun">},</span>
-<span class="pun">];</span>
-
 <span class="kw">const</span> <span class="prp">ABOUT_AWARD</span><span class="pun">:</span> <span class="cls">Award</span> <span class="op">=</span> <span class="pun">{</span>
   <span class="prp">title</span><span class="pun">:</span> <span class="str">'Hackathon Winner'</span><span class="pun">,</span>
   <span class="prp">sub</span><span class="pun">:</span>   <span class="str">'Flair Labs Hackathon 2023 - Team Clippers'</span><span class="pun">,</span>
-  <span class="prp">desc</span><span class="pun">:</span>  <span class="str">\`Contributed as the Front-End Developer for Team Clippers,
+  <span class="prp">desc</span><span class="pun">:</span>  <span class="str">\`Contributed as the Front-End Developer for Team Clippers.
 delivering an award-winning solution under tight deadlines.
-Built production-ready user interfaces rapidly while maintaining high standards
-for code quality, performance, and user experience.
-Developed and enhanced data-driven dashboards by integrating query-based datasets
-with Grafana visualizations to enable real-time monitoring and actionable insights.\`</span><span class="pun">,</span>
+Built production-ready user interfaces rapidly while maintaining high standards for code quality, performance, and user experience.
+Developed and enhanced data-driven dashboards by integrating query-based datasets with Grafana visualizations.
+Enabled real-time monitoring and actionable insights through well-structured dashboard design and optimized data presentation.\`</span><span class="pun">,</span>
 <span class="pun">};</span>
 
 <span class="dec">@Component</span><span class="pun">({</span>
@@ -207,12 +201,28 @@ with Grafana visualizations to enable real-time monitoring and actionable insigh
   <span class="prp">changeDetection</span><span class="pun">:</span> <span class="fn">ChangeDetectionStrategy</span><span class="pun">.</span><span class="prp">OnPush</span><span class="pun">,</span>
 <span class="pun">})</span>
 <span class="kw">export class</span> <span class="cls">AboutComponent</span> <span class="pun">{</span>
-  <span class="cmt">// Hero (matches Recruiter hero)</span>
-  <span class="kw">protected readonly</span> <span class="prp">heroRole</span>   <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'Frontend Engineer'</span><span class="pun">);</span>
-  <span class="kw">protected readonly</span> <span class="prp">heroSubtitle</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'MEAN Stack Developer · React Developer'</span><span class="pun">);</span>
-  <span class="kw">protected readonly</span> <span class="prp">heroDescription</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">\`Focused on building high-scale, responsive web applications using React and Angular.
-I leverage System Design principles to create modular UI components and efficient 
-data-fetching strategies that reduce latency and improve developer velocity.\`</span><span class="pun">);</span>
+  <span class="cmt">// Hero — same copy as Recruiter &lt;p class="r-hero-title"&gt; + description</span>
+  <span class="kw">protected readonly</span> <span class="prp">heroTitle</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span>
+    <span class="str">'Software Engineer · Frontend Developer | Angular · React · Node.js'</span>
+  <span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">heroDescription</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">\`Focused on building high-scale, responsive web applications using 
+  Angular and React. I leverage System Design principles to create modular UI components and efficient 
+  data-fetching strategies that reduce latency and improve developer velocity.\`</span>
+<span class="pun">);</span>
+
+  <span class="cmt">// Profile card (r-profile-tags / r-profile-info)</span>
+  <span class="kw">protected readonly</span> <span class="prp">profileTags</span> <span class="op">=</span> <span class="pun">[</span>
+    <span class="str">'Angular'</span><span class="pun">,</span> <span class="str">'React'</span><span class="pun">,</span> <span class="str">'TypeScript'</span><span class="pun">,</span> <span class="str">'Node.js'</span><span class="pun">,</span> <span class="str">'MongoDB'</span><span class="pun">,</span> <span class="str">'Responsive Design'</span>
+  <span class="pun">];</span>
+  <span class="kw">protected readonly</span> <span class="prp">locationLine</span> <span class="op">=</span>
+    <span class="str">'India · Open to Remote | Hybrid | On-site'</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">availability</span> <span class="op">=</span> <span class="str">'Actively looking'</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">badgeText</span> <span class="op">=</span> <span class="str">'Available for opportunities'</span><span class="pun">;</span>
+
+  <span class="cmt">// Stats row labels (r-stats-row)</span>
+  <span class="kw">protected readonly</span> <span class="prp">statLabels</span> <span class="op">=</span> <span class="pun">[</span>
+    <span class="str">'Years Experience'</span><span class="pun">,</span> <span class="str">'Technologies'</span><span class="pun">,</span> <span class="str">'Hackathon Winner'</span><span class="pun">,</span> <span class="str">'Lines of Impact'</span>
+  <span class="pun">];</span>
 
   <span class="cmt">// About section text (01 — About)</span>
   <span class="kw">protected readonly</span> <span class="prp">aboutIntro</span> <span class="op">=</span> <span class="fn">computed</span><span class="pun">(() =&gt;</span>
@@ -223,8 +233,8 @@ using Angular, with strong focus on performance, responsive design, and UX optim
 while consistently following industry best practices.\`</span>
   <span class="pun">);</span>
 
-  <span class="kw">protected readonly</span> <span class="prp">aboutStack</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">\`My expertise spans the full MEAN stack — MongoDB,
-Express.js, Angular, and Node.js — along with hands-on experience
+  <span class="kw">protected readonly</span> <span class="prp">aboutStack</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">\`My expertise spans the full MEAN stack (MongoDB,
+Express.js, Angular, and Node.js) along with hands-on experience
 in React and modern frontend tooling.\`</span><span class="pun">);</span>
 
   <span class="cmt">// Progress bars and award card</span>
@@ -247,10 +257,10 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">});</span>
 
   <span class="cmt">// Fallback default to show expected value in the UI</span>
-  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'3.5'</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'3.7'</span><span class="pun">);</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  skills: `<span class="cmt">// skills.component.ts — My Skills "Skills & Stack"</span>
+  skills: `<span class="cmt">// skills.component.ts — Skills &amp; Stack (section id="r-skills")</span>
 <span class="kw">import</span> <span class="pun">{</span>
   <span class="fn">Component</span><span class="pun">,</span>
   <span class="fn">ChangeDetectionStrategy</span><span class="pun">,</span>
@@ -280,6 +290,7 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
       <span class="str">'Web Performance'</span><span class="pun">,</span>
       <span class="str">'Core Web Vitals'</span><span class="pun">,</span>
       <span class="str">'Storybook'</span><span class="pun">,</span>
+      <span class="str">'Flutter'</span><span class="pun">,</span>
     <span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
@@ -306,8 +317,8 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
     <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'M-files'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
-    <span class="prp">name</span><span class="pun">:</span> <span class="str">'No-Code & Monitoring'</span><span class="pun">,</span>
-    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'FlutterFlow'</span><span class="pun">,</span> <span class="str">'Flutter'</span><span class="pun">,</span> <span class="str">'Grafana'</span><span class="pun">],</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'Monitoring'</span><span class="pun">,</span>
+    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Grafana'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Testing'</span><span class="pun">,</span>
@@ -317,6 +328,10 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
       <span class="str">'Vitest'</span><span class="pun">,</span>
       <span class="str">'React Testing Library'</span><span class="pun">,</span>
     <span class="pun">],</span>
+  <span class="pun">},</span>
+   <span class="pun">{</span>
+    <span class="prp">name</span><span class="pun">:</span> <span class="str">'No-Code'</span><span class="pun">,</span>
+    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'FlutterFlow'</span><span class="pun">],</span>
   <span class="pun">},</span>
 <span class="pun">];</span>
 
@@ -362,9 +377,9 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">{</span>
     <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Software Engineer'</span><span class="pun">,</span>
     <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Full-time'</span><span class="pun">,</span>
-    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'May 2024 – Present'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'May 2024 - Present'</span><span class="pun">,</span>
     <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
-    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Designed, developed, and delivered scalable front-end solutions within Agile environments,<br/> focusing on modular and maintainable Angular-based UI architectures. Built responsive and <br/> performance-optimized interfaces with strong emphasis on user experience and full-stack <br/>feature development across the MEAN stack.\`</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Designed, developed, and delivered scalable front-end solutions within Agile environments,<br/>focusing on modular and maintainable Angular-based UI architectures. Built responsive and<br/>performance-optimized interfaces with a strong emphasis on user experience. Contributed to<br/>full-stack feature development across multiple product lines, leveraging Angular component<br/>lifecycle and state management while working within the broader MEAN stack. Collaborated<br/>closely with cross-functional teams and senior engineers to deliver high-quality features in<br/>a fast-paced product environment.\`</span><span class="pun">,</span>
     <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
       <span class="str">'Angular'</span><span class="pun">,</span>
       <span class="str">'TypeScript'</span><span class="pun">,</span>
@@ -378,11 +393,9 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">{</span>
     <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Associate Software Engineer'</span><span class="pun">,</span>
     <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Full-time'</span><span class="pun">,</span>
-    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Nov 2022 – May 2024 (1 yr 7 mos)'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Nov 2022 - May 2024 (1 yr 7 mos)'</span><span class="pun">,</span>
     <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
-    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Contributed to full-stack feature development and UI implementation across multiple
-product lines. Built strong fundamentals in Angular component lifecycle, state management,
-and responsive UI while collaborating closely with senior engineers.\`</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Contributed to full-stack feature development and UI implementation across multiple<br/>product lines. Gained hands-on experience with Angular, including component lifecycle and<br/>state management. Developed a strong understanding of UI responsiveness and the broader<br/>MEAN stack while collaborating closely with senior engineers in a fast-paced product<br/>environment.\`</span><span class="pun">,</span>
     <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
       <span class="str">'Elixir'</span><span class="pun">,</span>
       <span class="str">'Angular CLI'</span><span class="pun">,</span>
@@ -395,12 +408,11 @@ and responsive UI while collaborating closely with senior engineers.\`</span><sp
   <span class="pun">{</span>
     <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Software Engineer Intern'</span><span class="pun">,</span>
     <span class="prp">company</span><span class="pun">:</span> <span class="str">'Flair Labs · Internship'</span><span class="pun">,</span>
-    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Aug 2022 – Nov 2022 (4 mos)'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Aug 2022 - Nov 2022 (4 mos)'</span><span class="pun">,</span>
     <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
-    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Kickstarted professional journey contributing to frontend and backend tasks while
-learning production engineering practices and shipping features with the core team.\`</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Kickstarted my professional journey at Flair Labs, contributing to<br/>frontend / backend development tasks and learning production-level engineering<br/>practices. Rapidly onboarded onto the Elixir ecosystem and delivered<br/>features alongside the core team.\`</span><span class="pun">,</span>
     <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
-      <span class="str">'SDLC'</span><span class="pun">,</span>
+      <span class="str">'Software Development Life Cycle'</span><span class="pun">,</span>
       <span class="str">'Elixir'</span><span class="pun">,</span>
       <span class="str">'Spring Boot'</span><span class="pun">,</span>
       <span class="str">'Phoenix Framework'</span>
@@ -409,13 +421,12 @@ learning production engineering practices and shipping features with the core te
   <span class="pun">{</span>
     <span class="prp">role</span><span class="pun">:</span>    <span class="str">'Web Development Intern'</span><span class="pun">,</span>
     <span class="prp">company</span><span class="pun">:</span> <span class="str">'Cloud Counselage Pvt. Ltd. · Internship'</span><span class="pun">,</span>
-    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Mar 2020 – Jul 2020 (5 mos)'</span><span class="pun">,</span>
+    <span class="prp">period</span><span class="pun">:</span>  <span class="str">'Mar 2020 - Jul 2020 (5 mos)'</span><span class="pun">,</span>
     <span class="prp">location</span><span class="pun">:</span> <span class="str">'Mumbai, India'</span><span class="pun">,</span>
-    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Built and maintained web application features, implemented backend integrations
-with Node.js, and created a chatbot system that acted as an automated FAQ assistant.\`</span><span class="pun">,</span>
+    <span class="prp">summary</span><span class="pun">:</span> <span class="str">\`Built and maintained web application features during an early internship, gaining<br/>hands-on experience in full-stack development.<br/><br/>Implemented backend integrations using Node.js to support application functionality.<br/><br/>Designed and developed a chatbot system that answered user queries about the company's &amp; their application and functioned as an automated FAQ assistant.\`</span><span class="pun">,</span>
     <span class="prp">tags</span><span class="pun">:</span>    <span class="pun">[</span>
       <span class="str">'HTML / CSS'</span><span class="pun">,</span>
-      <span class="str">'Node.js'</span><span class="pun">,</span>
+      <span class="str">'Node.JS'</span><span class="pun">,</span>
       <span class="str">'JavaScript'</span><span class="pun">,</span>
       <span class="str">'Web Development'</span>
     <span class="pun">]</span>
@@ -512,68 +523,56 @@ with Node.js, and created a chatbot system that acted as an automated FAQ assist
   <span class="kw">protected readonly</span> <span class="prp">links</span><span class="pun">:</span> <span class="cls">ContactLink</span><span class="pun">[]</span> <span class="op">=</span> <span class="prp">CONTACT_LINKS</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
-  readme: `<span class="cmt"># Chandani Mourya — Software Engineer · Frontend Engineer · MEAN Stack Developer</span>
+  readme: `<span class="cmt"># Chandani Mourya — Software Engineer · Frontend Developer</span>
 
-<span class="str">## Who am I</span>
-Hey <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-icon"><path d="M8 13V4a2 2 0 1 1 4 0v6"/><path d="M12 5a2 2 0 1 1 4 0v6"/><path d="M16 7a2 2 0 1 1 4 0v5a7 7 0 0 1-7 7h-1.5a6.5 6.5 0 0 1-6.41-5.18L4 11"/><path d="M4 8a2 2 0 0 1 4 0v5"/></svg> I'm Chandani — a Software Engineer at Flair Labs Pvt. Ltd. based in <span class="kw">Mumbai, India</span>  
-with <span class="kw">3+ years</span> of experience building scalable, performant web applications Mobile Applications.  
-I specialize in <span class="kw">Angular</span> and the <span class="kw">MEAN stack</span>, with a strong eye for  
-clean UI, responsive design, and developer-friendly architecture.
+<span class="str">## Who I am</span>
+Hey <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-icon"><path d="M8 13V4a2 2 0 1 1 4 0v6"/><path d="M12 5a2 2 0 1 1 4 0v6"/><path d="M16 7a2 2 0 1 1 4 0v5a7 7 0 0 1-7 7h-1.5a6.5 6.5 0 0 1-6.41-5.18L4 11"/><path d="M4 8a2 2 0 0 1 4 0v5"/></svg> I'm Chandani — <span class="kw">Software Engineer · Frontend Developer</span> (Angular · React · Node.js) at <span class="kw">Flair Labs</span>, <span class="kw">Mumbai, India</span>.  
+<span class="kw">Open to Remote | Hybrid | On-site</span> · <span class="kw">Actively looking</span>.
 
-<span class="str">## Areas I Love Working In</span>
-<span class="cmt">// This is where I thrive <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket-icon lucide-rocket"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg></span>
+Focused on building high-scale, responsive web applications using Angular and React.
+I leverage System Design principles to create modular UI components and efficient data-fetching strategies that reduce latency and improve developer velocity.
 
-- <span class="kw">Frontend Engineering</span>     → Angular, React, TypeScript, SCSS  
-- <span class="kw">Full Stack Development</span>   → MEAN Stack (MongoDB, Express, Angular, Node.js)  
-- <span class="kw">UI Architecture</span>          → Modular components, design systems, reusability  
-- <span class="kw">Performance Optimization</span> → Lighthouse scores, lazy loading, SSR  
-- <span class="kw">Agile Teams</span>              → Scrum, cross-functional collaboration  
-- <span class="kw">Cloud & DevOps</span>           → Firebase, AWS, Docker  
+I'm a Software Engineer with experience in designing, testing, and delivering scalable front-end solutions within Agile environments. 
+I specialize in building modular UI using Angular, with strong focus on performance, responsive design, and UX optimization, while consistently following industry best practices.
+
+My expertise spans the full MEAN stack (MongoDB, Express.js, Angular, and Node.js) along with hands-on experience in React and modern frontend tooling.
 
 <span class="str">## Experience</span>
-<span class="cmt">// Currently at →</span>
-<span class="kw">Flair Labs Pvt. Ltd.</span> — Software Engineer  
-<span class="num">August 2022 – Present</span>
+<span class="cmt">// Same timeline as Recruiter view</span>
 
-  ▸ Led complete UI redesign of a large-scale multinational compliance web app  
-  ▸ Built full applications from scratch based on client business requirements  
-  ▸ Integrated frontend with backend APIs for dynamic, data-driven features  
-  ▸ Worked in Agile/Scrum with UX designers, PMs, and QA engineers  
-  ▸ Built multiple DMS for clients using M-Files
-  ▸ Certified <span class="kw">M-Files Solution Architect</span> + <span class="kw">M-Files Developer</span>
+<span class="kw">Software Engineer</span> — Flair Labs · Full-time · Mumbai, India · <span class="num">May 2024 – Present</span>  
+Designed, developed, and delivered scalable front-end solutions within Agile environments, focusing on modular and maintainable Angular-based UI architectures. Built responsive and performance-optimized interfaces with a strong emphasis on user experience. Contributed to full-stack feature development across multiple product lines, leveraging Angular component lifecycle and state management while working within the broader MEAN stack. Collaborated closely with cross-functional teams and senior engineers to deliver high-quality features in a fast-paced product environment.
+
+<span class="kw">Associate Software Engineer</span> — Flair Labs · Full-time · Mumbai, India · <span class="num">Nov 2022 – May 2024</span>  
+Contributed to full-stack feature development and UI implementation across multiple product lines. Gained hands-on experience with Angular, including component lifecycle and state management. Developed a strong understanding of UI responsiveness and the broader MEAN stack while collaborating closely with senior engineers in a fast-paced product environment.
+
+<span class="kw">Software Engineer Intern</span> — Flair Labs · Internship · Mumbai, India · <span class="num">Aug 2022 – Nov 2022</span>  
+Kickstarted my professional journey at Flair Labs, contributing to frontend / backend development tasks and learning production-level engineering practices. Rapidly onboarded onto the Elixir ecosystem and delivered features alongside the core team.
+
+<span class="kw">Web Development Intern</span> — Cloud Counselage Pvt. Ltd. · Internship · Mumbai, India · <span class="num">Mar 2020 – Jul 2020</span>  
+Built and maintained web application features during an early internship, gaining hands-on experience in full-stack development. Implemented backend integrations using Node.js to support application functionality. Designed and developed a chatbot system that answered user queries about the company's &amp; their application and functioned as an automated FAQ assistant.
 
 <span class="str">## Education</span>
-<span class="kw">B.E in Information Technology</span> — Saraswati College of Engineering  
-<span class="num">2019–2022 · 8.66 CGPA</span>
+<span class="kw">B.E. Information Technology</span> — Saraswati College of Engineering, Kharghar · <span class="num">2019 – 2022</span> · CGPA <span class="num">8.66</span>
 
-<span class="kw">Diploma in Information Technology</span> — Vidyalankar Polytechnic  
-<span class="num">2016–2019 · 85%</span>
+<span class="kw">Diploma in Information Technology</span> — Vidyalankar Polytechnic · <span class="num">2016 – 2019</span> · <span class="num">84.04%</span>
 
-<span class="str">## Tech Stack</span>
-Frontend   → Angular, React, TypeScript, SCSS, LESS, RxJS, Bootstrap  
-Backend    → Node.js, Express.js, MongoDB, MySQL  
-Cloud      → Firebase, AWS S3, AWS EC2  
-DevOps     → Docker, Git, Grafana  
-Testing    → Jest, Jasmine, Vitest, React Testing Library  
-No-Code    → FlutterFlow, Flutter  
-Tools      → VS Code, Postman, M-Files  
+<span class="kw">Maharashtra State Board</span> — Shri Sanatan Dharam High School &amp; Junior College · <span class="num">2016</span>
 
-<span class="str">## Certifications</span>
-<span class="cmt">// Verified credentials</span>
-▸ Server-side Development with NodeJS, Express &amp; MongoDB  
-▸ Front-End Web UI Frameworks and Tools  
-▸ M-Files Certified Solution Architect  
-▸ M-Files Certified Developer  
+<span class="str">## Hackathon</span>
+<span class="kw">Hackathon Winner</span> — Flair Labs Hackathon 2023 · Team Clippers  
+Contributed as the Front-End Developer for Team Clippers, delivering an award-winning solution under tight deadlines. Built production-ready user interfaces rapidly while maintaining high standards for code quality, performance, and user experience. Developed and enhanced data-driven dashboards by integrating query-based datasets with Grafana visualizations. Enabled real-time monitoring and actionable insights through well-structured dashboard design and optimized data presentation.
 
-<span class="str">## Highlights</span>
-▸ Winner — Flair Labs Hackathon 2023 (Team Clippers)
+<span class="str">## Skills &amp; Stack</span>
+<span class="cmt">// Mirrors <span class="kw">skills.component.ts</span> / Recruiter Skills section</span>
+Frontend, Backend, Databases, Cloud, Tools &amp; DevOps, Monitoring, Testing, No-Code — see open tabs.
 
 <span class="str">## Navigating This Portfolio</span>
 <span class="cmt">// <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb-icon lucide-lightbulb"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>Tips to explore this workspace</span>
 
   Press <span class="kw">Ctrl+P</span> (or <span class="kw">Cmd+P</span> on Mac) → Open Command Palette  
   Switch between <span class="kw">About</span> / <span class="kw">Skills</span> / <span class="kw">Experience</span> / <span class="kw">Contact</span> instantly  
-  Toggle <span class="kw">Recruiter Mode</span> ↔ <span class="kw">Dev Mode</span> from the top bar  
+  Toggle <span class="kw">Recruiter Mode</span> ↔ <span class="kw">Dev Mode</span> from the side bar  
   Switch <span class="kw">Light</span> ↔ <span class="kw">Dark</span> theme from the toggle  
 
 <span class="str flex-center">## Folder Structure</span>
@@ -585,11 +584,12 @@ src/
 ├── README.md
 
 <span class="str">## Contact</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> <span class="str">linkedin.com/in/chandani-mourya-dev</span>  
-<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> <span class="str">github.com/ChandaniM</span>  
-<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span class="str">chandanimourya5@gmail.com</span>  
+Let's build something great. Open to full-time opportunities, freelance projects, and interesting collaborations. Let's talk about how I can help bring your ideas to life.
 
-<span class="cmt">// Thanks for exploring the workspace — feel free to reach out!</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> <span class="str">linkedin.com/in/chandani-mourya-dev</span>  
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg> <span class="str">github.com/ChandaniM</span>    
+
+<span class="cmt">// Thanks for exploring the workspace — feel free to reach out to me from contact page inside recruiter mode.!</span>
 <span class="cblink"></span>`,
   //   readme: `<span class="cmt"># Chandani Mourya — Frontend Engineer</span>
 
@@ -711,7 +711,13 @@ const cpCmds = [
     ic: "@",
     lb: "Copy Email",
     kb: "",
-    fn: () => notify("email", "Copied!", "chandanimourya5@gmail.com"),
+    fn: () => {
+      const email = "chandani.mourya.dev@gmail.com";
+
+      copyToClipboard(email)
+        .then(() => notify("email", "Copied!"))
+        .catch(() => notify("error", "Failed", "Could not copy"));
+    },
   },
   // {
   //   ic: "HK",
@@ -720,6 +726,32 @@ const cpCmds = [
   //   fn: () => notify("trophy", "Winner!", "Flair Labs 2023 — Team Clippers"),
   // },
 ];
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  } else {
+    // Fallback for older browsers
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    return new Promise((resolve, reject) => {
+      try {
+        document.execCommand("copy");
+        resolve();
+      } catch (err) {
+        reject(err);
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    });
+  }
+}
 
 const tabNames = {
   about: "about.component.ts",
@@ -996,6 +1028,7 @@ const skillCategories = [
       "Web Performance",
       "Core Web Vitals",
       "Storybook",
+      "Flutter",
     ],
   },
   {
@@ -1016,7 +1049,7 @@ const skillCategories = [
     chips: ["MySQL", "MongoDB"],
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml-icon lucide-code-xml"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-icon lucide-cloud"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
     name: "Cloud",
     chips: ["Firebase", "AWS S3", "AWS EC2"],
   },
@@ -1027,13 +1060,18 @@ const skillCategories = [
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-area-icon lucide-chart-area"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 11.207a.5.5 0 0 1 .146-.353l2-2a.5.5 0 0 1 .708 0l3.292 3.292a.5.5 0 0 0 .708 0l4.292-4.292a.5.5 0 0 1 .854.353V16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"/></svg>`,
-    name: "No-Code & Monitoring",
-    chips: ["FlutterFlow", "Flutter", "Grafana"],
+    name: "Monitoring",
+    chips: ["Grafana"],
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-test-tube-diagonal-icon lucide-test-tube-diagonal"><path d="M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3"/><path d="m16 2 6 6"/><path d="M12 16H4"/></svg>`,
     name: "Testing",
     chips: ["Jest", "Jasmine", "Vitest", "React Testing Library"],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-icon lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>`,
+    name: "No-Code",
+    chips: ["FlutterFlow"],
   },
 ];
 
