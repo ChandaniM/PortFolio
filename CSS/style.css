@@ -108,14 +108,18 @@ body {
   transition: background 0.4s, color 0.4s;
 }
 
+/* Make theme switch immediate instead of animating hundreds of nodes. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
 /* ═══════════════════════════════════════
 THEME PILL — top right corner
 ═══════════════════════════════════════ */
 .top-controls {
-  position: fixed;
-  top: 11px;
-  right: 11px;
-  z-index: 99999;
+  position: static;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -694,12 +698,12 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     var(--accent),
     var(--accent2),
     var(--accent3)
-  );
+  ); */
 }
 
 .r-avatar {
@@ -2212,8 +2216,7 @@ DEV MODE — VS CODE
     display: none;
   }
   .top-controls {
-    top: 12px;
-    right: 12px;
+    display: none;
   }
 }
 ::-webkit-scrollbar {
@@ -2430,4 +2433,14 @@ DEV MODE — VS CODE
 [data-theme="light"] .cf-select option {
   background: #fff;
   color: #111;
+}
+
+.cf-response-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-muted, #666);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
 }

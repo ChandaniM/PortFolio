@@ -3,6 +3,22 @@
 // ══════════════════════════════════════
 let currentMode = "recruiter";
 let currentTheme = "dark";
+
+// Must be strings (quoted). Unquoted values are treated as variable names and break the whole script.
+const EMAILJS_PUBLIC_KEY = "_mVsGaH3y7ZsWd0xb";
+const EMAILJS_SERVICE_ID = "service_illukxu";
+const EMAILJS_TEMPLATE_ID = "template_avlvnf4";
+let emailJsInitialized = false;
+function initEmailJsIfNeeded() {
+  const key = EMAILJS_PUBLIC_KEY;
+  if (!key || emailJsInitialized) return;
+  if (typeof emailjs === "undefined") {
+    throw new Error("EmailJS did not load. Ensure the EmailJS script runs before script.js.");
+  }
+  emailjs.init({ publicKey: key });
+  emailJsInitialized = true;
+}
+
 // ══════════════════════════════════════
 //  CURSOR (recruiter only)
 // ══════════════════════════════════════
@@ -26,16 +42,36 @@ document
 // ══════════════════════════════════════
 //  THEME
 // ══════════════════════════════════════
-function setTheme(t) {
+function setTheme(t, options = {}) {
+  const { persist = true } = options;
+  const root = document.documentElement;
+  const activeTheme = root.getAttribute("data-theme");
+  const themeLightEl = document.getElementById("themeLight");
+  const themeDarkEl = document.getElementById("themeDark");
+  const isAlreadyApplied =
+    currentTheme === t &&
+    activeTheme === t &&
+    themeLightEl?.classList.contains("active") === (t === "light") &&
+    themeDarkEl?.classList.contains("active") === (t === "dark");
+
+  if (isAlreadyApplied) return;
+
+  // Disable transitions briefly so theme change feels instant.
+  root.classList.add("theme-switching");
   currentTheme = t;
-  document.documentElement.setAttribute("data-theme", t);
-  document
-    .getElementById("themeLight")
-    .classList.toggle("active", t === "light");
-  document.getElementById("themeDark").classList.toggle("active", t === "dark");
-  try {
-    localStorage.setItem("pf-theme", t);
-  } catch (e) {}
+  root.setAttribute("data-theme", t);
+  themeLightEl?.classList.toggle("active", t === "light");
+  themeDarkEl?.classList.toggle("active", t === "dark");
+  if (persist) {
+    try {
+      localStorage.setItem("pf-theme", t);
+    } catch (e) {}
+  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      root.classList.remove("theme-switching");
+    });
+  });
 }
 
 // ══════════════════════════════════════
@@ -55,7 +91,6 @@ function toggleMode() {
   iconContainer.innerHTML = currentMode === "dev" ? recruiterIcon : devIcon;
 
   if (currentMode === "dev") {
-    setTheme("dark");
     notify(
       "dev",
       "Dev Mode Active",
@@ -1038,6 +1073,142 @@ skillCategories.forEach((category, index) => {
 });
 
 // ══════════════════════════════════════
+//  CONTACT FORM (template log + EmailJS)
+// ══════════════════════════════════════
+function getContactIntentLabel() {
+  const sel = document.getElementById("cf-intent");
+  if (!sel) return "";
+  const opt = sel.options[sel.selectedIndex];
+  const label = opt?.text?.trim() || "";
+  return label || sel.value || "";
+}
+function buildContactInquiryEmail(v) {
+  const submitted = new Date().toLocaleString(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+  const phoneDisplay = v.phone ? v.phone : "Not Provided";
+  const messageDisplay = v.message || "(No message provided)";
+
+  return `Hello Chandani,
+
+You have received a new inquiry from your portfolio website. The details are below:
+
+──────────────────────────────
+CONTACT INFORMATION
+──────────────────────────────
+Name: ${v.name}
+Email: ${v.email}
+Phone: ${phoneDisplay}
+
+──────────────────────────────
+INQUIRY DETAILS
+──────────────────────────────
+Intent: ${v.intentLabel}
+
+Message:
+${messageDisplay}
+
+──────────────────────────────
+SUBMISSION DETAILS
+──────────────────────────────
+Submitted: ${submitted}
+Source: Portfolio Website
+──────────────────────────────
+
+You can reply directly to this email to respond to the sender.
+
+Regards,
+Your Portfolio System`;
+}
+
+function setContactSubmitBusy(busy) {
+  const btn = document.getElementById("cf-submit");
+  const txt = document.getElementById("cf-submit-txt");
+  const ico = document.getElementById("cf-submit-ico");
+  const spin = document.getElementById("cf-spinner");
+  if (!btn) return;
+  btn.disabled = busy;
+  if (txt) txt.style.display = busy ? "none" : "";
+  if (ico) ico.style.display = busy ? "none" : "";
+  if (spin) spin.style.display = busy ? "inline-flex" : "none";
+}
+
+function setupContactForm() {
+  const form = document.getElementById("r-contact-form");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const intentLabel = getContactIntentLabel();
+    const formValues = {
+      name: document.getElementById("cf-name")?.value?.trim() || "",
+      email: document.getElementById("cf-email")?.value?.trim() || "",
+      phone: document.getElementById("cf-phone")?.value?.trim() || "",
+      intentLabel,
+      message: document.getElementById("cf-message")?.value?.trim() || "",
+    };
+
+    const subject = `New Inquiry - ${intentLabel} from ${formValues.name}`;
+    const body = buildContactInquiryEmail(formValues);
+
+    console.log("[Contact inquiry] Subject:", subject);
+    console.log("[Contact inquiry] Email body:\n\n" + body);
+
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      notify(
+        "info",
+        "EmailJS not configured",
+        "Set EMAILJS_PUBLIC_KEY (from .env), EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID in script.js, or set window.__EMAILJS_*__ before this script."
+      );
+      return;
+    }
+
+    setContactSubmitBusy(true);
+    try {
+      initEmailJsIfNeeded();
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          // Use in EmailJS → template "Subject" field: {{subject}} (required for inbox subject line)
+          subject,
+          title: subject,
+          message: body,
+          from_name: formValues.name,
+          reply_to: formValues.email,
+          user_email: formValues.email,
+          phone: formValues.phone || "Not Provided",
+          intent: formValues.intentLabel,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      notify(
+        "email",
+        "Message sent",
+        "Thanks — your inquiry was delivered. I'll get back to you soon."
+      );
+      form.reset();
+    } catch (err) {
+      const detail =
+        err?.text ||
+        err?.message ||
+        (typeof err === "string" ? err : JSON.stringify(err));
+      console.error("[EmailJS] send failed:", err);
+      notify(
+        "info",
+        "Send failed",
+        detail || "Please try again or email me directly."
+      );
+    } finally {
+      setContactSubmitBusy(false);
+    }
+  });
+}
+
+// ══════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════
 (function init() {
@@ -1059,9 +1230,14 @@ skillCategories.forEach((category, index) => {
     calculateExperience("22 August 2022", "decimalPlus");
   let savedTheme = "dark";
   try {
-    savedTheme = localStorage.getItem("pf-theme") || "dark";
+    const persistedTheme = localStorage.getItem("pf-theme");
+    savedTheme = persistedTheme || "dark";
+    if (!persistedTheme) {
+      localStorage.setItem("pf-theme", "dark");
+    }
   } catch (e) {}
-  setTheme(savedTheme);
+  setTheme(savedTheme, { persist: false });
+  setupContactForm();
   renderDevCode("about");
   document.getElementById("devPanel").innerHTML = devPanels.terminal;
   setTimeout(
