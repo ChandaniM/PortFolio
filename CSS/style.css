@@ -2301,6 +2301,15 @@ DEV MODE — VS CODE
     line-height: 1.35;
     padding: 12px 14px 12px 18px;
   }
+  .mode-btn .btn-txt {
+    align-items: center;
+    text-align: center;
+  }
+  .mode-btn .btn-main {
+    display: block;
+    max-width: 9ch;
+    text-align: center;
+  }
   .mode-btn span.btn-sub {
     display: none;
   }
