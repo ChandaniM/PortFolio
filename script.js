@@ -133,11 +133,36 @@ function toggleMode() {
 // ══════════════════════════════════════
 //  MOBILE NAV
 // ══════════════════════════════════════
+let __mobNavScrollY = 0;
+
+function setMobNavOpen(isOpen) {
+  const nav = document.getElementById("rMobileNav");
+  const layerRec = document.getElementById("layerRec");
+  if (!nav) return;
+
+  if (isOpen) {
+    // Scroll happens on `.layer-recruiter` (#layerRec), not on `body` / `window`.
+    __mobNavScrollY = layerRec ? layerRec.scrollTop : 0;
+    nav.classList.add("open");
+    document.documentElement.classList.add("mobnav-open");
+    document.body.classList.add("mobnav-open");
+    if (layerRec) layerRec.classList.add("mobnav-open");
+  } else {
+    nav.classList.remove("open");
+    document.documentElement.classList.remove("mobnav-open");
+    document.body.classList.remove("mobnav-open");
+    if (layerRec) layerRec.classList.remove("mobnav-open");
+    if (layerRec) layerRec.scrollTop = __mobNavScrollY;
+  }
+}
+
 function toggleMobNav() {
-  document.getElementById("rMobileNav").classList.toggle("open");
+  const nav = document.getElementById("rMobileNav");
+  const willOpen = nav ? !nav.classList.contains("open") : false;
+  setMobNavOpen(willOpen);
 }
 function closeMobNav() {
-  document.getElementById("rMobileNav").classList.remove("open");
+  setMobNavOpen(false);
 }
 
 // ══════════════════════════════════════
@@ -1205,8 +1230,7 @@ function setupPhoneField() {
     const t = e.clipboardData?.getData("text") || "";
     const start = phoneEl.selectionStart ?? 0;
     const end = phoneEl.selectionEnd ?? 0;
-    const merged =
-      phoneEl.value.slice(0, start) + t + phoneEl.value.slice(end);
+    const merged = phoneEl.value.slice(0, start) + t + phoneEl.value.slice(end);
     phoneEl.value = sanitizePhoneValue(merged);
     const pos = phoneEl.value.length;
     requestAnimationFrame(() => phoneEl.setSelectionRange(pos, pos));
@@ -1303,7 +1327,11 @@ function setupContactForm() {
     };
 
     if (!formValues.name || !formValues.email || !intentLabel) {
-      notify("info", "Missing information", "Please fill in name, email, and intent.");
+      notify(
+        "info",
+        "Missing information",
+        "Please fill in name, email, and intent."
+      );
       return;
     }
 

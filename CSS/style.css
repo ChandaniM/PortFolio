@@ -307,6 +307,19 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   overflow-wrap: anywhere;
   word-wrap: break-word;
 }
+
+/* Prevent background scroll when recruiter mobile nav is open.
+   The page scrolls inside `#layerRec` (.layer-recruiter), not on `body`. */
+html.mobnav-open,
+body.mobnav-open {
+  overflow: hidden;
+  height: 100%;
+}
+.layer-recruiter.mobnav-open {
+  overflow: hidden !important;
+  touch-action: none;
+  overscroll-behavior: none;
+}
 .layer-recruiter::after {
   content: "";
   position: fixed;
@@ -456,6 +469,7 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   border: none;
   cursor: none;
   padding: 4px;
+  color: var(--text);
 }
 .r-ham span {
   display: block;
@@ -463,6 +477,10 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   height: 1px;
   background: var(--text);
   transition: all 0.3s;
+}
+.r-ham svg {
+  display: block;
+  stroke: currentColor;
 }
 
 /* MOBILE NAV */
@@ -476,6 +494,7 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
   align-items: center;
   justify-content: center;
   gap: 32px;
+  overscroll-behavior: contain;
 }
 .r-mobile-nav.open {
   display: flex;
@@ -2597,6 +2616,7 @@ DEV MODE — VS CODE
   width: 100%;
   box-sizing: border-box;
   -webkit-appearance: none;
+  appearance: none;
 }
 .cf-input::placeholder {
   color: rgba(180, 180, 180, 0.3);
