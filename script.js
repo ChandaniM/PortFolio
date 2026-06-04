@@ -1020,10 +1020,10 @@ function calculateExperience(dateString, format = "short") {
       return `${years} years and ${months} months`;
 
     case "decimal":
-      return decimal;
+      return decimal.toFixed(2);
 
     case "decimalPlus":
-      return decimal + "+";
+      return decimal.toFixed(2) + "+";
 
     case "short":
       return `${years}yr ${months}mon`;
