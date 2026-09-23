@@ -79,56 +79,41 @@ function setTheme(t, options = {}) {
 // ══════════════════════════════════════
 //  MODE TOGGLE
 // ══════════════════════════════════════
-function toggleMode() {
-  currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
-  document.documentElement.setAttribute("data-mode", currentMode);
-
+function updateModeUI() {
   const iconContainer = document.getElementById("modeIco");
+  const modeStateEl = document.getElementById("modeState");
+  const modeBtn = document.getElementById("modeBtn");
 
-  // Define the SVG paths (Minified for performance)
   const devIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>`;
 
   const recruiterIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" /><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>`;
-  // Swap icons based on what the user will switch TO
-  iconContainer.innerHTML = currentMode === "dev" ? recruiterIcon : devIcon;
+
+  if (iconContainer) iconContainer.innerHTML = currentMode === "dev" ? devIcon : recruiterIcon;
+  if (modeStateEl) modeStateEl.textContent = currentMode === "dev" ? "Dev Mode" : "Recruiter Mode";
+  if (modeBtn) {
+    modeBtn.setAttribute("aria-checked", currentMode === "dev" ? "true" : "false");
+    modeBtn.setAttribute(
+      "aria-label",
+      currentMode === "dev" ? "Toggle mode: Dev mode active" : "Toggle mode: Recruiter mode active"
+    );
+  }
+}
+
+function toggleMode() {
+  currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
+  document.documentElement.setAttribute("data-mode", currentMode);
+  updateModeUI();
 
   if (currentMode === "dev") {
-    notify(
-      "dev",
-      "Dev Mode Active",
-      "VS Code view · Press Ctrl+P for command palette"
-    );
+    notify("dev", "Dev Mode Active", "VS Code view · Press Ctrl+P for command palette");
   } else {
     notify("recruiter", "Recruiter Mode", "Welcome to Recruiter view.");
     // ... existing reveal logic
   }
 }
-// function toggleMode() {
-//   currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
-//   document.documentElement.setAttribute("data-mode", currentMode);
-//   // Icon shows what you'll SWITCH TO
-//   document.getElementById("modeIco").textContent =
-//     currentMode === "dev" ? "👔" : "💻";
 
-//   if (currentMode === "dev") {
-//     setTheme("dark");
-//     notify(
-//       "💻",
-//       "Dev Mode Active",
-//       "VS Code view · Press Ctrl+P for command palette"
-//     );
-//   } else {
-//     notify("👔", "Recruiter Mode", "Cyberpunk portfolio view restored");
-//     setTimeout(() => {
-//       document
-//         .querySelectorAll(".reveal")
-//         .forEach((el) => revealObs.observe(el));
-//       document
-//         .querySelectorAll(".r-prog-bar")
-//         .forEach((b) => progObs.observe(b));
-//     }, 200);
-//   }
-// }
+// initialize mode UI to reflect currentMode
+updateModeUI();
 
 // ══════════════════════════════════════
 //  MOBILE NAV
@@ -1013,17 +998,17 @@ function calculateExperience(dateString, format = "short") {
   }
   console.log(years, months);
 
-  const decimal = parseFloat(`${years}.${months}`);
+  const decimal = `${years}.${String(months).padStart(2, "0")}`;
 
   switch (format) {
     case "full":
       return `${years} years and ${months} months`;
 
     case "decimal":
-      return decimal.toFixed(2);
+      return decimal;
 
     case "decimalPlus":
-      return decimal.toFixed(2) + "+";
+      return decimal + "+";
 
     case "short":
       return `${years}yr ${months}mon`;

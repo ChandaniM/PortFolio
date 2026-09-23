@@ -32,7 +32,7 @@
     href="./favicon-16x16.png"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet"
     />
     <link rel="stylesheet" href="CSS/style.css">
@@ -59,20 +59,7 @@
     <div class="r-cursor" id="rCursor"></div>
     <div class="r-cursor-ring" id="rCursorRing"></div>
 
-    <!-- ═══ MODE BUTTON (right center) ═══ -->
-    <div class="mode-btn-wrap">
-      <button class="mode-btn" onclick="toggleMode()">
-        <span class="btn-ico" id="modeIco"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg></span>
-        <div class="btn-txt lbl-dev">
-          <span class="btn-main">Dev Mode</span>
-          <span class="btn-sub">VS Code View</span>
-        </div>
-        <div class="btn-txt lbl-rec">
-          <span class="btn-main">Recruiter Mode</span>
-          <span class="btn-sub">Clean View</span>
-        </div>
-      </button>
-    </div>
+    <!-- mode control moved into header top-controls to avoid duplicate buttons -->
 
     <!-- ═══ NOTIFICATION ═══ -->
     <div class="vsc-notif" id="notif">
@@ -107,6 +94,7 @@
         <a href="#r-about" onclick="closeMobNav()">About</a>
         <a href="#r-skills" onclick="closeMobNav()">Skills</a>
         <a href="#r-experience" onclick="closeMobNav()">Experience</a>
+        <a href="#r-projects" onclick="closeMobNav()">Projects</a>
         <!-- <a href="#r-system" onclick="closeMobNav()">System Design</a> -->
         <a href="#r-education" onclick="closeMobNav()">Education</a>
         <a href="#r-contact" onclick="closeMobNav()">Contact</a>
@@ -119,6 +107,7 @@
             <li><a href="#r-about">About</a></li>
             <li><a href="#r-skills">Skills</a></li>
             <li><a href="#r-experience">Experience</a></li>
+            <li><a href="#r-projects">Projects</a></li>
             <!-- <li><a href="#r-system">System Design</a></li> -->
             <li><a href="#r-education">Education</a></li>
 
@@ -135,11 +124,26 @@
           </a> -->
           
           <a href="#r-contact" class="r-dl-btn">Hire Me</a>
+                        <div class="btn-txt lbl-rec">
+                <span class="btn-main">Recruiter Mode</span>
+                <span class="btn-sub">Clean View</span>
+              </div>
+            </button>
+          </div>
           <button class="r-ham" onclick="toggleMobNav()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
           </button>
           <div class="top-controls">
-            <div class="theme-pill" id="themePill">
+          <div class="mode-btn-wrap" id="modeControlWrap">
+            <button id="modeBtn" class="mode-btn" role="switch" aria-checked="false" aria-label="Toggle mode: Recruiter mode active" onclick="toggleMode()">
+              <span class="btn-ico" id="modeIco"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg></span>
+              <div class="btn-textual">
+                <span class="mode-state" id="modeState">Recruiter Mode</span>
+                <span class="mode-sub" style="display:block;font-size:11px;opacity:.7">Clean View</span>
+              </div>
+            </button>
+          </div>
+
               <div
                 class="theme-opt active"
                 id="themeLight"
@@ -168,7 +172,7 @@
             <!-- MEAN Stack Developer · React Developer -->
           </p>
           <div class="r-hero-exp">
-            <span class="num" id="total-experience">3.5</span>
+            <span class="num" id="total-experience">4.00+</span>
             <span class="label">Years of<br />Experience</span>
           </div>
           <p class="r-hero-desc">
@@ -273,10 +277,6 @@
         <div class="r-stat reveal reveal-delay-2">
           <div class="r-stat-num">1×</div>
           <div class="r-stat-label">Hackathon Winner</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-3">
-          <div class="r-stat-num">∞</div>
-          <div class="r-stat-label">Lines of Impact</div>
         </div>
       </div>
 
@@ -482,10 +482,96 @@
         </div>
       </section>
 
+      <!-- PROJECTS -->
+      <section class="r-section alt" id="r-projects">
+        <div class="r-sec-hdr reveal">
+          <span class="r-sec-num">04</span>
+          <h2 class="r-sec-title">Projects</h2>
+          <div class="r-sec-line"></div>
+        </div>
+        <div class="r-project-group">
+          <h3 class="r-project-group-title">Freelance &amp; Client Projects</h3>
+        <div class="r-project-grid">
+        <article class="r-project-card r-project-card-featured reveal">
+          <div class="r-project-top">
+            <div>
+                <div class="r-project-kicker">React · TypeScript · Supabase  · Cloudinary</div>
+              <h3 class="r-project-title">Uphar Gift Shop</h3>
+            </div>
+              <span class="r-project-status">Demo</span>
+          </div>
+          <p class="r-project-desc">
+              Developed a modern gifting storefront demo for browsing curated products
+              by category and occasion. The experience includes product search and
+              filtering, cart and wishlist flows, checkout, inventory-aware handling,
+              and shareable product selections. Built the admin panel to manage
+              homepage content, categories, products, and sales ledger (khata-style)
+              tracking, with a responsive premium UI throughout.
+            </p>
+            <div class="r-project-actions">
+              <a href="https://upharthegiftshop.netlify.app/" target="_blank" rel="noopener noreferrer">View Live↗</a>
+              <a href="https://github.com/upharthegitshop/catalogue" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article>
+        <article class="r-project-card reveal reveal-delay-2">
+          <div class="r-project-top">
+            <div>
+              <div class="r-project-kicker">React · TypeScript · Vite · Multi-brand UI · Sanity (CMS)</div>
+              <h3 class="r-project-title">Luxury Events &amp; Weddings Portal</h3>
+            </div>
+            <span class="r-project-status">Demo</span>
+          </div>
+          <p class="r-project-desc">
+            Designed and built a multi-vertical concept platform for a luxury
+            event-management business, bringing weddings, live events, and
+            venue/space design together under one portal. Created a cinematic
+            landing experience with an animated hero and three-panel entry point
+            into themed sub-brand experiences, including a dedicated wedding
+            microsite with its own visual identity, portfolio, destinations, and
+            client stories. Delivered as a freelance concept pitch; the client
+            responded positively to the design direction, but the engagement did
+            not proceed due to budget alignment.
+          </p>
+          <div class="r-project-actions">
+            <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article>
+        <article class="r-project-card reveal reveal-delay-1">
+          <div class="r-project-top">
+            <div>
+              <div class="r-project-kicker">React · TypeScript · Demo</div>
+              <h3 class="r-project-title">Event &amp; Venue Management Platform</h3>
+            </div>
+            <span class="r-project-status">Demo</span>
+          </div>
+          <p class="r-project-desc">
+            Developed a business platform that helps companies manage and present
+            event offerings, live spaces, and venue information. The solution
+            combines an internal content-management experience with a
+            customer-facing website for exploring events, spaces, and services.
+          </p>
+          <div class="r-project-actions">
+            <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article>
+        </div>
+        </div>
+        <div class="r-project-group r-project-group-personal">
+          <h3 class="r-project-group-title">Personal Projects</h3>
+          <div class="r-project-placeholder reveal">
+            <span class="r-project-placeholder-mark">+</span>
+            <div>
+              <h3>Personal projects coming soon</h3>
+              <p>Independent experiments and products will be added here.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SYSTEM DESIGN -->
      <!-- <section class="r-section alt" id="r-system">
         <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">04</span>
+          <span class="r-sec-num">06</span>
           <h2 class="r-sec-title">System Design</h2>
           <div class="r-sec-line"></div>
         </div>
@@ -530,7 +616,7 @@
       </section> -->
       <section class="r-section" id="r-education">
         <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">04</span>
+          <span class="r-sec-num">05</span>
           <h2 class="r-sec-title">Education</h2>
           <div class="r-sec-line"></div>
         </div>
@@ -676,7 +762,7 @@
         <div class="r-contact-inner">
           <div class="">
             <div class="r-sec-hdr reveal">
-              <span class="r-sec-num">05</span>
+              <span class="r-sec-num">06</span>
               <h2 class="r-sec-title">Contact</h2>
               <div class="r-sec-line"></div>
             </div>

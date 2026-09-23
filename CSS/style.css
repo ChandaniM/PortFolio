@@ -88,8 +88,8 @@ VS CODE — DEV MODE
 :root {
   --font-mono: "DM Mono", monospace;
   --font-vsc: "JetBrains Mono", monospace;
-  --font-head: "Syne", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-head: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
   --font-serif: "Fraunces", serif;
 }
 
@@ -299,7 +299,7 @@ RECRUITER MODE — FULL CYBERPUNK DARK (portfolio_dark_theme style)
 .layer-recruiter {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   overflow-y: auto;
   overflow-x: hidden;
   cursor: none;
@@ -875,7 +875,7 @@ body.mobnav-open {
 /* ── STATS ROW ── */
 .r-stats-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -1196,6 +1196,123 @@ body.mobnav-open {
   text-transform: uppercase;
   color: var(--text-dim);
   transition: border-color 0.4s;
+}
+
+/* PROJECTS */
+.r-project-group + .r-project-group {
+  margin-top: 64px;
+}
+.r-project-group-title {
+  margin-bottom: 24px;
+  color: var(--text);
+  font: 700 clamp(1rem, 2vw, 1.25rem)/1.3 var(--font-head);
+}
+.r-project-group-title::before {
+  content: "//";
+  margin-right: 10px;
+  color: var(--accent);
+  font: 500 0.78em var(--font-mono);
+}
+.r-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.r-project-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.r-project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+}
+.r-project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+.r-project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+.r-project-kicker {
+  color: var(--accent);
+  font: 500 0.68rem var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.r-project-title {
+  margin-top: 8px;
+  color: var(--text);
+  font: 700 clamp(1.35rem, 3vw, 2rem)/1.2 var(--font-head);
+}
+.r-project-status {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  color: var(--bg);
+  background: var(--accent);
+  font: 600 0.62rem var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.r-project-desc {
+  max-width: 760px;
+  margin-bottom: 22px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.8;
+  flex: 1;
+}
+.r-project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.r-project-actions a {
+  color: var(--accent);
+  font: 500 0.72rem var(--font-mono);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.r-project-actions a:hover {
+  color: var(--text);
+}
+.r-project-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 560px;
+  padding: 24px 28px;
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+}
+.r-project-placeholder-mark {
+  color: var(--accent);
+  font: 300 2rem/1 var(--font-mono);
+}
+.r-project-placeholder h3 {
+  margin-bottom: 6px;
+  color: var(--text);
+  font: 600 0.9rem var(--font-head);
+}
+.r-project-placeholder p {
+  font-size: 0.78rem;
+  line-height: 1.6;
 }
 
 /* SYSTEM DESIGN */
@@ -2237,6 +2354,9 @@ DEV MODE — VS CODE
   .r-skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .r-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .r-timeline {
     grid-template-columns: 1fr;
   }
@@ -2282,6 +2402,16 @@ DEV MODE — VS CODE
   .r-hero-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .r-project-card {
+    padding: 24px;
+  }
+  .r-project-grid {
+    grid-template-columns: 1fr;
+  }
+  .r-project-top {
+    flex-direction: column;
+    gap: 12px;
   }
   .vsc-activity {
     width: 38px;

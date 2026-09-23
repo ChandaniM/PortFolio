@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="recruiter" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog - Chandani Mourya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tech blogs and articles by Chandani Mourya - Software Engineer · Frontend Developer" />
+    <meta name="keywords" content="Chandani Mourya, Blog, Tech Blog, Angular, React, Frontend Development" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+      .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 24px 60px;
+        min-height: calc(100vh - 200px);
+      }
+
+      .blog-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .blog-header h1 {
+        font-family: var(--font-head);
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        color: var(--text);
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+
+      .blog-header p {
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 28px;
+        margin-bottom: 60px;
+      }
+
+      .blog-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .blog-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .blog-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+        box-shadow: 0 8px 30px var(--glow);
+      }
+
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .blog-date {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .blog-date svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--accent);
+      }
+
+      .blog-tag {
+        padding: 4px 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 0.75rem;
+        color: var(--accent);
+      }
+
+      .blog-card h3 {
+        font-family: var(--font-head);
+        font-size: 1.5rem;
+        color: var(--text);
+        margin-bottom: 12px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .blog-card p {
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .blog-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        color: var(--accent);
+        font-weight: 500;
+        text-decoration: none;
+        transition: gap 0.3s ease;
+      }
+
+      .blog-link:hover {
+        gap: 12px;
+      }
+
+      .blog-link svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      .empty-state svg {
+        width: 80px;
+        height: 80px;
+        stroke: var(--text-dim);
+        margin-bottom: 24px;
+      }
+
+      .empty-state h3 {
+        font-family: var(--font-head);
+        font-size: 1.5rem;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+
+      .empty-state p {
+        font-family: var(--font-body);
+        color: var(--text-muted);
+        margin-bottom: 24px;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--accent);
+        text-decoration: none;
+        font-family: var(--font-body);
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .back-btn:hover {
+        background: var(--surface2);
+        border-color: var(--accent);
+        box-shadow: 0 4px 12px var(--glow);
+      }
+
+      @media (max-width: 768px) {
+        .blog-container {
+          padding: 100px 16px 40px;
+        }
+
+        .blog-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .blog-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CURSOR (recruiter mode) -->
+    <div class="r-cursor" id="rCursor"></div>
+    <div class="r-cursor-ring" id="rCursorRing"></div>
+
+    <!-- MODE BUTTON -->
+    <div class="mode-btn-wrap">
+      <button class="mode-btn" onclick="toggleMode()">
+        <span class="btn-ico" id="modeIco">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/>
+            <path d="M20.054 15.987H3.946"/>
+          </svg>
+        </span>
+        <div class="btn-txt lbl-dev">
+          <span class="btn-main">Dev Mode</span>
+          <span class="btn-sub">VS Code View</span>
+        </div>
+        <div class="btn-txt lbl-rec">
+          <span class="btn-main">Recruiter Mode</span>
+          <span class="btn-sub">Clean View</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- RECRUITER MODE -->
+    <div class="layer-recruiter" id="layerRec">
+      <!-- NAV -->
+      <nav class="r-nav">
+        <ul class="r-nav-links">
+          <li><a href="./index.html#r-about">About</a></li>
+          <li><a href="./index.html#r-skills">Skills</a></li>
+          <li><a href="./index.html#r-experience">Experience</a></li>
+          <li><a href="./index.html#r-education">Education</a></li>
+          <li><a href="./blogs.html">Blog</a></li>
+          <li><a href="./index.html#r-contact">Contact</a></li>
+        </ul>
+        <div class="r-nav-right">
+          <a href="./index.html#r-contact" class="r-dl-btn">Hire Me</a>
+          <div class="top-controls">
+            <div class="theme-pill" id="themePill">
+              <div class="theme-opt active" id="themeLight" onclick="setTheme('light')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2"/>
+                  <path d="M12 20v2"/>
+                  <path d="m4.93 4.93 1.41 1.41"/>
+                  <path d="m17.66 17.66 1.41 1.41"/>
+                  <path d="M2 12h2"/>
+                  <path d="M20 12h2"/>
+                  <path d="m6.34 17.66-1.41 1.41"/>
+                  <path d="m19.07 4.93-1.41 1.41"/>
+                </svg>
+              </div>
+              <div class="theme-opt" id="themeDark" onclick="setTheme('dark')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- BLOG CONTENT -->
+      <div class="blog-container">
+        <div class="blog-header">
+          <h1>Blog</h1>
+          <p>Thoughts, tutorials, and insights on frontend development, system design, and software engineering</p>
+        </div>
+
+        <!-- BLOG GRID -->
+        <div class="blog-grid" id="blogGrid">
+          <!-- Blog cards will be populated here -->
+          <!-- Example structure (commented out):
+          <div class="blog-card" onclick="window.open('YOUR_BLOG_LINK', '_blank')">
+            <div class="blog-meta">
+              <div class="blog-date">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span>Jan 15, 2026</span>
+              </div>
+              <span class="blog-tag">Angular</span>
+            </div>
+            <h3>Understanding Angular Change Detection</h3>
+            <p>Deep dive into how Angular's change detection works and how to optimize it for better performance in large applications.</p>
+            <a href="YOUR_BLOG_LINK" target="_blank" class="blog-link">
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+          -->
+        </div>
+
+        <!-- EMPTY STATE (shown when no blogs) -->
+        <div class="empty-state" id="emptyState">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <h3>No blog posts yet</h3>
+          <p>Check back soon for articles on frontend development, Angular, React, and more.</p>
+          <a href="./index.html" class="back-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5"/>
+              <path d="m12 19-7-7 7-7"/>
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="r-footer">
+        <div class="r-footer-l">
+          © 2026 Chandani Mourya | Software Engineer · Frontend Developer
+        </div>
+        <div class="r-footer-r">Angular · React · Node · MongoDB</div>
+      </footer>
+    </div>
+
+    <!-- DEV MODE (minimal, just redirects to home) -->
+    <div class="layer-dev" id="layerDev" style="display: none;">
+      <!-- Dev mode not implemented for blog page -->
+    </div>
+
+    <script>
+      // Blog data structure
+      const blogs = [
+        // Add your blog posts here following this structure:
+        // {
+        //   title: "Your Blog Title",
+        //   description: "Short description of your blog post",
+        //   date: "Jan 15, 2026",
+        //   tag: "Angular",
+        //   link: "https://your-blog-link.com"
+        // },
+      ];
+
+      // Render blog cards
+      function renderBlogs() {
+        const blogGrid = document.getElementById('blogGrid');
+        const emptyState = document.getElementById('emptyState');
+
+        if (blogs.length === 0) {
+          blogGrid.style.display = 'none';
+          emptyState.style.display = 'block';
+        } else {
+          blogGrid.style.display = 'grid';
+          emptyState.style.display = 'none';
+
+          blogGrid.innerHTML = blogs.map(blog => `
+            <div class="blog-card" onclick="window.open('${blog.link}', '_blank')">
+              <div class="blog-meta">
+                <div class="blog-date">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  <span>${blog.date}</span>
+                </div>
+                <span class="blog-tag">${blog.tag}</span>
+              </div>
+              <h3>${blog.title}</h3>
+              <p>${blog.description}</p>
+              <a href="${blog.link}" target="_blank" class="blog-link" onclick="event.stopPropagation()">
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          `).join('');
+        }
+      }
+
+      // Initialize
+      renderBlogs();
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
