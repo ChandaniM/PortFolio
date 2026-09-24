@@ -83,6 +83,7 @@ function updateModeUI() {
   const iconContainer = document.getElementById("modeIco");
   const modeStateEl = document.getElementById("modeState");
   const modeBtn = document.getElementById("modeBtn");
+  const devModeSwitch = document.querySelector(".vsc-mode-switch");
 
   const devIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>`;
 
@@ -96,6 +97,12 @@ function updateModeUI() {
       "aria-label",
       currentMode === "dev" ? "Toggle mode: Dev mode active" : "Toggle mode: Recruiter mode active"
     );
+  }
+  if (devModeSwitch) {
+    const switchLabel =
+      currentMode === "dev" ? "Switch to Recruiter Mode" : "Switch to Dev Mode";
+    devModeSwitch.setAttribute("aria-label", switchLabel);
+    devModeSwitch.setAttribute("data-tooltip", switchLabel);
   }
 }
 
@@ -857,7 +864,8 @@ document.getElementById("devCode").addEventListener("click", (e) => {
 // CMD PALETTE
 let cpOpen = false,
   cpSel = 0;
-function openCmd() {
+function openCmd(event) {
+  event?.stopPropagation();
   if (currentMode !== "dev") return;
   cpOpen = true;
   cpSel = 0;

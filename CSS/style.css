@@ -11,7 +11,7 @@ RECRUITER MODE — DARK CYBERPUNK (from portfolio_dark_theme)
   --accent2: #7c3aed;
   --accent3: #f59e0b;
   --text: #e8edf5;
-  --text-muted: #6b7f96;
+  --text-muted: #ffffff;
   --text-dim: #3a4a5c;
   --text-white:#fff;
   --bg-white:#fff;
@@ -86,11 +86,11 @@ VS CODE — DEV MODE
 }
 
 :root {
-  --font-mono: "DM Mono", monospace;
-  --font-vsc: "JetBrains Mono", monospace;
-  --font-head: "Space Grotesk", sans-serif;
-  --font-body: "Manrope", sans-serif;
-  --font-serif: "Fraunces", serif;
+  --font-mono: "Inter", sans-serif;
+  --font-vsc: "Inter", sans-serif;
+  --font-head: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
 }
 
 *,
@@ -163,22 +163,23 @@ THEME PILL — top right corner
 }
 
 /* ═══════════════════════════════════════
-MODE BUTTON — right edge, vertically centered
+MODE BUTTON — side switcher
 ═══════════════════════════════════════ */
 .mode-btn-wrap {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 99999;
+  position: static;
+  transform: none;
+  z-index: auto;
   display: flex;
   align-items: center;
+}
+.r-nav .mode-btn-wrap {
+  display: flex;
 }
 .mode-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 18px 14px 22px;
+  gap: 6px;
+  padding: 7px 10px;
   border: none;
   cursor: pointer;
   font-family: var(--font-body);
@@ -186,14 +187,15 @@ MODE BUTTON — right edge, vertically centered
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  border-radius: 14px 0 0 14px;
+  border-radius: 0;
+  border: 1px solid var(--accent);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
-  box-shadow: -4px 0 28px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   line-height: 1.2;
-  max-width: min(100vw - 8px, 320px);
+  max-width: min(100vw - 8px, 190px);
 }
 .mode-btn::before {
   content: "";
@@ -207,17 +209,19 @@ MODE BUTTON — right edge, vertically centered
   transform: translateX(100%) skewX(-15deg);
 }
 .mode-btn:hover {
-  padding-left: 28px;
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 30px var(--glow);
 }
 
-/* In recruiter mode → button shows "Dev Mode" (VS Code style) */
+/* Recruiter mode uses the same outlined treatment as the Hire Me button. */
 [data-mode="recruiter"] .mode-btn {
-  background: linear-gradient(135deg, #1e1e2e, #313244);
-  color: #cba6f7;
+  background: transparent;
+  color: var(--accent);
 }
 [data-mode="recruiter"][data-theme="light"] .mode-btn {
-  background: linear-gradient(135deg, #1a1a2e, #2d2d44);
-  color: #cba6f7;
+  background: transparent;
+  color: var(--accent);
 }
 /* In dev mode → button shows "Recruiter Mode" (accent style) */
 [data-mode="dev"] .mode-btn {
@@ -230,8 +234,15 @@ MODE BUTTON — right edge, vertically centered
 }
 
 .mode-btn .btn-ico {
-  font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
   flex-shrink: 0;
+}
+.mode-btn .btn-ico svg {
+  width: 18px;
+  height: 18px;
 }
 .mode-btn .btn-txt {
   display: flex;
@@ -248,6 +259,29 @@ MODE BUTTON — right edge, vertically centered
   font-weight: 400;
   opacity: 0.65;
   letter-spacing: 0.09em;
+}
+.mode-btn .btn-textual {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1.2;
+  text-align: left;
+}
+.mode-btn .mode-state {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.mode-btn .mode-sub {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  text-transform: none;
 }
 
 /* Show correct label: recruiter mode shows dev label, dev mode shows recruiter label */
@@ -447,7 +481,7 @@ body.mobnav-open {
   border: 1px solid var(--accent);
   color: var(--accent);
   padding: 8px 22px;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -621,7 +655,7 @@ body.mobnav-open {
   animation: fadeUp 0.8s 0.25s ease both;
 }
 .r-hero-exp .num {
-  font-family: var(--font-head);
+  font-family: 'Inter', 'serif';
   font-size: 3rem;
   font-weight: 800;
   color: var(--accent);
@@ -894,7 +928,7 @@ body.mobnav-open {
   background: var(--surface);
 }
 .r-stat-num {
-  font-family: var(--font-head);
+  font-family: 'Inter', 'serif';
   font-size: 2.4rem;
   font-weight: 800;
   color: var(--accent);
@@ -929,6 +963,7 @@ body.mobnav-open {
   min-width: 0;
 }
 .r-sec-num {
+  font-family: 'Inter', 'serif';
   font-size: 0.68rem;
   letter-spacing: 0.15em;
   color: var(--accent);
@@ -1133,7 +1168,7 @@ body.mobnav-open {
   transition: border-color 0.4s;
 }
 .r-tl-year {
-  font-family: var(--font-head);
+  font-family: 'Inter', 'serif';
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -1203,9 +1238,12 @@ body.mobnav-open {
   margin-top: 64px;
 }
 .r-project-group-title {
+  display: flex;
+  align-items: center;
   margin-bottom: 24px;
   color: var(--text);
   font: 700 clamp(1rem, 2vw, 1.25rem)/1.3 var(--font-head);
+  letter-spacing: -0.01em;
 }
 .r-project-group-title::before {
   content: "//";
@@ -1229,6 +1267,33 @@ body.mobnav-open {
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.r-project-card::after {
+  content: "PROJECT";
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  color: var(--text-dim);
+  font: 500 0.58rem var(--font-mono);
+  letter-spacing: 0.16em;
+  opacity: 0.7;
+}
+.r-project-card-featured {
+  grid-column: 1 / -1;
+  padding: 40px;
+  background:
+    linear-gradient(120deg, var(--surface), transparent 70%),
+    var(--surface);
+}
+.r-project-card-featured::before {
+  width: 5px;
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+}
+.r-project-card-featured .r-project-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+.r-project-card-featured .r-project-desc {
+  max-width: 850px;
 }
 .r-project-card::before {
   content: "";
@@ -1315,6 +1380,13 @@ body.mobnav-open {
   line-height: 1.6;
 }
 
+@media (max-width: 640px) {
+  .r-project-card-featured {
+    grid-column: auto;
+    padding: 24px;
+  }
+}
+
 /* SYSTEM DESIGN */
 .r-system-grid {
   display: grid;
@@ -1332,7 +1404,7 @@ body.mobnav-open {
   background: var(--surface);
 }
 .r-sys-num {
-  font-family: var(--font-head);
+  font-family: 'Inter', 'serif';
   font-size: 3rem;
   font-weight: 800;
   color: var(--text-dim);
@@ -1631,6 +1703,50 @@ DEV MODE — VS CODE
   padding: 0 6px;
   pointer-events: none;
 }
+.vsc-command-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 42vw);
+  min-width: 220px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 9px;
+  border: 1px solid var(--vsc-border);
+  border-radius: 5px;
+  background: var(--vsc-bg2);
+  color: var(--vsc-muted);
+  font: 11px var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.vsc-command-search:hover,
+.vsc-command-search:focus-visible {
+  border-color: var(--vsc-mauve);
+  color: var(--vsc-text);
+  background: var(--vsc-bg);
+  outline: none;
+}
+.vsc-command-search svg {
+  flex-shrink: 0;
+}
+.vsc-command-search span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vsc-command-search kbd {
+  padding: 2px 5px;
+  border: 1px solid var(--vsc-border);
+  border-radius: 3px;
+  color: var(--vsc-muted);
+  font: 10px var(--font-vsc);
+  white-space: nowrap;
+}
 .vsc-menu {
   display: flex;
   gap: 2px;
@@ -1699,6 +1815,33 @@ DEV MODE — VS CODE
 }
 .vsc-ai-bot {
   margin-top: auto;
+}
+.vsc-mode-switch {
+  border: 0;
+  margin-top: 2px;
+}
+.vsc-mode-switch::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  z-index: 10;
+  transform: translateY(-50%) translateX(-4px);
+  padding: 6px 8px;
+  border: 1px solid var(--vsc-border);
+  border-radius: 4px;
+  background: var(--vsc-bg2);
+  color: var(--vsc-text);
+  font: 10px var(--font-body);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.vsc-mode-switch:hover::after,
+.vsc-mode-switch:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 .vsc-sidebar {
   width: 240px;
@@ -1907,6 +2050,7 @@ DEV MODE — VS CODE
   scrollbar-color: var(--vsc-border) transparent;
 }
 .vsc-lnum {
+  font-family: 'Inter', 'serif';
   width: 52px;
   flex-shrink: 0;
   padding: 14px 0;
@@ -1959,6 +2103,7 @@ DEV MODE — VS CODE
   color: var(--vsc-green);
 }
 .num {
+  font-family: 'Inter', 'serif';
   color: var(--vsc-peach);
 }
 .cmt {
@@ -2231,6 +2376,7 @@ DEV MODE — VS CODE
   width: 18px;
   text-align: center;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 .cp-it-lb {
   flex: 1;
@@ -2333,7 +2479,9 @@ DEV MODE — VS CODE
     grid-template-columns: 1fr;
   }
   .r-hero-right {
-    display: none;
+    display: flex;
+    width: min(100%, 720px);
+    margin: 0 auto;
   }
   .r-stats-row {
     grid-template-columns: repeat(2, 1fr);
@@ -2427,9 +2575,8 @@ DEV MODE — VS CODE
     font-size: 10px;
   }
   .mode-btn {
-    white-space: normal;
-    line-height: 1.35;
-    padding: 12px 14px 12px 18px;
+    line-height: 1.2;
+    padding: 7px 10px;
   }
   .mode-btn .btn-txt {
     align-items: center;
@@ -2444,7 +2591,7 @@ DEV MODE — VS CODE
     display: none;
   }
   .top-controls {
-    display: none;
+    display: flex;
   }
   .cf-submit {
     width: 100%;
@@ -2513,13 +2660,9 @@ DEV MODE — VS CODE
     gap: 8px;
   }
 
-  .mode-btn-wrap {
-    right: env(safe-area-inset-right, 0);
-  }
-
   .mode-btn {
-    max-width: min(calc(100vw - 12px - env(safe-area-inset-right, 0px)), 200px);
-    padding: 8px 8px 8px 12px;
+    max-width: min(calc(100vw - 12px - env(safe-area-inset-right, 0px)), 170px);
+    padding: 6px 8px;
     font-size: 9px;
     letter-spacing: 0.05em;
   }
@@ -2529,8 +2672,8 @@ DEV MODE — VS CODE
   }
 
   .mode-btn .btn-ico svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .r-hero {
@@ -2720,7 +2863,7 @@ DEV MODE — VS CODE
 
 /* ── Label ── */
 .cf-label {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -2746,7 +2889,7 @@ DEV MODE — VS CODE
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(0, 240, 255, 0.12);
   color: var(--fg, #e0e0e0);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 13px;
   padding: 12px 16px;
   border-radius: 6px;
@@ -2801,7 +2944,7 @@ DEV MODE — VS CODE
 
 /* ── Inline error text ── */
 .cf-err {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 10px;
   color: #f38ba8;
   min-height: 14px;
@@ -2822,7 +2965,7 @@ DEV MODE — VS CODE
   color: #050510;
   border: none;
   padding: 14px 32px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -2858,7 +3001,7 @@ DEV MODE — VS CODE
 .cf-toast {
   padding: 12px 18px;
   border-radius: 6px;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 12px;
   letter-spacing: 0.04em;
   margin-top: 12px;
@@ -2895,7 +3038,7 @@ DEV MODE — VS CODE
 }
 
 .cf-response-time {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-body);
   font-size: 11px;
   color: var(--fg-muted, #666);
   display: flex;
