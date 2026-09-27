@@ -1187,12 +1187,14 @@ body.mobnav-open {
 .r-exp-highlights {
   display: grid;
   gap: 12px;
-  max-width: min(900px, 100%);
+  max-width: 100%;
   margin: 0 0 20px;
   padding-left: 20px;
   color: var(--text-dark);
   font-size: 0.83rem;
   line-height: 1.75;
+  /* text-align: justify;
+  text-align-last: left; */
 }
 .r-exp-highlights li {
   padding-left: 4px;
@@ -1241,6 +1243,11 @@ body.mobnav-open {
   flex-wrap: wrap;
   gap: 8px;
 }
+/* .r-exp-tags-dense {
+  display: grid;
+  grid-template-columns: repeat(8, max-content);
+  justify-content: start;
+} */
 .r-exp-tag {
   border: 1px solid var(--border);
   padding: 4px 10px;
@@ -1250,6 +1257,12 @@ body.mobnav-open {
   color: var(--text-dim);
   transition: border-color 0.4s;
 }
+
+/* @media (max-width: 900px) {
+  .r-exp-tags-dense {
+    display: flex;
+  }
+} */
 
 /* PROJECTS */
 .r-project-group + .r-project-group {
@@ -1366,7 +1379,6 @@ body.mobnav-open {
   font: 600 0.68rem var(--font-body);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transform: rotate(-4deg);
 }
 .r-project-desc {
   max-width: 760px;
@@ -2685,6 +2697,9 @@ DEV MODE — VS CODE
     flex-direction: column;
     gap: 12px;
   }
+  /* .r-exp-tags-dense {
+    display: flex;
+  } */
   .vsc-activity {
     width: 38px;
   }
