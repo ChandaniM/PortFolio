@@ -180,14 +180,20 @@
           </p>
           <div class="r-hero-actions">
             <a href="#r-contact" class="r-btn-primary">Let's Work Together →</a>
-            <!-- <a href="./chandani-mourya-cv.pdf" download class="r-btn-ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                Download CV
-              </a> -->
+            <!-- Replace REPLACE_WITH_YOUR_FILE_ID with the ID from your Google Drive share link. -->
+            <a
+              href="https://drive.google.com/file/d/17G0ePOmaJe_RM-k91b8urmJSq9ywe5pi/view?usp=sharing"
+              class="r-btn-ghost r-resume-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Resume
+            </a>
             <button
               class="r-btn-ghost"
               onclick="document.querySelector('#r-skills').scrollIntoView({behavior:'smooth'})"
@@ -248,22 +254,6 @@
           </div> -->
         </div>
       </section>
-
-      <!-- STATS -->
-      <div class="r-stats-row">
-        <div class="r-stat reveal">
-          <div class="r-stat-num" id="total-year-experience"></div>
-          <div class="r-stat-label">Years Experience</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-1">
-          <div class="r-stat-num" id="total-skill-count"></div>
-          <div class="r-stat-label">Technologies</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-2">
-          <div class="r-stat-num">1×</div>
-          <div class="r-stat-label">Hackathon Winner</div>
-        </div>
-      </div>
 
       <!-- ABOUT -->
       <section class="r-section" id="r-about">
@@ -381,10 +371,23 @@
           <div class="r-tl-right">
             <div class="r-exp-role">Software Engineer</div>
             <div class="r-exp-co">Flair Labs · Full-time · <span id="se-duration"></span> · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Designed, developed, and delivered scalable front-end solutions within Agile environments, focusing on modular and maintainable Angular-based UI architectures. Built responsive and performance-optimized interfaces with a strong emphasis on user experience. Contributed to full-stack feature development across multiple product lines, leveraging Angular component lifecycle and state management while working within the broader MEAN stack. Collaborated closely with cross-functional teams and senior engineers to deliver high-quality features in a fast-paced product environment.
-              <!-- Designed and implemented scalable front-end solutions for enterprise applications including M-Files, focusing on modular architecture and maintainable Angular-based UI systems. Built reusable and performance-optimized components while applying best practices for clean code, responsive design, and UX optimization. Improved application performance through techniques such as lazy loading, optimized rendering strategies, and efficient state management. Contributed to full-stack feature development within the MEAN stack while collaborating on system design decisions to ensure seamless integration with load-balanced backend services and distributed systems. Worked closely with cross-functional teams in Agile environments to deliver high-quality, scalable product features. -->
-            </p>
+            <ul class="r-exp-highlights">
+              <li>Built applications from scratch using Angular, creating reusable dynamic components, RxJS services, dynamic forms, and responsive UIs with Angular Material, Ionic, Tailwind CSS, and SCSS; added Jasmine unit tests.</li>
+              <li>Improved application performance by 40% by resolving subscription and lifecycle issues, modernizing frontend modules, fixing critical bugs, and implementing lazy loading and other optimizations.</li>
+              <li>Built a debounced search experience with autocomplete suggestions and keyword highlighting, improving usability across large result sets.</li>
+            </ul>
+            <details class="r-exp-more">
+              <summary>Show more accomplishments</summary>
+              <ul class="r-exp-highlights">
+                <li>Led a frontend team while independently owning frontend modules end-to-end, from technical design and development through testing and deployment.</li>
+                <li>Developed multiple M-Files Vault Application Framework (VAF) applications, including complex multi-step workflows and an internal CRM, integrating Outlook, SharePoint, AWS S3, DocuSign, and Microsoft Teams.</li>
+                <li>Delivered 20+ M-Files client deployments and vaults across multiple projects as a Certified M-Files Solution Engineer and Developer.</li>
+                <li>Built a React and TypeScript Reports module with micro-frontend architecture, configurable report generation, and a customizable dashboard featuring 10+ widget types and 5+ chart formats.</li>
+                <li>Designed multi-tenant frontend and API data isolation, plus multilingual announcements for one-click broadcasts to 500+ users and real-time SMS notifications through third-party APIs.</li>
+                <li>Built a custom RFQ module using Python, XML, and PostgreSQL, with AWS S3 file processing, automated notifications, webhooks, and business-rule-based calculations.</li>
+                <li>Developed publication navigation and comparison capabilities, including breadcrumb and cascading navigation, Git-diff-style version comparison, browsing history, and hierarchical table-of-contents navigation.</li>
+              </ul>
+            </details>
             <div class="r-exp-tags">
               <div class="r-exp-tag">Angular</div>
               <div class="r-exp-tag">TypeScript</div>
@@ -405,9 +408,13 @@
           <div class="r-tl-right">
             <div class="r-exp-role">Associate Software Engineer</div>
             <div class="r-exp-co">Flair Labs · Full-time · 1 yr 7 mos · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Contributed to full-stack feature development and UI implementation across multiple product lines. Gained hands-on experience with Angular, including component lifecycle and state management. Developed a strong understanding of UI responsiveness and the broader MEAN stack while collaborating closely with senior engineers in a fast-paced product environment.
-            </p>
+            <ul class="r-exp-highlights">
+              <li>Worked on the design, development, and delivery of enterprise applications across frontend and full-stack, with a strong focus on scalability, performance, reusable architecture, and user experience.</li>
+              <li>Contributed to frontend development for a multinational certification and compliance client, following company coding standards to ensure consistency and maintainability.</li>
+              <li>Built applications from scratch using Angular, creating reusable and dynamic components with dynamic data binding.</li>
+              <li>Debugged application issues using standard tools, improving the reliability of delivered features.</li>
+              <li>Delivered fully responsive interfaces across mobile, tablet, and desktop.</li>
+            </ul>
             <div class="r-exp-tags">
               <div class="r-exp-tag">Elixir</div>
               <div class="r-exp-tag">Angular CLI</div>
@@ -477,79 +484,150 @@
         <div class="r-project-group">
           <h3 class="r-project-group-title">Freelance &amp; Client Projects</h3>
         <div class="r-project-grid">
-        <article class="r-project-card r-project-card-featured reveal">
+        <article class="r-project-card r-project-card-featured reveal" data-project-number="01">
           <div class="r-project-top">
             <div>
-                <div class="r-project-kicker">React · TypeScript · Supabase  · Cloudinary</div>
+                <div class="r-project-kicker">
+                  <span>React</span><span>TypeScript</span><span>Supabase</span><span>Cloudinary</span>
+                </div>
               <h3 class="r-project-title">Uphar Gift Shop</h3>
             </div>
-              <span class="r-project-status">Demo</span>
+              <span class="r-project-status">↗ Live Demo</span>
           </div>
           <p class="r-project-desc">
-              Developed a modern gifting storefront demo for browsing curated products
-              by category and occasion. The experience includes product search and
-              filtering, cart and wishlist flows, checkout, inventory-aware handling,
-              and shareable product selections. Built the admin panel to manage
-              homepage content, categories, products, and sales ledger (khata-style)
-              tracking, with a responsive premium UI throughout.
+              A modern gifting storefront for curated products, with a responsive
+              premium shopping experience.
             </p>
+            <details class="r-project-details">
+              <summary>View detailed description</summary>
+              <p>
+                Developed browsing by category and occasion, product search and
+                filtering, cart and wishlist flows, checkout, inventory-aware
+                handling, and shareable product selections. Built the admin panel
+                for homepage content, categories, products, and sales-ledger
+                (khata-style) tracking.
+              </p>
+            </details>
             <div class="r-project-actions">
               <a href="https://upharthegiftshop.netlify.app/" target="_blank" rel="noopener noreferrer">View Live↗</a>
               <a href="https://github.com/upharthegitshop/catalogue" target="_blank" rel="noopener noreferrer">View source ↗</a>
           </div>
         </article>
-        <article class="r-project-card reveal reveal-delay-2">
+        <article class="r-project-card reveal reveal-delay-2" data-project-number="02">
           <div class="r-project-top">
             <div>
-              <div class="r-project-kicker">React · TypeScript · Vite · Multi-brand UI · Sanity (CMS)</div>
+              <div class="r-project-kicker">
+                <span>React</span><span>TypeScript</span><span>Vite</span><span>Multi-brand UI</span><span>Sanity CMS</span>
+              </div>
               <h3 class="r-project-title">Luxury Events &amp; Weddings Portal</h3>
             </div>
-            <span class="r-project-status">Demo</span>
+            <span class="r-project-status">Concept</span>
           </div>
           <p class="r-project-desc">
-            Designed and built a multi-vertical concept platform for a luxury
-            event-management business, bringing weddings, live events, and
-            venue/space design together under one portal. Created a cinematic
-            landing experience with an animated hero and three-panel entry point
-            into themed sub-brand experiences, including a dedicated wedding
-            microsite with its own visual identity, portfolio, destinations, and
-            client stories. Delivered as a freelance concept pitch; the client
-            responded positively to the design direction, but the engagement did
-            not proceed due to budget alignment.
+            A multi-vertical luxury events platform bringing weddings, live events,
+            and venue design together under one portal.
           </p>
+          <details class="r-project-details">
+            <summary>View detailed description</summary>
+            <p>
+              Created a cinematic landing experience with an animated hero and
+              three-panel entry point into themed sub-brand experiences. The
+              dedicated wedding microsite included its own visual identity,
+              portfolio, destinations, and client stories. This was delivered as
+              a freelance concept pitch; the engagement did not proceed due to
+              budget alignment.
+            </p>
+          </details>
           <div class="r-project-actions">
             <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
           </div>
         </article>
-        <article class="r-project-card reveal reveal-delay-1">
+        <!-- <article class="r-project-card reveal reveal-delay-1" data-project-number="03">
           <div class="r-project-top">
             <div>
-              <div class="r-project-kicker">React · TypeScript · Demo</div>
+              <div class="r-project-kicker">
+                <span>React</span><span>TypeScript</span><span>Demo</span>
+              </div>
               <h3 class="r-project-title">Event &amp; Venue Management Platform</h3>
             </div>
-            <span class="r-project-status">Demo</span>
+            <span class="r-project-status">Concept</span>
           </div>
           <p class="r-project-desc">
-            Developed a business platform that helps companies manage and present
-            event offerings, live spaces, and venue information. The solution
-            combines an internal content-management experience with a
-            customer-facing website for exploring events, spaces, and services.
+            A business platform for managing and presenting event offerings, live
+            spaces, and venue information.
           </p>
+          <details class="r-project-details">
+            <summary>View detailed description</summary>
+            <p>
+              Combined an internal content-management experience with a
+              customer-facing website for exploring events, spaces, and services,
+              using a shared platform structure for both operational and public
+              experiences.
+            </p>
+          </details>
           <div class="r-project-actions">
             <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
           </div>
-        </article>
+        </article> -->
         </div>
         </div>
         <div class="r-project-group r-project-group-personal">
           <h3 class="r-project-group-title">Personal Projects</h3>
-          <div class="r-project-placeholder reveal">
+          <article class="r-project-card r-project-card-featured reveal" data-project-number="01">
+            <div class="r-project-top">
+              <div>
+                <div class="r-project-kicker">
+                  <span>React 19</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Redis</span>
+                </div>
+                <h3 class="r-project-title">Organization Management &amp; RBAC Platform</h3>
+              </div>
+              <span class="r-project-status">Personal</span>
+            </div>
+            <p class="r-project-desc">
+              A full-stack, multi-tenant organization management platform with
+              secure role-based access, employee operations, dashboards,
+              collaboration workflows, and organization-wide communication.
+            </p>
+            <details class="r-project-details">
+              <summary>View detailed description</summary>
+              <div class="r-project-detail-content">
+                <p>
+                  Built tenant-isolated experiences for system administrators,
+                  organization administrators, and employees with JWT
+                  authentication and backend-enforced authorization.
+                </p>
+                <h4>Platform capabilities</h4>
+                <ul>
+                  <li>Organization and tenant management with organization settings.</li>
+                  <li>Employee directory, profiles, reporting managers, and visual organization hierarchy.</li>
+                  <li>Organization and system administrator dashboards with user and tenant statistics.</li>
+                  <li>Roles, permissions, announcements, notifications, invitations, and audit logs.</li>
+                  <li>Document and resource management with role-based isolation and S3-compatible storage.</li>
+                  <li>Job portal management, project management, and Kanban task boards with comments, assignments, and activity tracking.</li>
+                </ul>
+                <h4>Technical highlights</h4>
+                <ul>
+                  <li>Centralized Axios authentication, request cancellation, debounced search, and duplicate-safe inputs.</li>
+                  <li>Lazy-loaded routes, route preloading, response caching, Redis-backed queues, rate limiting, and request deduplication.</li>
+                  <li>Responsive Material UI layouts with loading, error, empty, and unauthorized states.</li>
+                  <li>Drag-and-drop workflows using <code>@dnd-kit</code>, charts with Chart.js, and organization trees with <code>react-organizational-chart</code>.</li>
+                </ul>
+                <p class="r-project-stack">
+                  <strong>Stack:</strong> React 19, TypeScript, Vite, Material UI,
+                  Tailwind CSS, React Router, Axios, Node.js, Express.js,
+                  MongoDB, Mongoose, JWT, bcrypt, Redis, Bull, LocalStack,
+                  AWS SDK, Resend, Docker, and Docker Compose.
+                </p>
+              </div>
+            </details>
+          </article>
+          <!-- <div class="r-project-placeholder reveal">
             <span class="r-project-placeholder-mark">+</span>
             <div>
-              <h3>Personal projects coming soon</h3>
+              <h3>More personal projects coming soon</h3>
               <p>Independent experiments and products will be added here.</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
 
