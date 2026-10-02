@@ -82,35 +82,42 @@ function setTheme(t, options = {}) {
 function updateModeUI() {
   const iconContainer = document.getElementById("modeIco");
   const modeStateEl = document.getElementById("modeState");
+  const modeSubEl = document.getElementById("modeSub");
   const modeBtn = document.getElementById("modeBtn");
   const devModeSwitch = document.querySelector(".vsc-mode-switch");
+  const isDevMode = currentMode === "dev";
 
   const devIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>`;
 
   const recruiterIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" /><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>`;
 
   if (iconContainer)
-    iconContainer.innerHTML = currentMode === "dev" ? devIcon : recruiterIcon;
-  if (modeStateEl)
-    modeStateEl.textContent =
-      currentMode === "dev" ? "Dev Mode" : "Recruiter Mode";
+    iconContainer.innerHTML = isDevMode ? devIcon : recruiterIcon;
+
+  if (modeStateEl) {
+    modeStateEl.textContent = isDevMode ? "Recruiter Mode" : "Dev Mode";
+  }
+  if (modeSubEl) {
+    modeSubEl.textContent = isDevMode ? "Active" : "Launch Dev";
+  }
   if (modeBtn) {
-    modeBtn.setAttribute(
-      "aria-checked",
-      currentMode === "dev" ? "true" : "false",
-    );
+    modeBtn.setAttribute("aria-checked", isDevMode ? "true" : "false");
     modeBtn.setAttribute(
       "aria-label",
-      currentMode === "dev"
-        ? "Toggle mode: Dev mode active"
-        : "Toggle mode: Recruiter mode active",
+      isDevMode
+        ? "Toggle mode: Recruiter mode active"
+        : "Toggle mode: Dev mode available",
     );
   }
   if (devModeSwitch) {
-    const switchLabel =
-      currentMode === "dev" ? "Switch to Recruiter Mode" : "Switch to Dev Mode";
+    const switchLabel = isDevMode
+      ? "Do you want to switch to Recruiter Mode? Please click here"
+      : "Switch to Recruiter Mode";
     devModeSwitch.setAttribute("aria-label", switchLabel);
     devModeSwitch.setAttribute("data-tooltip", switchLabel);
+    devModeSwitch.setAttribute("title", switchLabel);
+    devModeSwitch.classList.toggle("is-highlighted", isDevMode);
+    devModeSwitch.classList.toggle("is-active", isDevMode);
   }
 }
 
@@ -514,6 +521,27 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   // <span class="pun">];</span>
   // <span class="pun">}</span>
   // <span class="cblink"></span>`,
+  projects: `<span class="cmt">// projects.component.ts — portfolio projects</span>
+<span class="str">## Freelance &amp; Client Projects</span>
+
+<span class="kw">Uphaar The Gift Shop</span> — React + TypeScript + Vite + Supabase + Cloudinary
+<span class="cmt">Built a storefront with category browsing, search and filters, cart and wishlist flows, checkout, inventory-aware handling, and shareable selections. Also created an admin panel for homepage content, categories, products, and sales-ledger tracking.</span>
+
+<span class="kw">Luxury Events &amp; Weddings Portal</span> — React + TypeScript + Vite + Multi-brand UI + Sanity CMS
+<span class="cmt">Created a cinematic landing experience with themed sub-brand entries for weddings, live events, and venue storytelling. Delivered a design-forward demo experience with a dedicated wedding microsite and portfolio flow.</span>
+
+<span class="str">## Personal Projects</span>
+
+<span class="kw">Organization Management &amp; RBAC Platform</span> — React 19 + TypeScript + Node.js + Express + MongoDB + Redis
+<span class="cmt">Built a multi-tenant platform with secure role-based access, employee operations, dashboards, collaboration workflows, announcement tracking, job management, and Kanban task boards. Included JWT authentication, tenant isolation, request deduplication, rate limiting, and responsive UI states.</span>
+
+<span class="cmt">Portfolio highlights:</span>
+- <span class="kw">Full-stack</span> feature delivery across product and internal admin experiences
+- <span class="kw">Responsive UX</span> and modular UI architecture for maintainability
+- <span class="kw">Security-first</span> access patterns using JWT and backend authorization
+- <span class="kw">Performance-minded</span> frontend with lazy loading, caching, and efficient state flow
+
+<span class="cblink"></span>`,
   contact: `<span class="cmt">// contact.component.ts — Angular-style contact section (no raw email)</span>
 <span class="kw">import</span> <span class="pun">{</span>
   <span class="fn">Component</span><span class="pun">,</span>
@@ -724,6 +752,12 @@ const cpCmds = [
   },
   {
     ic: "TS",
+    lb: "projects.component.ts",
+    kb: "",
+    fn: () => devTab("projects"),
+  },
+  {
+    ic: "TS",
     lb: "contact.component.ts",
     kb: "",
     fn: () => devTab("contact"),
@@ -790,7 +824,7 @@ const tabNames = {
   about: "about.component.ts",
   skills: "skills.component.ts",
   experience: "experience.component.ts",
-  // projects: "projects.component.ts",
+  projects: "projects.component.ts",
   contact: "contact.component.ts",
   readme: "README.md",
 };

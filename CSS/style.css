@@ -1964,6 +1964,15 @@ DEV MODE — VS CODE
 .vsc-mode-switch {
   border: 0;
   margin-top: 2px;
+  background: rgba(137, 180, 250, 0.08);
+  border: 1px solid rgba(137, 180, 250, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.vsc-mode-switch.is-active,
+.vsc-mode-switch.is-highlighted {
+  background: rgba(137, 180, 250, 0.18);
+  border-color: rgba(137, 180, 250, 0.9);
+  box-shadow: 0 0 0 1px rgba(137, 180, 250, 0.45), 0 0 18px rgba(137, 180, 250, 0.28);
 }
 .vsc-mode-switch::after {
   content: attr(data-tooltip);
@@ -1987,6 +1996,22 @@ DEV MODE — VS CODE
 .vsc-mode-switch:focus-visible::after {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
+}
+.vsc-mode-switch.is-highlighted::after {
+  border-color: rgba(137, 180, 250, 0.9);
+  background: rgba(24, 24, 37, 0.96);
+}
+.vsc-mode-switch.is-highlighted {
+  animation: vscModePulse 1.5s ease-in-out infinite;
+}
+@keyframes vscModePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(137, 180, 250, 0.45), 0 0 0 rgba(137, 180, 250, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(137, 180, 250, 0.75), 0 0 18px rgba(137, 180, 250, 0.5), 0 0 30px rgba(137, 180, 250, 0.2);
+  }
 }
 .vsc-sidebar {
   width: 240px;
