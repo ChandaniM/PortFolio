@@ -25,21 +25,11 @@ function initEmailJsIfNeeded() {
 //  CURSOR (recruiter only)
 // ══════════════════════════════════════
 const rCursor = document.getElementById("rCursor");
-const rRing = document.getElementById("rCursorRing");
 document.addEventListener("mousemove", (e) => {
+  if (!rCursor) return;
   rCursor.style.left = e.clientX + "px";
   rCursor.style.top = e.clientY + "px";
-  rRing.style.left = e.clientX + "px";
-  rRing.style.top = e.clientY + "px";
 });
-document
-  .querySelectorAll(
-    "a,button,.r-chip,.r-sys-card,.r-contact-link,.r-ptag,.theme-opt,.mode-btn",
-  )
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => rRing.classList.add("hover"));
-    el.addEventListener("mouseleave", () => rRing.classList.remove("hover"));
-  });
 
 // ══════════════════════════════════════
 //  THEME

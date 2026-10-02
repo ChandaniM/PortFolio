@@ -369,42 +369,25 @@ body.mobnav-open {
 
 /* CUSTOM CURSOR */
 .r-cursor {
-  width: 12px;
-  height: 12px;
+  width: 20px;
+  height: 20px;
   background: var(--accent);
   border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 99990;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-  transition: transform 0.1s;
+  transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 .r-cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 99989;
-  transform: translate(-50%, -50%);
-  transition: all 0.25s;
-}
-.r-cursor-ring.hover {
-  transform: translate(-50%, -50%) scale(1.8);
-  border-color: var(--accent);
-}
-[data-theme="light"] .r-cursor-ring {
-  border-color: rgba(0, 112, 204, 0.35);
+  display: none !important;
 }
 @media (pointer: coarse) {
-  .r-cursor,
-  .r-cursor-ring {
+  .r-cursor {
     display: none;
   }
   .layer-recruiter {
