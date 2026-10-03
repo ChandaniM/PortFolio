@@ -286,7 +286,7 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">});</span>
 
   <span class="cmt">// Fallback default to show expected value in the UI</span>
-  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'3.7'</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'4.2'</span><span class="pun">);</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
   skills: `<span class="cmt">// skills.component.ts — Skills &amp; Stack (section id="r-skills")</span>
