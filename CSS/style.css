@@ -937,10 +937,7 @@ body.mobnav-open {
 
 /* ABOUT */
 .r-about-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
-  align-items: start;
+  text-align: justify;
 }
 .r-about-grid > * {
   min-width: 0;
@@ -956,6 +953,20 @@ body.mobnav-open {
   color: var(--accent);
   font-weight: 500;
 }
+.r-about-inline-link {
+  color: inherit;
+  cursor: none;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.r-about-inline-link:hover,
+.r-about-inline-link:focus-visible {
+  color: var(--accent);
+}
+.r-about-inline-link:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
 .r-about-quote {
   font-family: var(--font-serif);
   font-style: italic;
@@ -966,6 +977,9 @@ body.mobnav-open {
   margin-bottom: 32px;
   padding-left: 24px;
   border-left: 2px solid var(--accent);
+}
+.r-achievements-grid {
+  width: min(100%, 900px);
 }
 .r-award-card {
   background: var(--surface);

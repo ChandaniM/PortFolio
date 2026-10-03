@@ -1437,6 +1437,14 @@ function setupContactForm() {
 //  INIT
 // ══════════════════════════════════════
 (function init() {
+  const awardCard = document.querySelector("#r-about .r-award-card");
+  const achievementsGrid = document.getElementById("achievementsGrid");
+  if (awardCard && achievementsGrid) {
+    const originalWrapper = awardCard.parentElement;
+    achievementsGrid.appendChild(awardCard);
+    originalWrapper?.remove();
+  }
+
   document.getElementById("total-experience-full-value").textContent =
     calculateExperience("22 August 2022", "full");
   document.getElementById("se-duration").textContent = calculateExperience(
