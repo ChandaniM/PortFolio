@@ -101,7 +101,7 @@ function updateModeUI() {
   }
   if (devModeSwitch) {
     const switchLabel = isDevMode
-      ? "Do you want to switch to Recruiter Mode? Please click here"
+      ? "Recruiter Mode? Please click here"
       : "Switch to Recruiter Mode";
     devModeSwitch.setAttribute("aria-label", switchLabel);
     devModeSwitch.setAttribute("data-tooltip", switchLabel);
@@ -951,7 +951,7 @@ document.getElementById("cpIn").addEventListener("keydown", (e) => {
     if (its[cpSel]) its[cpSel].click();
   }
   if (e.key === "ArrowDown") {
-    cpSel = Math.min(cpSel + 1, cpCmds.length - 1);
+    cpSel = Math.min(cpSel + 1, document.querySelectorAll(".cp-it").length - 1);
     renderCp(document.getElementById("cpIn").value);
   }
   if (e.key === "ArrowUp") {
@@ -1033,7 +1033,10 @@ document.getElementById("layerRec").addEventListener("scroll", () => {
 });
 
 function calculateExperience(dateString, format = "short") {
-  const from = new Date(dateString);
+  const from = new Date(`${dateString}T00:00:00`);
+  if (Number.isNaN(from.getTime())) {
+    throw new RangeError(`Invalid experience start date: ${dateString}`);
+  }
   const now = new Date();
 
   let years = now.getFullYear() - from.getFullYear();
@@ -1446,14 +1449,14 @@ function setupContactForm() {
   }
 
   document.getElementById("total-experience-full-value").textContent =
-    calculateExperience("22 August 2022", "full");
+    calculateExperience("2022-08-22", "full");
   document.getElementById("se-duration").textContent = calculateExperience(
     "2024-06-20",
     "short",
   );
   document.getElementById("total-experience").textContent = calculateExperience(
-    "22 August 2022",
-    "decimalPlus",
+    "2022-08-22",
+    "short",
   );
   let savedTheme = "dark";
   try {
