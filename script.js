@@ -14,32 +14,50 @@ function initEmailJsIfNeeded() {
   if (!key || emailJsInitialized) return;
   if (typeof emailjs === "undefined") {
     throw new Error(
-      "EmailJS did not load. Ensure the EmailJS script runs before script.js."
+      "EmailJS did not load. Ensure the EmailJS script runs before script.js.",
     );
   }
   emailjs.init({ publicKey: key });
   emailJsInitialized = true;
 }
 
+function initializeProjectDetails() {
+  document
+    .querySelectorAll("#r-projects [data-auto-project-details]")
+    .forEach((details) => {
+      const content = details.querySelector(".r-project-detail-content") || details;
+      const listItemCount = content.querySelectorAll("li").length;
+      const sectionCount = content.querySelectorAll("h4").length;
+      const proseWordCount = Array.from(content.querySelectorAll("p")).reduce(
+        (total, paragraph) =>
+          total + (paragraph.textContent.trim().match(/\S+/g) || []).length,
+        0,
+      );
+      const isSubstantial =
+        listItemCount >= 3 || sectionCount >= 2 || proseWordCount >= 40;
+
+      if (isSubstantial) return;
+
+      const inlineContent = document.createElement("div");
+      inlineContent.className = "r-project-extra";
+      Array.from(details.children).forEach((child) => {
+        if (child.tagName !== "SUMMARY") inlineContent.appendChild(child);
+      });
+      details.replaceWith(inlineContent);
+    });
+}
+
+initializeProjectDetails();
+
 // ══════════════════════════════════════
 //  CURSOR (recruiter only)
 // ══════════════════════════════════════
 const rCursor = document.getElementById("rCursor");
-const rRing = document.getElementById("rCursorRing");
 document.addEventListener("mousemove", (e) => {
+  if (!rCursor) return;
   rCursor.style.left = e.clientX + "px";
   rCursor.style.top = e.clientY + "px";
-  rRing.style.left = e.clientX + "px";
-  rRing.style.top = e.clientY + "px";
 });
-document
-  .querySelectorAll(
-    "a,button,.r-chip,.r-sys-card,.r-contact-link,.r-ptag,.theme-opt,.mode-btn"
-  )
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => rRing.classList.add("hover"));
-    el.addEventListener("mouseleave", () => rRing.classList.remove("hover"));
-  });
 
 // ══════════════════════════════════════
 //  THEME
@@ -79,56 +97,67 @@ function setTheme(t, options = {}) {
 // ══════════════════════════════════════
 //  MODE TOGGLE
 // ══════════════════════════════════════
-function toggleMode() {
-  currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
-  document.documentElement.setAttribute("data-mode", currentMode);
-
+function updateModeUI() {
   const iconContainer = document.getElementById("modeIco");
+  const modeStateEl = document.getElementById("modeState");
+  const modeSubEl = document.getElementById("modeSub");
+  const modeBtn = document.getElementById("modeBtn");
+  const devModeSwitch = document.querySelector(".vsc-mode-switch");
+  const isDevMode = currentMode === "dev";
 
-  // Define the SVG paths (Minified for performance)
   const devIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>`;
 
   const recruiterIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" /><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>`;
-  // Swap icons based on what the user will switch TO
-  iconContainer.innerHTML = currentMode === "dev" ? recruiterIcon : devIcon;
+
+  if (iconContainer)
+    iconContainer.innerHTML = isDevMode ? devIcon : recruiterIcon;
+
+  if (modeStateEl) {
+    modeStateEl.textContent = isDevMode ? "Recruiter Mode" : "Dev Mode";
+  }
+  if (modeSubEl) {
+    modeSubEl.textContent = isDevMode ? "Active" : "Launch Dev";
+  }
+  if (modeBtn) {
+    modeBtn.setAttribute("aria-checked", isDevMode ? "true" : "false");
+    modeBtn.setAttribute(
+      "aria-label",
+      isDevMode
+        ? "Toggle mode: Recruiter mode active"
+        : "Toggle mode: Dev mode available",
+    );
+  }
+  if (devModeSwitch) {
+    const switchLabel = isDevMode
+      ? "Recruiter Mode? Please click here"
+      : "Switch to Recruiter Mode";
+    devModeSwitch.setAttribute("aria-label", switchLabel);
+    devModeSwitch.setAttribute("data-tooltip", switchLabel);
+    devModeSwitch.setAttribute("title", switchLabel);
+    devModeSwitch.classList.toggle("is-highlighted", isDevMode);
+    devModeSwitch.classList.toggle("is-active", isDevMode);
+  }
+}
+
+function toggleMode() {
+  currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
+  document.documentElement.setAttribute("data-mode", currentMode);
+  updateModeUI();
 
   if (currentMode === "dev") {
     notify(
       "dev",
       "Dev Mode Active",
-      "VS Code view · Press Ctrl+P for command palette"
+      "VS Code view · Press Ctrl+P for command palette",
     );
   } else {
     notify("recruiter", "Recruiter Mode", "Welcome to Recruiter view.");
     // ... existing reveal logic
   }
 }
-// function toggleMode() {
-//   currentMode = currentMode === "recruiter" ? "dev" : "recruiter";
-//   document.documentElement.setAttribute("data-mode", currentMode);
-//   // Icon shows what you'll SWITCH TO
-//   document.getElementById("modeIco").textContent =
-//     currentMode === "dev" ? "👔" : "💻";
 
-//   if (currentMode === "dev") {
-//     setTheme("dark");
-//     notify(
-//       "💻",
-//       "Dev Mode Active",
-//       "VS Code view · Press Ctrl+P for command palette"
-//     );
-//   } else {
-//     notify("👔", "Recruiter Mode", "Cyberpunk portfolio view restored");
-//     setTimeout(() => {
-//       document
-//         .querySelectorAll(".reveal")
-//         .forEach((el) => revealObs.observe(el));
-//       document
-//         .querySelectorAll(".r-prog-bar")
-//         .forEach((b) => progObs.observe(b));
-//     }, 200);
-//   }
-// }
+// initialize mode UI to reflect currentMode
+updateModeUI();
 
 // ══════════════════════════════════════
 //  MOBILE NAV
@@ -169,20 +198,23 @@ function closeMobNav() {
 //  TYPING BADGE
 // ══════════════════════════════════════
 const badge = document.getElementById("rBadge");
-if (badge) {
-  const text = "Available for opportunities";
-  const dot = document.createElement("span");
-  dot.style.cssText =
-    "display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite;margin-right:8px;flex-shrink:0;vertical-align:middle";
-  badge.appendChild(dot);
-  let i = 0;
-  const type = () => {
-    if (i < text.length) {
-      badge.appendChild(document.createTextNode(text[i++]));
-      setTimeout(type, 55);
-    }
-  };
-  setTimeout(type, 500);
+const badgeText = document.getElementById("rBadgeText");
+if (badge && badgeText) {
+  const text = badgeText.textContent.trim();
+  badge.setAttribute("aria-label", text);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const characters = Array.from(text);
+    let index = 0;
+    badgeText.textContent = "";
+    const type = () => {
+      if (index < characters.length) {
+        badgeText.textContent += characters[index++];
+        setTimeout(type, 55);
+      }
+    };
+    setTimeout(type, 500);
+  }
 }
 
 // ══════════════════════════════════════
@@ -242,7 +274,7 @@ Enabled real-time monitoring and actionable insights through well-structured das
   <span class="kw">protected readonly</span> <span class="prp">locationLine</span> <span class="op">=</span>
     <span class="str">'India · Open to Remote | Hybrid | On-site'</span><span class="pun">;</span>
   <span class="kw">protected readonly</span> <span class="prp">availability</span> <span class="op">=</span> <span class="str">'Actively looking'</span><span class="pun">;</span>
-  <span class="kw">protected readonly</span> <span class="prp">badgeText</span> <span class="op">=</span> <span class="str">'Available for opportunities'</span><span class="pun">;</span>
+  <span class="kw">protected readonly</span> <span class="prp">badgeText</span> <span class="op">=</span> <span class="str">'open to freelance and full time work'</span><span class="pun">;</span>
 
   <span class="cmt">// Stats row labels (r-stats-row)</span>
   <span class="kw">protected readonly</span> <span class="prp">statLabels</span> <span class="op">=</span> <span class="pun">[</span>
@@ -282,7 +314,7 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">});</span>
 
   <span class="cmt">// Fallback default to show expected value in the UI</span>
-  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'3.7'</span><span class="pun">);</span>
+  <span class="kw">protected readonly</span> <span class="prp">experienceDecimal</span> <span class="op">=</span> <span class="fn">signal</span><span class="pun">(</span><span class="str">'4.2'</span><span class="pun">);</span>
 <span class="pun">}</span>
 <span class="cblink"></span>`,
   skills: `<span class="cmt">// skills.component.ts — Skills &amp; Stack (section id="r-skills")</span>
@@ -327,6 +359,7 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
       <span class="str">'REST APIs'</span><span class="pun">,</span>
       <span class="str">'API Integration'</span><span class="pun">,</span>
       <span class="str">'JWT Auth'</span><span class="pun">,</span>
+      <span class="str">'Elixir'</span><span class="pun">,</span>
     <span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
@@ -335,11 +368,11 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Cloud'</span><span class="pun">,</span>
-    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Firebase'</span><span class="pun">,</span> <span class="str">'AWS S3'</span><span class="pun">,</span> <span class="str">'AWS EC2'</span><span class="pun">],</span>
+    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Firebase'</span><span class="pun">,</span> <span class="str">'AWS S3'</span><span class="pun">,</span> <span class="str">'AWS EC2'</span><span class="pun">,</span> <span class="str">'AWS EKS'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Tools & DevOps'</span><span class="pun">,</span>
-    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'M-files'</span><span class="pun">],</span>
+    <span class="prp">chips</span><span class="pun">:</span> <span class="pun">[</span><span class="str">'Docker'</span><span class="pun">,</span> <span class="str">'Kubernetes'</span><span class="pun">,</span> <span class="str">'Helm'</span><span class="pun">,</span> <span class="str">'Terraform'</span><span class="pun">,</span> <span class="str">'Terragrunt'</span><span class="pun">,</span> <span class="str">'Git'</span><span class="pun">,</span> <span class="str">'M-files'</span><span class="pun">],</span>
   <span class="pun">},</span>
   <span class="pun">{</span>
     <span class="prp">name</span><span class="pun">:</span> <span class="str">'Monitoring'</span><span class="pun">,</span>
@@ -506,6 +539,27 @@ in React and modern frontend tooling.\`</span><span class="pun">);</span>
   // <span class="pun">];</span>
   // <span class="pun">}</span>
   // <span class="cblink"></span>`,
+  projects: `<span class="cmt">// projects.component.ts — portfolio projects</span>
+<span class="str">## Freelance &amp; Client Projects</span>
+
+<span class="kw">Uphaar The Gift Shop</span> — React + TypeScript + Vite + Supabase + Cloudinary
+<span class="cmt">Built a storefront with category browsing, search and filters, cart and wishlist flows, checkout, inventory-aware handling, and shareable selections. Also created an admin panel for homepage content, categories, products, and sales-ledger tracking.</span>
+
+<span class="kw">Luxury Events &amp; Weddings Portal</span> — React + TypeScript + Vite + Multi-brand UI + Sanity CMS
+<span class="cmt">Created a cinematic landing experience with themed sub-brand entries for weddings, live events, and venue storytelling. Delivered a design-forward demo experience with a dedicated wedding microsite and portfolio flow.</span>
+
+<span class="str">## Personal Projects</span>
+
+<span class="kw">Organization Management &amp; RBAC Platform</span> — React 19 + TypeScript + Node.js + Express + MongoDB + Redis
+<span class="cmt">Built a multi-tenant platform with secure role-based access, employee operations, dashboards, collaboration workflows, announcement tracking, job management, and Kanban task boards. Included JWT authentication, tenant isolation, request deduplication, rate limiting, and responsive UI states.</span>
+
+<span class="cmt">Portfolio highlights:</span>
+- <span class="kw">Full-stack</span> feature delivery across product and internal admin experiences
+- <span class="kw">Responsive UX</span> and modular UI architecture for maintainability
+- <span class="kw">Security-first</span> access patterns using JWT and backend authorization
+- <span class="kw">Performance-minded</span> frontend with lazy loading, caching, and efficient state flow
+
+<span class="cblink"></span>`,
   contact: `<span class="cmt">// contact.component.ts — Angular-style contact section (no raw email)</span>
 <span class="kw">import</span> <span class="pun">{</span>
   <span class="fn">Component</span><span class="pun">,</span>
@@ -716,6 +770,12 @@ const cpCmds = [
   },
   {
     ic: "TS",
+    lb: "projects.component.ts",
+    kb: "",
+    fn: () => devTab("projects"),
+  },
+  {
+    ic: "TS",
     lb: "contact.component.ts",
     kb: "",
     fn: () => devTab("contact"),
@@ -782,7 +842,7 @@ const tabNames = {
   about: "about.component.ts",
   skills: "skills.component.ts",
   experience: "experience.component.ts",
-  // projects: "projects.component.ts",
+  projects: "projects.component.ts",
   contact: "contact.component.ts",
   readme: "README.md",
 };
@@ -795,7 +855,7 @@ function devTab(tab) {
     f.classList.toggle(
       "active",
       f.textContent.trim().startsWith(tabNames[tab]?.split(".")[0]) ||
-        (tab === "readme" && f.textContent.includes("README"))
+        (tab === "readme" && f.textContent.includes("README")),
     );
   });
   document.getElementById("devBread").textContent = tabNames[tab] || tab;
@@ -813,12 +873,11 @@ function renderDevCode(tab) {
       (l) =>
         `<div class="vsc-line"><span class="vsc-line-c">${
           l || " "
-        }</span></div>`
+        }</span></div>`,
     )
     .join("");
-  document.getElementById(
-    "devStatusCur"
-  ).textContent = `Ln ${lines.length}, Col 1`;
+  document.getElementById("devStatusCur").textContent =
+    `Ln ${lines.length}, Col 1`;
   const mm = [
     "l a",
     "m",
@@ -872,7 +931,8 @@ document.getElementById("devCode").addEventListener("click", (e) => {
 // CMD PALETTE
 let cpOpen = false,
   cpSel = 0;
-function openCmd() {
+function openCmd(event) {
+  event?.stopPropagation();
   if (currentMode !== "dev") return;
   cpOpen = true;
   cpSel = 0;
@@ -887,7 +947,7 @@ function closeCp() {
 }
 function renderCp(q) {
   const filt = cpCmds.filter((c) =>
-    c.lb.toLowerCase().includes(q.toLowerCase())
+    c.lb.toLowerCase().includes(q.toLowerCase()),
   );
   let h = '<div class="cp-sec">Commands & Files</div>';
   filt.forEach((c, i) => {
@@ -919,7 +979,7 @@ document.getElementById("cpIn").addEventListener("keydown", (e) => {
     if (its[cpSel]) its[cpSel].click();
   }
   if (e.key === "ArrowDown") {
-    cpSel = Math.min(cpSel + 1, cpCmds.length - 1);
+    cpSel = Math.min(cpSel + 1, document.querySelectorAll(".cp-it").length - 1);
     renderCp(document.getElementById("cpIn").value);
   }
   if (e.key === "ArrowUp") {
@@ -971,7 +1031,7 @@ const revealObs = new IntersectionObserver(
       if (e.isIntersecting) e.target.classList.add("visible");
     });
   },
-  { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
 );
 
 const progObs = new IntersectionObserver(
@@ -980,7 +1040,7 @@ const progObs = new IntersectionObserver(
       if (e.isIntersecting) e.target.classList.add("animated");
     });
   },
-  { threshold: 0.5 }
+  { threshold: 0.5 },
 );
 
 document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
@@ -1001,7 +1061,10 @@ document.getElementById("layerRec").addEventListener("scroll", () => {
 });
 
 function calculateExperience(dateString, format = "short") {
-  const from = new Date(dateString);
+  const from = new Date(`${dateString}T00:00:00`);
+  if (Number.isNaN(from.getTime())) {
+    throw new RangeError(`Invalid experience start date: ${dateString}`);
+  }
   const now = new Date();
 
   let years = now.getFullYear() - from.getFullYear();
@@ -1013,17 +1076,17 @@ function calculateExperience(dateString, format = "short") {
   }
   console.log(years, months);
 
-  const decimal = parseFloat(`${years}.${months}`);
+  const decimal = `${years}.${String(months).padStart(2, "0")}`;
 
   switch (format) {
     case "full":
       return `${years} years and ${months} months`;
 
     case "decimal":
-      return decimal.toFixed(2);
+      return decimal;
 
     case "decimalPlus":
-      return decimal.toFixed(2) + "+";
+      return decimal + "+";
 
     case "short":
       return `${years}yr ${months}mon`;
@@ -1066,6 +1129,7 @@ const skillCategories = [
       "REST APIs",
       "API Integration",
       "JWT Auth",
+      "Elixir",
     ],
   },
   {
@@ -1076,12 +1140,20 @@ const skillCategories = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-icon lucide-cloud"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
     name: "Cloud",
-    chips: ["Firebase", "AWS S3", "AWS EC2"],
+    chips: ["Firebase", "AWS S3", "AWS EC2", "AWS EKS"],
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-icon lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>`,
     name: "Tools & DevOps",
-    chips: ["Docker", "Git", "M-files"],
+    chips: [
+      "Docker",
+      "Kubernetes",
+      "Helm",
+      "Terraform",
+      "Terragrunt",
+      "Git",
+      "M-files",
+    ],
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-area-icon lucide-chart-area"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 11.207a.5.5 0 0 1 .146-.353l2-2a.5.5 0 0 1 .708 0l3.292 3.292a.5.5 0 0 0 .708 0l4.292-4.292a.5.5 0 0 1 .854.353V16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"/></svg>`,
@@ -1279,7 +1351,7 @@ function validateContactFormFields(form) {
         /^[6-9]\d{9}$/.test(p);
       if (!ok) {
         phoneEl.setCustomValidity(
-          "Use 10 digits, or 91 + 10 digits, or +91 + 10 digits (Indian mobile)."
+          "Use 10 digits, or 91 + 10 digits, or +91 + 10 digits (Indian mobile).",
         );
         phoneEl.reportValidity();
         return false;
@@ -1330,7 +1402,7 @@ function setupContactForm() {
       notify(
         "info",
         "Missing information",
-        "Please fill in name, email, and intent."
+        "Please fill in name, email, and intent.",
       );
       return;
     }
@@ -1345,7 +1417,7 @@ function setupContactForm() {
       notify(
         "info",
         "EmailJS not configured",
-        "Set EMAILJS_PUBLIC_KEY (from .env), EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID in script.js, or set window.__EMAILJS_*__ before this script."
+        "Set EMAILJS_PUBLIC_KEY (from .env), EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID in script.js, or set window.__EMAILJS_*__ before this script.",
       );
       return;
     }
@@ -1367,12 +1439,12 @@ function setupContactForm() {
           phone: formValues.phone || "Not Provided",
           intent: formValues.intentLabel,
         },
-        { publicKey: EMAILJS_PUBLIC_KEY }
+        { publicKey: EMAILJS_PUBLIC_KEY },
       );
       notify(
         "email",
         "Message sent",
-        "Thanks — your inquiry was delivered. I'll get back to you soon."
+        "Thanks — your inquiry was delivered. I'll get back to you soon.",
       );
       form.reset();
     } catch (err) {
@@ -1384,7 +1456,7 @@ function setupContactForm() {
       notify(
         "info",
         "Send failed",
-        detail || "Please try again or email me directly."
+        detail || "Please try again or email me directly.",
       );
     } finally {
       setContactSubmitBusy(false);
@@ -1396,22 +1468,42 @@ function setupContactForm() {
 //  INIT
 // ══════════════════════════════════════
 (function init() {
-  const totalSkills =
-    skillCategories.reduce((t, c) => t + c.chips.length, 0) + "+";
-  console.log(totalSkills, "skills");
-  document.getElementById("total-skill-count").textContent = totalSkills;
+  const awardCard = document.querySelector("#r-about .r-award-card");
+  const achievementsGrid = document.getElementById("achievementsGrid");
+  if (awardCard && achievementsGrid) {
+    const originalWrapper = awardCard.parentElement;
+    achievementsGrid.appendChild(awardCard);
+    originalWrapper?.remove();
+  }
+
+  const certDialog = document.getElementById("certDialog");
+  const certDialogImage = document.getElementById("certDialogImage");
+  if (certDialog instanceof HTMLDialogElement && certDialogImage instanceof HTMLImageElement) {
+    document.querySelectorAll(".r-cert-view").forEach((button) => {
+      button.addEventListener("click", () => {
+        certDialogImage.src = button.dataset.certificate;
+        certDialogImage.alt = button.dataset.certificateAlt || "Certificate preview";
+        certDialog.showModal();
+      });
+    });
+    certDialog.querySelector(".r-cert-dialog-close")?.addEventListener("click", () => {
+      certDialog.close();
+    });
+    certDialog.addEventListener("click", (event) => {
+      if (event.target === certDialog) certDialog.close();
+    });
+  }
+
   document.getElementById("total-experience-full-value").textContent =
-    calculateExperience("22 August 2022", "full");
+    calculateExperience("2022-08-22", "full");
   document.getElementById("se-duration").textContent = calculateExperience(
     "2024-06-20",
-    "short"
+    "short",
   );
   document.getElementById("total-experience").textContent = calculateExperience(
-    "22 August 2022",
-    "decimalPlus"
+    "2022-08-22",
+    "short",
   );
-  document.getElementById("total-year-experience").textContent =
-    calculateExperience("22 August 2022", "decimalPlus");
   let savedTheme = "dark";
   try {
     const persistedTheme = localStorage.getItem("pf-theme");
@@ -1429,8 +1521,8 @@ function setupContactForm() {
       notify(
         "welcome",
         "Welcome!",
-        "Use the top-right toggle for theme and the side button to switch Dev/Recruiter mode."
+        "Use the top-right toggle for theme and the side button to switch Dev/Recruiter mode.",
       ),
-    120
+    120,
   );
 })();

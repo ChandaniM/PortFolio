@@ -2,18 +2,15 @@
 <html lang="en" data-mode="recruiter" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <title>Chandani Mourya</title>
+    <title>Chandani Mourya | Software Engineer &amp; Frontend Developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="I'm Chandani Mourya, A Software Engineer · Frontend Developer | Angular · React · Node.js" />
-     <meta
-      name="keywords"
-      content="Chandani Mourya, Chandani, Online Portfolio, Software Engineer · Frontend Developer | Angular · React · Node.js, MERN Stack Developer, Resume, JavaScript,  CV, Node, PHP"
+    <meta name="description" content="Chandani Mourya is a Mumbai-based software engineer specializing in frontend development with Angular and React, with experience in performance, enterprise applications, and full-stack projects."
     />
-    <meta name="”robots”" content="index, follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <meta name="keywords"
-    content="Angular Developer 3 years">
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="Chandani Mourya, software engineer, frontend developer, Angular developer, React developer, Mumbai"
+    />
     <link
     rel="apple-touch-icon"
     sizes="180x180"
@@ -32,7 +29,7 @@
     href="./favicon-16x16.png"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet"
     />
     <link rel="stylesheet" href="CSS/style.css">
@@ -42,7 +39,7 @@
         "@type": "Person",
         "name": "Chandani Mourya",
         "jobTitle": "Frontend Developer",
-        "description": "Angular and React developer with 3.7 years of experience.",
+        "description": "Mumbai-based software engineer specializing in frontend development with Angular and React.",
         "url": "https://chandanimourya.netlify.app/",
         "email": "chandani.mourya.dev@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Mumbai", "addressCountry": "IN" },
@@ -57,22 +54,8 @@
   <body>
     <!-- ═══ CURSOR (recruiter mode) ═══ -->
     <div class="r-cursor" id="rCursor"></div>
-    <div class="r-cursor-ring" id="rCursorRing"></div>
 
-    <!-- ═══ MODE BUTTON (right center) ═══ -->
-    <div class="mode-btn-wrap">
-      <button class="mode-btn" onclick="toggleMode()">
-        <span class="btn-ico" id="modeIco"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg></span>
-        <div class="btn-txt lbl-dev">
-          <span class="btn-main">Dev Mode</span>
-          <span class="btn-sub">VS Code View</span>
-        </div>
-        <div class="btn-txt lbl-rec">
-          <span class="btn-main">Recruiter Mode</span>
-          <span class="btn-sub">Clean View</span>
-        </div>
-      </button>
-    </div>
+    <!-- mode control moved into header top-controls to avoid duplicate buttons -->
 
     <!-- ═══ NOTIFICATION ═══ -->
     <div class="vsc-notif" id="notif">
@@ -107,6 +90,8 @@
         <a href="#r-about" onclick="closeMobNav()">About</a>
         <a href="#r-skills" onclick="closeMobNav()">Skills</a>
         <a href="#r-experience" onclick="closeMobNav()">Experience</a>
+        <a href="#r-projects" onclick="closeMobNav()">Projects</a>
+        <a href="#r-achievements" onclick="closeMobNav()">Achievements</a>
         <!-- <a href="#r-system" onclick="closeMobNav()">System Design</a> -->
         <a href="#r-education" onclick="closeMobNav()">Education</a>
         <a href="#r-contact" onclick="closeMobNav()">Contact</a>
@@ -119,6 +104,8 @@
             <li><a href="#r-about">About</a></li>
             <li><a href="#r-skills">Skills</a></li>
             <li><a href="#r-experience">Experience</a></li>
+            <li><a href="#r-projects">Projects</a></li>
+            <li><a href="#r-achievements">Achievements</a></li>
             <!-- <li><a href="#r-system">System Design</a></li> -->
             <li><a href="#r-education">Education</a></li>
 
@@ -135,6 +122,15 @@
           </a> -->
           
           <a href="#r-contact" class="r-dl-btn">Hire Me</a>
+          <div class="mode-btn-wrap" id="modeControlWrap">
+            <button id="modeBtn" class="mode-btn" role="switch" aria-checked="false" aria-label="Toggle mode: Recruiter mode active" onclick="toggleMode()">
+              <span class="btn-ico" id="modeIco"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-icon lucide-laptop"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2 2z"/><path d="M20.054 15.987H3.946"/></svg></span>
+              <div class="btn-textual">
+                <span class="mode-state" id="modeState">Dev Mode</span>
+                <span class="mode-sub" id="modeSub">Switch</span>
+              </div>
+            </button>
+          </div>
           <button class="r-ham" onclick="toggleMobNav()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
           </button>
@@ -158,7 +154,9 @@
       <!-- HERO -->
       <section class="r-hero">
         <div class="r-hero-left">
-          <div class="r-hero-badge" id="rBadge"></div>
+          <div class="r-hero-badge" id="rBadge">
+            <span id="rBadgeText">Open to freelance and full-time work</span>
+          </div>
           <h1 class="r-hero-name">
             <span class="line1">Chandani</span>
             <span class="line2 glitch" data-text="Mourya.">Mourya</span>
@@ -168,10 +166,12 @@
             <!-- MEAN Stack Developer · React Developer -->
           </p>
           <div class="r-hero-exp">
-            <span class="num" id="total-experience">3.5</span>
-            <span class="label">Years of<br />Experience</span>
+            <span class="num" id="total-experience">4+</span>
+            <span class="label">Professional<br />Experience</span>
           </div>
           <p class="r-hero-desc">
+           <!-- Hey! I'm Chandani Mourya, a Software Engineer with 4+ years of experience building responsive web applications across real estate, fintech, compliance and verification, and document management. I've worked with teams and projects at Bureau Veritas, Manazil, M-Files, FYXNT, and IDfy, primarily using Angular and React, while also working with Node.js, databases, and DevOps. I enjoy turning ideas into scalable, user friendly products and understanding how things work beyond the frontend. -->
+
             Focused on building high-scale, responsive web applications using Angular and React.
             I leverage System Design principles to create modular UI components and efficient 
             data-fetching strategies that reduce latency and improve developer velocity.
@@ -182,14 +182,20 @@
           </p>
           <div class="r-hero-actions">
             <a href="#r-contact" class="r-btn-primary">Let's Work Together →</a>
-            <!-- <a href="./chandani-mourya-cv.pdf" download class="r-btn-ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                Download CV
-              </a> -->
+            <!-- Replace REPLACE_WITH_YOUR_FILE_ID with the ID from your Google Drive share link. -->
+            <a
+              href="https://drive.google.com/file/d/17G0ePOmaJe_RM-k91b8urmJSq9ywe5pi/view?usp=sharing"
+              class="r-btn-ghost r-resume-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M14 3h7v7"/>
+                <path d="M10 14 21 3"/>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+              </svg>
+              View Resume
+            </a>
             <button
               class="r-btn-ghost"
               onclick="document.querySelector('#r-skills').scrollIntoView({behavior:'smooth'})"
@@ -210,14 +216,11 @@
 
         <!-- PROFILE CARD (Image 1 style) -->
         <div class="r-hero-right">
-          <div class="r-profile-card">
+          <img src="./illustration/my_profile_.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+          <!-- <div class="r-profile-card">
             <div class="r-avatar">
-              <img src="./illustration/my_profile_.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="r-profile-name" style="padding-bottom:16px;">Chandani Mourya</div>
-            <!-- <div class="r-profile-title">
-              MEAN Stack · Angular · React
-            </div> -->
             <div class="r-profile-tags">
               <span class="r-ptag">Angular</span>
               <span class="r-ptag">React</span>
@@ -227,12 +230,6 @@
               <span class="r-ptag">Responsive Design</span>
             </div>
             <div class="r-profile-info">
-              <!-- <div class="r-prow">
-                <span class="ico">📧</span
-                ><a href="mailto:chandanimourya5@gmail.com"
-                  >chandanimourya5@gmail.com</a
-                >
-              </div> -->
               <div class="r-prow">
                 <span class="ico">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
@@ -256,29 +253,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
-
-      <!-- STATS -->
-      <div class="r-stats-row">
-        <div class="r-stat reveal">
-          <div class="r-stat-num" id="total-year-experience"></div>
-          <div class="r-stat-label">Years Experience</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-1">
-          <div class="r-stat-num" id="total-skill-count"></div>
-          <div class="r-stat-label">Technologies</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-2">
-          <div class="r-stat-num">1×</div>
-          <div class="r-stat-label">Hackathon Winner</div>
-        </div>
-        <div class="r-stat reveal reveal-delay-3">
-          <div class="r-stat-num">∞</div>
-          <div class="r-stat-label">Lines of Impact</div>
-        </div>
-      </div>
 
       <!-- ABOUT -->
       <section class="r-section" id="r-about">
@@ -289,62 +266,60 @@
         </div>
         <div class="r-about-grid">
           <div class="r-about-text reveal">
-            <!-- <p class="r-about-quote">
-              "I enjoy solving problems, writing maintainable code, and working
-              closely with designers and backend teams to bring ideas to life."
-            </p> -->
             <p>
-              I'm a
-              <strong
-                >Software Engineer with <span id="total-experience-full-value"></span>
-                of
-                experience</strong
-              >
-              in designing, testing, and delivering scalable front-end solutions
-              within Agile environments. I specialize in building modular UI
-              using <strong>Angular</strong>, with strong focus on performance,
-              responsive design, and UX optimization, while consistently following
-              industry best practices.
+              I'm a software engineer with
+              <strong><span id="total-experience-full-value"></span> of experience</strong>,
+              mostly working in frontend development. I'm from Mumbai, a city that
+              never sleeps. There's always traffic, noise, people rushing somewhere,
+              and a little chaos everywhere. Somehow, in the middle of all that,
+              you learn to keep moving. My journey in tech has been a little like
+              that too.
             </p>
             <p>
-              My expertise spans the full <strong>MEAN stack</strong> (MongoDB,
-              Express.js, Angular, and Node.js) along with hands-on experience
-              in <strong>React</strong> and modern frontend tooling.
+              I've always loved sketching. I enjoy taking something that exists in
+              my head and turning it into something I can actually see. That's what
+              naturally pulled me toward frontend development. I loved taking an
+              idea, turning it into an interface, and seeing a real person interact
+              with it. Over the years, I've worked with Angular, React, and Svelte,
+              along with responsive design, performance, testing, and UX.
             </p>
-            <!-- <div class="r-progress-list"> -->
-              <!-- <div class="r-prog-item">
-                <div class="r-prog-lbl">
-                  <span>Frontend Development</span><span>95%</span>
-                </div>
-                <div class="r-prog-track">
-                  <div class="r-prog-bar" style="--w: 95%"></div>
-                </div>
-              </div> -->
-              <!-- <div class="r-prog-item">
-                <div class="r-prog-lbl">
-                  <span>MEAN Stack</span><span>88%</span>
-                </div>
-                <div class="r-prog-track">
-                  <div class="r-prog-bar" style="--w: 88%"></div>
-                </div>
-              </div> -->
-              <!-- <div class="r-prog-item">
-                <div class="r-prog-lbl">
-                  <span>React Ecosystem</span><span>82%</span>
-                </div>
-                <div class="r-prog-track">
-                  <div class="r-prog-bar" style="--w: 82%"></div>
-                </div>
-              </div> -->
-              <!-- <div class="r-prog-item">
-                <div class="r-prog-lbl">
-                  <span>System Design</span><span>40%</span>
-                </div>
-                <div class="r-prog-track">
-                  <div class="r-prog-bar" style="--w: 40%"></div>
-                </div>
-              </div> -->
-            <!-- </div> -->
+            <p>
+              But I've always been curious about what happens beyond the screen. I
+              started exploring backend development with Node.js and Express,
+              learned about SQL and NoSQL databases, and eventually found myself
+              getting interested in DevOps. I started asking questions like, “How
+              does this application actually reach the user?” and “What happens
+              when the traffic increases or a server goes down?” That curiosity
+              made me want to understand the whole journey of an application, not
+              just the part I could see.
+            </p>
+            <p>
+              I've also worked as a freelancer, where I get to start with someone's
+              idea, understand what they actually need, create a demo, and then
+              build the product with them step by step. That experience taught me
+              that development is not just about writing code. It's also about
+              listening, understanding, communicating, and turning someone's idea
+              into something real.
+            </p>
+            <p>
+              Frontend is still where I feel most at home, but I don't want to
+              limit myself to just one part of technology. I enjoy building things,
+              exploring how they work, and learning what happens behind the scenes.
+            </p>
+            <p>
+              I think that curiosity is what brought me into tech, and it's
+              probably what will keep me exploring it for a long time.
+            </p>
+            <p>
+              Feel free to reach out on
+              <a
+                class="r-about-inline-link"
+                href="https://www.linkedin.com/in/chandani-mourya-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >LinkedIn</a>. Always happy to talk code, solve interesting problems,
+              learn something new, or just swap notes over coffee.
+            </p>
           </div>
           <div class="reveal reveal-delay-2">
             <div class="r-award-card">
@@ -396,11 +371,24 @@
           <div class="r-tl-right">
             <div class="r-exp-role">Software Engineer</div>
             <div class="r-exp-co">Flair Labs · Full-time · <span id="se-duration"></span> · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Designed, developed, and delivered scalable front-end solutions within Agile environments, focusing on modular and maintainable Angular-based UI architectures. Built responsive and performance-optimized interfaces with a strong emphasis on user experience. Contributed to full-stack feature development across multiple product lines, leveraging Angular component lifecycle and state management while working within the broader MEAN stack. Collaborated closely with cross-functional teams and senior engineers to deliver high-quality features in a fast-paced product environment.
-              <!-- Designed and implemented scalable front-end solutions for enterprise applications including M-Files, focusing on modular architecture and maintainable Angular-based UI systems. Built reusable and performance-optimized components while applying best practices for clean code, responsive design, and UX optimization. Improved application performance through techniques such as lazy loading, optimized rendering strategies, and efficient state management. Contributed to full-stack feature development within the MEAN stack while collaborating on system design decisions to ensure seamless integration with load-balanced backend services and distributed systems. Worked closely with cross-functional teams in Agile environments to deliver high-quality, scalable product features. -->
-            </p>
-            <div class="r-exp-tags">
+            <ul class="r-exp-highlights">
+              <li>Built applications from scratch using Angular, creating reusable dynamic components, RxJS services, dynamic forms, and responsive UIs with Angular Material, Ionic, Tailwind CSS, and SCSS; added Jasmine unit tests.</li>
+              <li>Improved application performance by 40% by resolving subscription and lifecycle issues, modernizing frontend modules, fixing critical bugs, and implementing lazy loading and other optimizations.</li>
+              <li>Built a debounced search experience with autocomplete suggestions and keyword highlighting, improving usability across large result sets.</li>
+            </ul>
+            <details class="r-exp-more">
+              <summary>Show more accomplishments</summary>
+              <ul class="r-exp-highlights">
+                <li>Led a frontend team while independently owning frontend modules end-to-end, from technical design and development through testing and deployment.</li>
+                <li>Developed multiple M-Files Vault Application Framework (VAF) applications, including complex multi-step workflows and an internal CRM, integrating Outlook, SharePoint, AWS S3, DocuSign, and Microsoft Teams.</li>
+                <li>Delivered 20+ M-Files client deployments and vaults across multiple projects as a Certified M-Files Solution Engineer and Developer.</li>
+                <li>Built a React and TypeScript Reports module with micro-frontend architecture, configurable report generation, and a customizable dashboard featuring 10+ widget types and 5+ chart formats.</li>
+                <li>Designed multi-tenant frontend and API data isolation, plus multilingual announcements for one-click broadcasts to 500+ users and real-time SMS notifications through third-party APIs.</li>
+                <li>Built a custom RFQ module using Python, XML, and PostgreSQL, with AWS S3 file processing, automated notifications, webhooks, and business-rule-based calculations.</li>
+                <li>Developed publication navigation and comparison capabilities, including breadcrumb and cascading navigation, Git-diff-style version comparison, browsing history, and hierarchical table-of-contents navigation.</li>
+              </ul>
+            </details>
+            <div class="r-exp-tags r-exp-tags-dense">
               <div class="r-exp-tag">Angular</div>
               <div class="r-exp-tag">TypeScript</div>
               <div class="r-exp-tag">Node.js</div>
@@ -408,6 +396,20 @@
               <div class="r-exp-tag">React</div>
               <div class="r-exp-tag">Docker</div>
               <div class="r-exp-tag">Agile</div>
+              <div class="r-exp-tag">RxJS</div>
+              <div class="r-exp-tag">Angular Material</div>
+              <div class="r-exp-tag">Ionic</div>
+              <div class="r-exp-tag">SCSS</div>
+              <div class="r-exp-tag">Jasmine</div>
+              <div class="r-exp-tag">M-Files VAF</div>
+              <div class="r-exp-tag">AWS S3</div>
+              <div class="r-exp-tag">AWS EKS</div>
+              <div class="r-exp-tag">Micro-frontends</div>
+              <div class="r-exp-tag">Kubernetes</div>
+              <div class="r-exp-tag">Helm</div>
+              <div class="r-exp-tag">Terraform</div>
+              <div class="r-exp-tag">Terragrunt</div>
+              <div class="r-exp-tag">Elixir</div>
             </div>
           </div>
         </div>
@@ -420,9 +422,13 @@
           <div class="r-tl-right">
             <div class="r-exp-role">Associate Software Engineer</div>
             <div class="r-exp-co">Flair Labs · Full-time · 1 yr 7 mos · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Contributed to full-stack feature development and UI implementation across multiple product lines. Gained hands-on experience with Angular, including component lifecycle and state management. Developed a strong understanding of UI responsiveness and the broader MEAN stack while collaborating closely with senior engineers in a fast-paced product environment.
-            </p>
+            <ul class="r-exp-highlights">
+              <li>Worked on the design, development, and delivery of enterprise applications across frontend and full-stack, with a strong focus on scalability, performance, reusable architecture, and user experience.</li>
+              <li>Contributed to frontend development for a multinational certification and compliance client, following company coding standards to ensure consistency and maintainability.</li>
+              <li>Built applications from scratch using Angular, creating reusable and dynamic components with dynamic data binding.</li>
+              <li>Debugged application issues using standard tools, improving the reliability of delivered features.</li>
+              <li>Delivered fully responsive interfaces across mobile, tablet, and desktop.</li>
+            </ul>
             <div class="r-exp-tags">
               <div class="r-exp-tag">Elixir</div>
               <div class="r-exp-tag">Angular CLI</div>
@@ -482,10 +488,221 @@
         </div>
       </section>
 
+      <!-- PROJECTS -->
+      <section class="r-section alt" id="r-projects">
+        <div class="r-sec-hdr reveal">
+          <span class="r-sec-num">04</span>
+          <h2 class="r-sec-title">Projects</h2>
+          <div class="r-sec-line"></div>
+        </div>
+        <div class="r-project-group">
+          <h3 class="r-project-group-title">Freelance &amp; Client Projects</h3>
+        <div class="r-project-grid">
+        <article class="r-project-card r-project-card-featured reveal" data-project-number="01">
+          <div class="r-project-top">
+            <div>
+                <div class="r-project-kicker">
+                  <span>React</span><span>TypeScript</span><span>Supabase</span><span>Cloudinary</span>
+                </div>
+              <h3 class="r-project-title">Uphar Gift Shop</h3>
+            </div>
+              <span class="r-project-status">↗ Live Demo</span>
+          </div>
+          <p class="r-project-desc">
+              A modern gifting storefront for curated products, with a responsive
+              premium shopping experience.
+            </p>
+            <details class="r-project-details" data-auto-project-details>
+              <summary>View detailed description</summary>
+              <p>
+                Developed browsing by category and occasion, product search and
+                filtering, cart and wishlist flows, checkout, inventory-aware
+                handling, and shareable product selections. Built the admin panel
+                for homepage content, categories, products, and sales-ledger
+                (khata-style) tracking.
+              </p>
+            </details>
+            <div class="r-project-actions">
+              <a href="https://upharthegiftshop.netlify.app/" target="_blank" rel="noopener noreferrer">View Live↗</a>
+              <a href="https://github.com/upharthegitshop/catalogue" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article>
+        <article class="r-project-card reveal reveal-delay-2" data-project-number="02">
+          <div class="r-project-top">
+            <div>
+              <div class="r-project-kicker">
+                <span>React</span><span>TypeScript</span><span>Vite</span><span>Multi-brand UI</span><span>Sanity CMS</span>
+              </div>
+              <h3 class="r-project-title">Luxury Events &amp; Weddings Portal</h3>
+            </div>
+            <span class="r-project-status">Demo</span>
+          </div>
+          <p class="r-project-desc">
+            A multi-vertical luxury events platform bringing weddings, live events,
+            and venue design together under one portal.
+          </p>
+          <p class="r-project-extra-text">
+            Created a cinematic landing experience with an animated hero and
+            three-panel entry point into themed sub-brand experiences. The
+            dedicated wedding microsite included its own visual identity,
+            portfolio, destinations, and client stories. This was delivered as
+            a freelance demo pitch; the engagement did not proceed due to
+            budget alignment.
+          </p>
+          <div class="r-project-actions">
+            <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article>
+        <!-- <article class="r-project-card reveal reveal-delay-1" data-project-number="03">
+          <div class="r-project-top">
+            <div>
+              <div class="r-project-kicker">
+                <span>React</span><span>TypeScript</span><span>Demo</span>
+              </div>
+              <h3 class="r-project-title">Event &amp; Venue Management Platform</h3>
+            </div>
+            <span class="r-project-status">Concept</span>
+          </div>
+          <p class="r-project-desc">
+            A business platform for managing and presenting event offerings, live
+            spaces, and venue information.
+          </p>
+          <details class="r-project-details" data-auto-project-details>
+            <summary>View detailed description</summary>
+            <p>
+              Combined an internal content-management experience with a
+              customer-facing website for exploring events, spaces, and services,
+              using a shared platform structure for both operational and public
+              experiences.
+            </p>
+          </details>
+          <div class="r-project-actions">
+            <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
+          </div>
+        </article> -->
+        </div>
+        </div>
+        <div class="r-project-group r-project-group-personal">
+          <h3 class="r-project-group-title">Personal Projects</h3>
+          <article class="r-project-card r-project-card-featured reveal" data-project-number="01">
+            <div class="r-project-top">
+              <div>
+                <div class="r-project-kicker">
+                  <span>React 19</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Redis</span>
+                </div>
+                <h3 class="r-project-title">Organization Management &amp; RBAC Platform</h3>
+              </div>
+              <span class="r-project-status">Personal</span>
+            </div>
+            <p class="r-project-desc">
+              A full-stack, multi-tenant organization management platform with
+              secure role-based access, employee operations, dashboards,
+              collaboration workflows, and organization-wide communication.
+            </p>
+            <details class="r-project-details" data-auto-project-details>
+              <summary>View detailed description</summary>
+              <div class="r-project-detail-content">
+                <p>
+                  Built tenant-isolated experiences for system administrators,
+                  organization administrators, and employees with JWT
+                  authentication and backend-enforced authorization.
+                </p>
+                <h4>Platform capabilities</h4>
+                <ul>
+                  <li>Organization and tenant management with organization settings.</li>
+                  <li>Employee directory, profiles, reporting managers, and visual organization hierarchy.</li>
+                  <li>Organization and system administrator dashboards with user and tenant statistics.</li>
+                  <li>Roles, permissions, announcements, notifications, invitations, and audit logs.</li>
+                  <li>Document and resource management with role-based isolation and S3-compatible storage.</li>
+                  <li>Job portal management, project management, and Kanban task boards with comments, assignments, and activity tracking.</li>
+                </ul>
+                <h4>Technical highlights</h4>
+                <ul>
+                  <li>Centralized Axios authentication, request cancellation, debounced search, and duplicate-safe inputs.</li>
+                  <li>Lazy-loaded routes, route preloading, response caching, Redis-backed queues, rate limiting, and request deduplication.</li>
+                  <li>Responsive Material UI layouts with loading, error, empty, and unauthorized states.</li>
+                  <li>Drag-and-drop workflows using <code>@dnd-kit</code>, charts with Chart.js, and organization trees with <code>react-organizational-chart</code>.</li>
+                </ul>
+                <p class="r-project-stack">
+                  <strong>Stack:</strong> React 19, TypeScript, Vite, Material UI,
+                  Tailwind CSS, React Router, Axios, Node.js, Express.js,
+                  MongoDB, Mongoose, JWT, bcrypt, Redis, Bull, LocalStack,
+                  AWS SDK, Resend, Docker, and Docker Compose.
+                </p>
+              </div>
+            </details>
+          </article>
+          <!-- <div class="r-project-placeholder reveal">
+            <span class="r-project-placeholder-mark">+</span>
+            <div>
+              <h3>More personal projects coming soon</h3>
+              <p>Independent experiments and products will be added here.</p>
+            </div>
+          </div> -->
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS & CERTIFICATIONS -->
+      <section class="r-section alt" id="r-achievements">
+        <div class="r-sec-hdr reveal">
+          <span class="r-sec-num">05</span>
+          <h2 class="r-sec-title">Achievements &amp; Certifications</h2>
+          <div class="r-sec-line"></div>
+        </div>
+        <div class="r-achievements-grid" id="achievementsGrid">
+          <article class="r-cert-card r-cert-developer">
+            <div class="r-cert-summary">
+              <img
+                class="r-cert-thumb"
+                src="Certification/Certified-M-Files-Developer.png"
+                alt="Preview of the Certified M-Files Developer certificate"
+                loading="lazy"
+              />
+              <span class="r-cert-info">
+                <span class="r-cert-issuer">M-Files</span>
+                <span class="r-cert-title">Certified M-Files Developer</span>
+                <span class="r-cert-desc">Building and extending solutions on the M-Files platform.</span>
+                <button
+                  class="r-cert-view"
+                  type="button"
+                  data-certificate="Certification/Certified-M-Files-Developer.png"
+                  data-certificate-alt="Certified M-Files Developer certificate issued to Chandani Mourya"
+                >View certificate</button>
+              </span>
+            </div>
+          </article>
+          <article class="r-cert-card r-cert-solution">
+            <div class="r-cert-summary">
+              <img
+                class="r-cert-thumb"
+                src="Certification/Certified-M-Files-Solution.png"
+                alt="Preview of the Certified M-Files Solution Engineer certificate"
+                loading="lazy"
+              />
+              <span class="r-cert-info">
+                <span class="r-cert-issuer">M-Files</span>
+                <span class="r-cert-title">Certified M-Files Solution Engineer</span>
+                <span class="r-cert-desc">Issued 09/04/2024. Designing and implementing M-Files solutions.</span>
+                <button
+                  class="r-cert-view"
+                  type="button"
+                  data-certificate="Certification/Certified-M-Files-Solution.png"
+                  data-certificate-alt="Certified M-Files Solution Engineer certificate issued to Chandani Mourya"
+                >View certificate</button>
+              </span>
+            </div>
+          </article>
+        </div>
+        <dialog class="r-cert-dialog" id="certDialog" aria-label="Certificate preview">
+          <button class="r-cert-dialog-close" type="button" aria-label="Close certificate preview">×</button>
+          <img id="certDialogImage" alt="" />
+        </dialog>
+      </section>
+
       <!-- SYSTEM DESIGN -->
      <!-- <section class="r-section alt" id="r-system">
         <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">04</span>
+          <span class="r-sec-num">06</span>
           <h2 class="r-sec-title">System Design</h2>
           <div class="r-sec-line"></div>
         </div>
@@ -530,7 +747,7 @@
       </section> -->
       <section class="r-section" id="r-education">
         <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">04</span>
+          <span class="r-sec-num">06</span>
           <h2 class="r-sec-title">Education</h2>
           <div class="r-sec-line"></div>
         </div>
@@ -676,7 +893,7 @@
         <div class="r-contact-inner">
           <div class="">
             <div class="r-sec-hdr reveal">
-              <span class="r-sec-num">05</span>
+              <span class="r-sec-num">07</span>
               <h2 class="r-sec-title">Contact</h2>
               <div class="r-sec-line"></div>
             </div>
@@ -684,9 +901,9 @@
               Let's build<br />something <span>great.</span>
             </h3>
             <p class="r-contact-desc reveal">
-              Open to full-time opportunities, freelance projects, and interesting
-              collaborations. Let's talk about how I can help bring your ideas to
-              life.
+              Open to full-time opportunities, freelance projects, and collaborations.
+              For freelance work, share your goals and timeline; I'll clarify the
+              scope, shape a direction or demo, and build with you step by step.
             </p>
             <div class="r-contact-links reveal">
               <a href="mailto:chandani.mourya.dev@gmail.com" class="r-contact-link"
@@ -701,7 +918,7 @@
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m2 7 10 7 10-7" /></svg>Gmail</a
               >
-              <a href="https://www.linkedin.com/in/chandani-mourya-dev/"  target="_blank" class="r-contact-link noopener noreferrer"
+              <a href="https://www.linkedin.com/in/chandani-mourya-dev/" target="_blank" rel="noopener noreferrer" class="r-contact-link"
               ><svg
               width="18"
               height="18"
@@ -715,7 +932,7 @@
               />
               <rect x="2" y="9" width="4" height="12" />
               <circle cx="4" cy="4" r="2" /></svg>LinkedIn</a >
-              <a href="https://github.com/ChandaniM" target="_blank" class="r-contact-link"
+              <a href="https://github.com/ChandaniM" target="_blank" rel="noopener noreferrer" class="r-contact-link"
               ><svg
               width="18"
               height="18"
@@ -845,7 +1062,7 @@
 
       <footer class="r-footer">
         <div class="r-footer-l">
-          © 2026 Chandani Mourya | Software Engineer · Frontend Developer
+          © <span id="footerYear">2026</span> Chandani Mourya | Software Engineer · Frontend Developer
         </div>
         <div class="r-footer-r">Angular · React · Node · MongoDB</div>
       </footer>
@@ -868,14 +1085,16 @@
           <div class="vsc-mi" onclick="openCmd()">Go</div>
           <div class="vsc-mi" onclick="openCmd()">Terminal</div>
         </div>
-        <div class="vsc-title">
-          portfolio.ts — Software Engineer · Frontend Developer — Visual Studio Code
-        </div>
+        <button class="vsc-command-search" type="button" onclick="openCmd(event)" aria-label="Open Command Palette">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span>Search files and commands...</span>
+          <kbd>⌘P</kbd>
+        </button>
       </div>
       <div class="vsc-body">
         <div class="vsc-activity">
           <div class="vsc-ai active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-files-icon lucide-files"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></svg></div>
-          <div class="vsc-ai" onclick="openCmd()"><svg xmlns="http://www.w3.org/2000/svg"width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></div>
+          <div class="vsc-ai" onclick="openCmd(event)"><svg xmlns="http://www.w3.org/2000/svg"width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></div>
           <div class="vsc-ai"><svg xmlns="http://www.w3.org/2000/svg"width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork-icon lucide-git-fork"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg></div>
           <div class="vsc-ai"><svg xmlns="http://www.w3.org/2000/svg"width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-blocks-icon lucide-blocks"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2"/><rect x="14" y="2" width="8" height="8" rx="1"/></svg></div>
           <div
@@ -884,6 +1103,15 @@
           >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
+          <button
+            class="vsc-ai vsc-mode-switch"
+            type="button"
+            onclick="toggleMode()"
+            aria-label="Switch to Recruiter Mode"
+            data-tooltip="Switch to Recruiter Mode"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </button>
         </div>
         <div class="vsc-sidebar">
           <div class="vsc-sb-hdr">Explorer</div>
@@ -924,13 +1152,13 @@
             >
               <span class="fi-ts">TS</span>experience.component.ts
             </div>
-            <!-- <div
+            <div
               class="vsc-file"
               onclick="devTab('projects')"
               style="padding-left: 48px"
             >
               <span class="fi-ts">TS</span>projects.component.ts
-            </div> -->
+            </div>
             <div
               class="vsc-file mod"
               onclick="devTab('contact')"
@@ -979,7 +1207,7 @@
                 >×</span
               >
             </div>
-            <!-- <div
+            <div
               class="vsc-tab"
               data-tab="projects"
               onclick="devTab('projects')"
@@ -988,7 +1216,7 @@
                 class="vsc-tab-x"
                 >×</span
               >
-            </div> -->
+            </div>
             <div
               class="vsc-tab mod"
               data-tab="contact"
