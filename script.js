@@ -21,6 +21,34 @@ function initEmailJsIfNeeded() {
   emailJsInitialized = true;
 }
 
+function initializeProjectDetails() {
+  document
+    .querySelectorAll("#r-projects [data-auto-project-details]")
+    .forEach((details) => {
+      const content = details.querySelector(".r-project-detail-content") || details;
+      const listItemCount = content.querySelectorAll("li").length;
+      const sectionCount = content.querySelectorAll("h4").length;
+      const proseWordCount = Array.from(content.querySelectorAll("p")).reduce(
+        (total, paragraph) =>
+          total + (paragraph.textContent.trim().match(/\S+/g) || []).length,
+        0,
+      );
+      const isSubstantial =
+        listItemCount >= 3 || sectionCount >= 2 || proseWordCount >= 40;
+
+      if (isSubstantial) return;
+
+      const inlineContent = document.createElement("div");
+      inlineContent.className = "r-project-extra";
+      Array.from(details.children).forEach((child) => {
+        if (child.tagName !== "SUMMARY") inlineContent.appendChild(child);
+      });
+      details.replaceWith(inlineContent);
+    });
+}
+
+initializeProjectDetails();
+
 // ══════════════════════════════════════
 //  CURSOR (recruiter only)
 // ══════════════════════════════════════
@@ -1446,6 +1474,24 @@ function setupContactForm() {
     const originalWrapper = awardCard.parentElement;
     achievementsGrid.appendChild(awardCard);
     originalWrapper?.remove();
+  }
+
+  const certDialog = document.getElementById("certDialog");
+  const certDialogImage = document.getElementById("certDialogImage");
+  if (certDialog instanceof HTMLDialogElement && certDialogImage instanceof HTMLImageElement) {
+    document.querySelectorAll(".r-cert-view").forEach((button) => {
+      button.addEventListener("click", () => {
+        certDialogImage.src = button.dataset.certificate;
+        certDialogImage.alt = button.dataset.certificateAlt || "Certificate preview";
+        certDialog.showModal();
+      });
+    });
+    certDialog.querySelector(".r-cert-dialog-close")?.addEventListener("click", () => {
+      certDialog.close();
+    });
+    certDialog.addEventListener("click", (event) => {
+      if (event.target === certDialog) certDialog.close();
+    });
   }
 
   document.getElementById("total-experience-full-value").textContent =

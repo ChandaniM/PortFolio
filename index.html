@@ -512,7 +512,7 @@
               A modern gifting storefront for curated products, with a responsive
               premium shopping experience.
             </p>
-            <details class="r-project-details">
+            <details class="r-project-details" data-auto-project-details>
               <summary>View detailed description</summary>
               <p>
                 Developed browsing by category and occasion, product search and
@@ -541,17 +541,14 @@
             A multi-vertical luxury events platform bringing weddings, live events,
             and venue design together under one portal.
           </p>
-          <details class="r-project-details">
-            <summary>View detailed description</summary>
-            <p>
-              Created a cinematic landing experience with an animated hero and
-              three-panel entry point into themed sub-brand experiences. The
-              dedicated wedding microsite included its own visual identity,
-              portfolio, destinations, and client stories. This was delivered as
-              a freelance demo pitch; the engagement did not proceed due to
-              budget alignment.
-            </p>
-          </details>
+          <p class="r-project-extra-text">
+            Created a cinematic landing experience with an animated hero and
+            three-panel entry point into themed sub-brand experiences. The
+            dedicated wedding microsite included its own visual identity,
+            portfolio, destinations, and client stories. This was delivered as
+            a freelance demo pitch; the engagement did not proceed due to
+            budget alignment.
+          </p>
           <div class="r-project-actions">
             <a href="https://github.com/ChandaniM/ypd_react_demo" target="_blank" rel="noopener noreferrer">View source ↗</a>
           </div>
@@ -570,7 +567,7 @@
             A business platform for managing and presenting event offerings, live
             spaces, and venue information.
           </p>
-          <details class="r-project-details">
+          <details class="r-project-details" data-auto-project-details>
             <summary>View detailed description</summary>
             <p>
               Combined an internal content-management experience with a
@@ -602,7 +599,7 @@
               secure role-based access, employee operations, dashboards,
               collaboration workflows, and organization-wide communication.
             </p>
-            <details class="r-project-details">
+            <details class="r-project-details" data-auto-project-details>
               <summary>View detailed description</summary>
               <div class="r-project-detail-content">
                 <p>
@@ -652,7 +649,54 @@
           <h2 class="r-sec-title">Achievements &amp; Certifications</h2>
           <div class="r-sec-line"></div>
         </div>
-        <div class="r-achievements-grid" id="achievementsGrid"></div>
+        <div class="r-achievements-grid" id="achievementsGrid">
+          <article class="r-cert-card r-cert-developer">
+            <div class="r-cert-summary">
+              <img
+                class="r-cert-thumb"
+                src="Certification/Certified-M-Files-Developer.png"
+                alt="Preview of the Certified M-Files Developer certificate"
+                loading="lazy"
+              />
+              <span class="r-cert-info">
+                <span class="r-cert-issuer">M-Files</span>
+                <span class="r-cert-title">Certified M-Files Developer</span>
+                <span class="r-cert-desc">Building and extending solutions on the M-Files platform.</span>
+                <button
+                  class="r-cert-view"
+                  type="button"
+                  data-certificate="Certification/Certified-M-Files-Developer.png"
+                  data-certificate-alt="Certified M-Files Developer certificate issued to Chandani Mourya"
+                >View certificate</button>
+              </span>
+            </div>
+          </article>
+          <article class="r-cert-card r-cert-solution">
+            <div class="r-cert-summary">
+              <img
+                class="r-cert-thumb"
+                src="Certification/Certified-M-Files-Solution.png"
+                alt="Preview of the Certified M-Files Solution Engineer certificate"
+                loading="lazy"
+              />
+              <span class="r-cert-info">
+                <span class="r-cert-issuer">M-Files</span>
+                <span class="r-cert-title">Certified M-Files Solution Engineer</span>
+                <span class="r-cert-desc">Issued 09/04/2024. Designing and implementing M-Files solutions.</span>
+                <button
+                  class="r-cert-view"
+                  type="button"
+                  data-certificate="Certification/Certified-M-Files-Solution.png"
+                  data-certificate-alt="Certified M-Files Solution Engineer certificate issued to Chandani Mourya"
+                >View certificate</button>
+              </span>
+            </div>
+          </article>
+        </div>
+        <dialog class="r-cert-dialog" id="certDialog" aria-label="Certificate preview">
+          <button class="r-cert-dialog-close" type="button" aria-label="Close certificate preview">×</button>
+          <img id="certDialogImage" alt="" />
+        </dialog>
       </section>
 
       <!-- SYSTEM DESIGN -->

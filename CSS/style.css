@@ -959,9 +959,9 @@ body.mobnav-open {
   font-weight: 500;
 }
 .r-about-inline-link {
-  color: inherit;
+  color: var(--accent);
   cursor: none;
-  text-decoration: none;
+
   transition: color 0.2s ease;
 }
 .r-about-inline-link:hover,
@@ -984,7 +984,11 @@ body.mobnav-open {
   border-left: 2px solid var(--accent);
 }
 .r-achievements-grid {
-  width: min(100%, 900px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: min(100%, 1120px);
 }
 .r-award-card {
   background: var(--surface);
@@ -1024,6 +1028,159 @@ body.mobnav-open {
   line-height: 1.7;
   color: var(--text-dark);
   overflow-wrap: anywhere;
+}
+.r-cert-card {
+  min-width: 0;
+  align-self: stretch;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.r-award-card {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  border-radius: 10px;
+}
+.r-cert-developer {
+  grid-column: 2;
+  grid-row: 1;
+}
+.r-cert-solution {
+  grid-column: 2;
+  grid-row: 2;
+}
+.r-cert-summary {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.8fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 20px;
+  min-height: 207px;
+  padding: 18px 20px;
+}
+.r-cert-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.58;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+.r-cert-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+.r-cert-issuer {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+.r-cert-title {
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: clamp(1rem, 1.5vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.12;
+}
+.r-cert-desc {
+  color: var(--text-dark);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.r-cert-view {
+  border: 0;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+.r-cert-view:hover {
+  filter: brightness(1.08);
+}
+.r-cert-dialog {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 1100px);
+  max-width: none;
+  max-height: 90vh;
+  margin: 0;
+  padding: 44px 20px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: auto;
+}
+.r-cert-dialog[open] {
+  display: block;
+}
+.r-cert-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(4px);
+}
+.r-cert-dialog img {
+  display: block;
+  width: 100%;
+  max-height: calc(90vh - 64px);
+  object-fit: contain;
+  background: #fff;
+}
+.r-cert-dialog-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.r-cert-dialog img {
+  cursor: auto;
+}
+@media (max-width: 760px) {
+  .r-achievements-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+  .r-award-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .r-cert-developer,
+  .r-cert-solution {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .r-cert-summary {
+    grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+  .r-cert-title {
+    font-size: 1rem;
+  }
+  .r-cert-desc {
+    font-size: 0.78rem;
+  }
+  .r-cert-summary {
+    min-height: 176px;
+  }
+  .r-cert-dialog {
+    width: 96vw;
+    padding: 44px 10px 10px;
+  }
 }
 .r-progress-list {
   display: flex;
@@ -1387,15 +1544,28 @@ body.mobnav-open {
 }
 .r-project-desc {
   max-width: 760px;
-  margin-bottom: 26px;
+  margin-bottom: 16px;
   color: var(--text);
   font-size: 1rem;
   line-height: 1.8;
-  flex: 1;
 }
 .r-project-details {
   margin: 0 0 22px;
   color: var(--text-muted);
+}
+.r-project-extra > p {
+  max-width: 760px;
+  margin: 0 0 22px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+.r-project-extra-text {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.75;
 }
 .r-project-details summary {
   display: flex;
@@ -2726,6 +2896,9 @@ DEV MODE — VS CODE
   .r-project-top {
     flex-direction: column;
     gap: 12px;
+  }
+  .r-project-top > div {
+    flex: 0 1 auto;
   }
   /* .r-exp-tags-dense {
     display: flex;
