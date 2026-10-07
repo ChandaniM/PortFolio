@@ -3368,6 +3368,9 @@ DEV MODE — VS CODE
   background: #fff;
   color: #111;
 }
+[data-mode="recruiter"][data-theme="light"] .cf-submit {
+  color: #fff;
+}
 
 .cf-response-time {
   font-family: var(--font-body);
