@@ -88,9 +88,9 @@
       <!-- MOBILE NAV -->
       <div class="r-mobile-nav" id="rMobileNav">
         <a href="#r-about" onclick="closeMobNav()">About</a>
-        <a href="#r-skills" onclick="closeMobNav()">Skills</a>
-        <a href="#r-experience" onclick="closeMobNav()">Experience</a>
         <a href="#r-projects" onclick="closeMobNav()">Projects</a>
+        <a href="#r-experience" onclick="closeMobNav()">Experience</a>
+        <a href="#r-skills" onclick="closeMobNav()">Skills</a>
         <a href="#r-achievements" onclick="closeMobNav()">Achievements</a>
         <!-- <a href="#r-system" onclick="closeMobNav()">System Design</a> -->
         <a href="#r-education" onclick="closeMobNav()">Education</a>
@@ -102,9 +102,9 @@
         <!-- <div class="r-logo">Dev<span>.</span>Portfolio</div> -->
         <ul class="r-nav-links">
             <li><a href="#r-about">About</a></li>
-            <li><a href="#r-skills">Skills</a></li>
-            <li><a href="#r-experience">Experience</a></li>
             <li><a href="#r-projects">Projects</a></li>
+            <li><a href="#r-experience">Experience</a></li>
+            <li><a href="#r-skills">Skills</a></li>
             <li><a href="#r-achievements">Achievements</a></li>
             <!-- <li><a href="#r-system">System Design</a></li> -->
             <li><a href="#r-education">Education</a></li>
@@ -345,153 +345,10 @@
         </div>
       </section>
 
-      <!-- SKILLS -->
-      <section class="r-section alt" id="r-skills">
-        <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">02</span>
-          <h2 class="r-sec-title">Skills &amp; Stack</h2>
-          <div class="r-sec-line"></div>
-        </div>
-        <div class="r-skills-grid reveal" id="skillsGrid"></div>
-      </section>
-      
-      <!-- EXPERIENCE -->
-      <section class="r-section" id="r-experience">
-        <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">03</span>
-          <h2 class="r-sec-title">Experience</h2>
-          <div class="r-sec-line"></div>
-        </div>
-      
-        <!-- Flair Labs: Software Engineer -->
-        <div class="r-timeline reveal">
-          <div class="r-tl-left">
-            <div class="r-tl-year">May 2024 - Present</div>
-          </div>
-          <div class="r-tl-right">
-            <div class="r-exp-role">Software Engineer</div>
-            <div class="r-exp-co">Flair Labs · Full-time · <span id="se-duration"></span> · Mumbai, India</div>
-            <ul class="r-exp-highlights">
-              <li>Built applications from scratch using Angular, creating reusable dynamic components, RxJS services, dynamic forms, and responsive UIs with Angular Material, Ionic, Tailwind CSS, and SCSS; added Jasmine unit tests.</li>
-              <li>Improved application performance by 40% by resolving subscription and lifecycle issues, modernizing frontend modules, fixing critical bugs, and implementing lazy loading and other optimizations.</li>
-              <li>Built a debounced search experience with autocomplete suggestions and keyword highlighting, improving usability across large result sets.</li>
-            </ul>
-            <details class="r-exp-more">
-              <summary>Show more accomplishments</summary>
-              <ul class="r-exp-highlights">
-                <li>Led a frontend team while independently owning frontend modules end-to-end, from technical design and development through testing and deployment.</li>
-                <li>Developed multiple M-Files Vault Application Framework (VAF) applications, including complex multi-step workflows and an internal CRM, integrating Outlook, SharePoint, AWS S3, DocuSign, and Microsoft Teams.</li>
-                <li>Delivered 20+ M-Files client deployments and vaults across multiple projects as a Certified M-Files Solution Engineer and Developer.</li>
-                <li>Built a React and TypeScript Reports module with micro-frontend architecture, configurable report generation, and a customizable dashboard featuring 10+ widget types and 5+ chart formats.</li>
-                <li>Designed multi-tenant frontend and API data isolation, plus multilingual announcements for one-click broadcasts to 500+ users and real-time SMS notifications through third-party APIs.</li>
-                <li>Built a custom RFQ module using Python, XML, and PostgreSQL, with AWS S3 file processing, automated notifications, webhooks, and business-rule-based calculations.</li>
-                <li>Developed publication navigation and comparison capabilities, including breadcrumb and cascading navigation, Git-diff-style version comparison, browsing history, and hierarchical table-of-contents navigation.</li>
-              </ul>
-            </details>
-            <div class="r-exp-tags r-exp-tags-dense">
-              <div class="r-exp-tag">Angular</div>
-              <div class="r-exp-tag">TypeScript</div>
-              <div class="r-exp-tag">Node.js</div>
-              <div class="r-exp-tag">MongoDB</div>
-              <div class="r-exp-tag">React</div>
-              <div class="r-exp-tag">Docker</div>
-              <div class="r-exp-tag">Agile</div>
-              <div class="r-exp-tag">RxJS</div>
-              <div class="r-exp-tag">Angular Material</div>
-              <div class="r-exp-tag">Ionic</div>
-              <div class="r-exp-tag">SCSS</div>
-              <div class="r-exp-tag">Jasmine</div>
-              <div class="r-exp-tag">M-Files VAF</div>
-              <div class="r-exp-tag">AWS S3</div>
-              <div class="r-exp-tag">AWS EKS</div>
-              <div class="r-exp-tag">Micro-frontends</div>
-              <div class="r-exp-tag">Kubernetes</div>
-              <div class="r-exp-tag">Helm</div>
-              <div class="r-exp-tag">Terraform</div>
-              <div class="r-exp-tag">Terragrunt</div>
-              <div class="r-exp-tag">Elixir</div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Flair Labs: Associate Software Engineer -->
-        <div class="r-timeline reveal">
-          <div class="r-tl-left">
-            <div class="r-tl-year">Nov 2022 - May 2024</div>
-          </div>
-          <div class="r-tl-right">
-            <div class="r-exp-role">Associate Software Engineer</div>
-            <div class="r-exp-co">Flair Labs · Full-time · 1 yr 7 mos · Mumbai, India</div>
-            <ul class="r-exp-highlights">
-              <li>Worked on the design, development, and delivery of enterprise applications across frontend and full-stack, with a strong focus on scalability, performance, reusable architecture, and user experience.</li>
-              <li>Contributed to frontend development for a multinational certification and compliance client, following company coding standards to ensure consistency and maintainability.</li>
-              <li>Built applications from scratch using Angular, creating reusable and dynamic components with dynamic data binding.</li>
-              <li>Debugged application issues using standard tools, improving the reliability of delivered features.</li>
-              <li>Delivered fully responsive interfaces across mobile, tablet, and desktop.</li>
-            </ul>
-            <div class="r-exp-tags">
-              <div class="r-exp-tag">Elixir</div>
-              <div class="r-exp-tag">Angular CLI</div>
-              <div class="r-exp-tag">TypeScript</div>
-              <div class="r-exp-tag">AngularJS</div>
-              <div class="r-exp-tag">REST APIs</div>
-              <div class="r-exp-tag">Spring Boot</div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Flair Labs: Intern -->
-        <div class="r-timeline reveal">
-          <div class="r-tl-left">
-            <div class="r-tl-year">Aug 2022 - Nov 2022</div>
-          </div>
-          <div class="r-tl-right">
-            <div class="r-exp-role">Software Engineer Intern</div>
-            <div class="r-exp-co">Flair Labs · Internship · 4 mos · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Kickstarted my professional journey at Flair Labs, contributing to
-              frontend / backend development tasks and learning production-level engineering
-              practices. Rapidly onboarded onto the Elixir ecosystem and delivered
-              features alongside the core team.
-            </p>
-            <div class="r-exp-tags">
-              <div class="r-exp-tag">Software Development Life Cycle</div>
-              <div class="r-exp-tag">Elixir</div>
-              <div class="r-exp-tag">Spring Boot</div>
-              <div class="r-exp-tag">Phoenix Framework</div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Cloud Counselage -->
-        <div class="r-timeline reveal">
-          <div class="r-tl-left">
-            <div class="r-tl-year">Mar 2020 - Jul 2020</div>
-          </div>
-          <div class="r-tl-right">
-            <div class="r-exp-role">Web Development Intern</div>
-            <div class="r-exp-co">Cloud Counselage Pvt. Ltd. · Internship · 5 mos · Mumbai, India</div>
-            <p class="r-exp-desc">
-              Built and maintained web application features during an early internship, gaining hands-on experience in full-stack development.
-
-              Implemented backend integrations using Node.js to support application functionality.
-
-              Designed and developed a chatbot system that answered user queries about the company’s & their application and functioned as an automated FAQ assistant.
-            </p>
-            <div class="r-exp-tags">
-              <div class="r-exp-tag">HTML / CSS</div>
-              <div class="r-exp-tag">Node.JS</div>
-              <div class="r-exp-tag">JavaScript</div>
-              <div class="r-exp-tag">Web Development</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- PROJECTS -->
       <section class="r-section alt" id="r-projects">
         <div class="r-sec-hdr reveal">
-          <span class="r-sec-num">04</span>
+          <span class="r-sec-num">02</span>
           <h2 class="r-sec-title">Projects</h2>
           <div class="r-sec-line"></div>
         </div>
@@ -642,8 +499,151 @@
         </div>
       </section>
 
+      <!-- EXPERIENCE -->
+      <section class="r-section" id="r-experience">
+        <div class="r-sec-hdr reveal">
+          <span class="r-sec-num">03</span>
+          <h2 class="r-sec-title">Experience</h2>
+          <div class="r-sec-line"></div>
+        </div>
+      
+        <!-- Flair Labs: Software Engineer -->
+        <div class="r-timeline reveal">
+          <div class="r-tl-left">
+            <div class="r-tl-year">May 2024 - Present</div>
+          </div>
+          <div class="r-tl-right">
+            <div class="r-exp-role">Software Engineer</div>
+            <div class="r-exp-co">Flair Labs · Full-time · <span id="se-duration"></span> · Mumbai, India</div>
+            <ul class="r-exp-highlights">
+              <li>Built applications from scratch using Angular, creating reusable dynamic components, RxJS services, dynamic forms, and responsive UIs with Angular Material, Ionic, Tailwind CSS, and SCSS; added Jasmine unit tests.</li>
+              <li>Improved application performance by 40% by resolving subscription and lifecycle issues, modernizing frontend modules, fixing critical bugs, and implementing lazy loading and other optimizations.</li>
+              <li>Built a debounced search experience with autocomplete suggestions and keyword highlighting, improving usability across large result sets.</li>
+            </ul>
+            <details class="r-exp-more">
+              <summary>Show more accomplishments</summary>
+              <ul class="r-exp-highlights">
+                <li>Led a frontend team while independently owning frontend modules end-to-end, from technical design and development through testing and deployment.</li>
+                <li>Developed multiple M-Files Vault Application Framework (VAF) applications, including complex multi-step workflows and an internal CRM, integrating Outlook, SharePoint, AWS S3, DocuSign, and Microsoft Teams.</li>
+                <li>Delivered 20+ M-Files client deployments and vaults across multiple projects as a Certified M-Files Solution Engineer and Developer.</li>
+                <li>Built a React and TypeScript Reports module with micro-frontend architecture, configurable report generation, and a customizable dashboard featuring 10+ widget types and 5+ chart formats.</li>
+                <li>Designed multi-tenant frontend and API data isolation, plus multilingual announcements for one-click broadcasts to 500+ users and real-time SMS notifications through third-party APIs.</li>
+                <li>Built a custom RFQ module using Python, XML, and PostgreSQL, with AWS S3 file processing, automated notifications, webhooks, and business-rule-based calculations.</li>
+                <li>Developed publication navigation and comparison capabilities, including breadcrumb and cascading navigation, Git-diff-style version comparison, browsing history, and hierarchical table-of-contents navigation.</li>
+              </ul>
+            </details>
+            <div class="r-exp-tags r-exp-tags-dense">
+              <div class="r-exp-tag">Angular</div>
+              <div class="r-exp-tag">TypeScript</div>
+              <div class="r-exp-tag">Node.js</div>
+              <div class="r-exp-tag">MongoDB</div>
+              <div class="r-exp-tag">React</div>
+              <div class="r-exp-tag">Docker</div>
+              <div class="r-exp-tag">Agile</div>
+              <div class="r-exp-tag">RxJS</div>
+              <div class="r-exp-tag">Angular Material</div>
+              <div class="r-exp-tag">Ionic</div>
+              <div class="r-exp-tag">SCSS</div>
+              <div class="r-exp-tag">Jasmine</div>
+              <div class="r-exp-tag">M-Files VAF</div>
+              <div class="r-exp-tag">AWS S3</div>
+              <div class="r-exp-tag">AWS EKS</div>
+              <div class="r-exp-tag">Micro-frontends</div>
+              <div class="r-exp-tag">Kubernetes</div>
+              <div class="r-exp-tag">Helm</div>
+              <div class="r-exp-tag">Terraform</div>
+              <div class="r-exp-tag">Terragrunt</div>
+              <div class="r-exp-tag">Elixir</div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Flair Labs: Associate Software Engineer -->
+        <div class="r-timeline reveal">
+          <div class="r-tl-left">
+            <div class="r-tl-year">Nov 2022 - May 2024</div>
+          </div>
+          <div class="r-tl-right">
+            <div class="r-exp-role">Associate Software Engineer</div>
+            <div class="r-exp-co">Flair Labs · Full-time · 1 yr 7 mos · Mumbai, India</div>
+            <ul class="r-exp-highlights">
+              <li>Worked on the design, development, and delivery of enterprise applications across frontend and full-stack, with a strong focus on scalability, performance, reusable architecture, and user experience.</li>
+              <li>Contributed to frontend development for a multinational certification and compliance client, following company coding standards to ensure consistency and maintainability.</li>
+              <li>Built applications from scratch using Angular, creating reusable and dynamic components with dynamic data binding.</li>
+              <li>Debugged application issues using standard tools, improving the reliability of delivered features.</li>
+              <li>Delivered fully responsive interfaces across mobile, tablet, and desktop.</li>
+            </ul>
+            <div class="r-exp-tags">
+              <div class="r-exp-tag">Elixir</div>
+              <div class="r-exp-tag">Angular CLI</div>
+              <div class="r-exp-tag">TypeScript</div>
+              <div class="r-exp-tag">AngularJS</div>
+              <div class="r-exp-tag">REST APIs</div>
+              <div class="r-exp-tag">Spring Boot</div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Flair Labs: Intern -->
+        <div class="r-timeline reveal">
+          <div class="r-tl-left">
+            <div class="r-tl-year">Aug 2022 - Nov 2022</div>
+          </div>
+          <div class="r-tl-right">
+            <div class="r-exp-role">Software Engineer Intern</div>
+            <div class="r-exp-co">Flair Labs · Internship · 4 mos · Mumbai, India</div>
+            <p class="r-exp-desc">
+              Kickstarted my professional journey at Flair Labs, contributing to
+              frontend / backend development tasks and learning production-level engineering
+              practices. Rapidly onboarded onto the Elixir ecosystem and delivered
+              features alongside the core team.
+            </p>
+            <div class="r-exp-tags">
+              <div class="r-exp-tag">Software Development Life Cycle</div>
+              <div class="r-exp-tag">Elixir</div>
+              <div class="r-exp-tag">Spring Boot</div>
+              <div class="r-exp-tag">Phoenix Framework</div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Cloud Counselage -->
+        <div class="r-timeline reveal">
+          <div class="r-tl-left">
+            <div class="r-tl-year">Mar 2020 - Jul 2020</div>
+          </div>
+          <div class="r-tl-right">
+            <div class="r-exp-role">Web Development Intern</div>
+            <div class="r-exp-co">Cloud Counselage Pvt. Ltd. · Internship · 5 mos · Mumbai, India</div>
+            <p class="r-exp-desc">
+              Built and maintained web application features during an early internship, gaining hands-on experience in full-stack development.
+
+              Implemented backend integrations using Node.js to support application functionality.
+
+              Designed and developed a chatbot system that answered user queries about the company’s & their application and functioned as an automated FAQ assistant.
+            </p>
+            <div class="r-exp-tags">
+              <div class="r-exp-tag">HTML / CSS</div>
+              <div class="r-exp-tag">Node.JS</div>
+              <div class="r-exp-tag">JavaScript</div>
+              <div class="r-exp-tag">Web Development</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="r-section alt" id="r-skills">
+        <div class="r-sec-hdr reveal">
+          <span class="r-sec-num">04</span>
+          <h2 class="r-sec-title">Skills &amp; Stack</h2>
+          <div class="r-sec-line"></div>
+        </div>
+        <div class="r-skills-grid reveal" id="skillsGrid"></div>
+      </section>
+
       <!-- ACHIEVEMENTS & CERTIFICATIONS -->
-      <section class="r-section alt" id="r-achievements">
+      <section class="r-section" id="r-achievements">
         <div class="r-sec-hdr reveal">
           <span class="r-sec-num">05</span>
           <h2 class="r-sec-title">Achievements &amp; Certifications</h2>
@@ -745,7 +745,7 @@
           </div>
         </div>
       </section> -->
-      <section class="r-section" id="r-education">
+      <section class="r-section alt" id="r-education">
         <div class="r-sec-hdr reveal">
           <span class="r-sec-num">06</span>
           <h2 class="r-sec-title">Education</h2>
@@ -889,7 +889,7 @@
       </section> -->
 
       <!-- CONTACT -->
-      <section class="r-section alt" id="r-contact">
+      <section class="r-section" id="r-contact">
         <div class="r-contact-inner">
           <div class="">
             <div class="r-sec-hdr reveal">
